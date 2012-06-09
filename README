@@ -1,0 +1,21 @@
+[Station PRO - CMS ](http://marviorocha.com/) - New CMS Radio Station
+==================================================
+
+Contribution Guides
+--------------------------------------
+
+In the spirit of open source software development, Station always encourages community code contribution. To help you get started and before you jump into writing code, be send e-mail marviorocha@marviorocha.com
+
+
+
+What you need to build your own Station PRO
+--------------------------------------
+
+The Station PRO, is a CMS with base in framework codeigniter for easy users. It a interface back-end and front-and with players to the update the content manager sistem. You can create theme with easy tags and fast TPLN (Template Enginer)
+
+
+Questions?
+----------
+
+If you have any questions, please feel free to ask on the
+[Developing jQuery Core forum](http://forum.jquery.com/developing-jquery-core) or in #jquery on irc.freenode.net.
