@@ -39,12 +39,6 @@
 */
 
 $route['default_controller'] = "welcome";
-$route['^fr/(.+)$'] = "$1";
-$route['^en/(.+)$'] = "$1";
- 
-// '/en' and '/fr' -> use default controller
-$route['^fr$'] = $route['default_controller'];
-$route['^en$'] = $route['default_controller'];
 $route['404_override'] = '';
 
 

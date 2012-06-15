@@ -37,7 +37,7 @@
 |
 */
 
-$autoload['packages'] = array();
+$autoload['packages'] = array(APPPATH.'third_party');
 
 
 /*
@@ -64,7 +64,8 @@ $autoload['libraries'] = array('database','tpln_ci');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url');
+
+$autoload['helper'] = array('carbo', 'form', 'language', 'string', 'url');
 
 
 /*

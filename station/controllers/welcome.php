@@ -19,17 +19,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		
-$pro = new TPLN;		
-$pro->open(APPPATH.'views/page.html'); // you can do  $TPLN->Open();
-$pro->parse('meta',APPPATH.'this is my text in my bloc !'); 
-
-$pro->setNavColor('#ffffff','#ffffc0'); // change colors
-$pro->dbConnect();
-$pro->showRecords('SELECT * FROM users', 1); // only 10 results by page
-$pro->dbClose();
- 
-$pro->write(); 		
+		$this->load->view('welcome_message');
 	}
 }
 

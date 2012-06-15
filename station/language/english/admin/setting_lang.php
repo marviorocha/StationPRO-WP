@@ -25,6 +25,20 @@ $lang['users'] = "Users";
 $lang['settings'] = "Settings";
 
 //*
+//* That is page users **//
+
+$lang['user_title'] = "Users - Manages";
+$lang['tabs1'] = "Manages";
+$lang['tabs2'] = "Users Add";
+$lang['bio_user'] = "Bio";
+$lang['email'] = "User Email";
+$lang['name'] = "Name";
+$lang['passworld'] = "Passworlds";
+$lang['type_user'] = "Type";
+$lang['user_title'] = "Users - Manages";
+
+
+//*
 //* That is page settings **//
 
 $lang['site_setting'] = "Site settings";
@@ -38,14 +52,7 @@ $lang['port'] = "Port:";
 $lang['description'] = "Description";
 $lang['url'] = "Your URL";
 $lang['button_salve'] = "Salve";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
+ 
 
 
 //*
@@ -53,25 +60,6 @@ $lang[''] = "";
 
 $lang['success'] = "Your database is successful update! ";
 $lang['error'] = "Not updadte has error!!!";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-
  
 
 
