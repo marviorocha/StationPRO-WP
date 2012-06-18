@@ -60,7 +60,7 @@ $lang['button_salve'] = "Salve";
 
 $lang['success'] = "Your database is successful update! ";
 $lang['error'] = "Not updadte has error!!!";
- 
+$lang['erro_login'] = "Error login with email or senha";
 
 
 

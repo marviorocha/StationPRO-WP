@@ -1,0 +1,44 @@
+ 
+
+div.stepsguide{ /*div that contains all the "steps" text located at top of form */ 
+width: 800px; /*width of "steps" container*/
+overflow:hidden;
+margin-bottom:15px;
+cursor:pointer;
+}
+
+div.stepsguide .step{ /*div that wraps around each "steps" text */
+width:220px; /*width of each "steps" text*/
+font: bold 24px Arial;
+float:left;
+}
+
+div.stepsguide .disabledstep{ /*div that wraps around each "steps" text */
+color:#C4C4C4;
+}
+
+div.stepsguide .step .smalltext{ /*small footer text inside "steps" text */
+font-size: 13px;
+font-weight: normal;
+}
+
+div.formpaginate{ /* CSS for pagination DIV container */
+width:650px;
+overflow:hidden;
+font-weight:bold;
+text-align:center;
+margin-top:1em;
+margin:0px auto;
+}
+
+div.formpaginate .prev, div.formpaginate .next{ /*CSS for "prev" and "next" SPAN elements within paginate container */
+border-radius:5px;
+-webkit-border-radius:5px;
+-moz-border-radius:5px;
+padding:15px 20px;
+background:#0099CC;
+
+color:white;
+cursor:hand;
+cursor:pointer;
+}

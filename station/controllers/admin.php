@@ -17,29 +17,81 @@ class Admin extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+	 
 	 // page index
 	 
-	 public function index (){
-		$this->load->helper('language');
+ public function index (){
+
+$this->load->helper('language');
 $this->lang->load('admin/setting');		
-
+$this->load->model('varchar');
+$this->varchar->install(); 
+$login = $this->varchar->select_login();	
 $pro = new TPLN;	
- 
-  
- $pro->open(APPPATH.'views/admin/login.html'); // you can do  $TPLN->Open();
+$pro->open(APPPATH.'views/admin/login.html'); // you can do  $TPLN->Open();
+$powerby = "Powered by <a href=\"http://www.stationpro.net\">Station PRO</a> v0.1";
+$pro->parse('powered',$powerby); 
+$pro->parse('email',$login->email); 
+$pro->parse('senha',$login->password); 
+$pro->parse('base_url',base_url()); 
+$pro->write(); 		
+						 }
+	  
+public function login(){
 
- $powerby = "Powered by <a href=\"http://www.stationpro.net\">Station PRO</a> v0.1";
+$this->load->model('varchar');
+$this->varchar->login();	
+
+	}
+	
+	 // page index
+	 
+ public function loading (){
+
+$this->load->helper('language');
+$this->lang->load('admin/setting');		
+$this->load->model('varchar');
+$login = $this->varchar->select_login();	
+$pro = new TPLN;	
+$pro->open(APPPATH.'views/admin/loading.html'); // you can do  $TPLN->Open();
+$powerby = "Powered by <a href=\"http://www.stationpro.net\">Station PRO</a> v0.1";
+$pro->parse('powered',$powerby); 
+  
+$pro->write(); 		
+						 }		
+	
+	// page_logout
+public function logout(){
+	
+	$this->session->sess_destroy();	
+	redirect('/admin/','refresh');
+}
+	
+	// page_dashborad
+	public function dash() {
+		
+		
+$this->load->helper('language');
+$this->lang->load('admin/setting');		
+$this->load->model('varchar');
+$login = $this->varchar->select_login();	
+$pro = new TPLN;	
+$pro->open(APPPATH.'views/admin/dash.html'); // you can do  $TPLN->Open();
+$pro->parse('admin_url',base_url().APPPATH.('views/admin/'));
+$pro->parse('title',lang('title')); 
+$pro->parse('name',$this->session->userdata('name'));
+$pro->includeFile('head',APPPATH.'views/admin/meta/head_all.php'); // Include bottom 
+$pro->includeFile('menu',APPPATH.'views/admin/meta/menu.php'); // Include bottom 
+
+$powerby = "Powered by <a href=\"http://www.stationpro.net\">Station PRO</a> v0.1";
 $pro->parse('powered',$powerby); 
 
 $pro->write(); 		
-  
-		 
-		 
-		 }
-	  
+				
+}
 	 // page user 
 	 
-	 public function users($grid = 'none')
+ public function users($grid = 'none')
 {
 	
 		// load language file		
@@ -181,7 +233,6 @@ $pro->open(APPPATH.'views/admin/settings.html'); // you can do  $TPLN->Open();
  
 $pro->parse('base_url',base_url()); 
 $setting = $this->varchar->select_setting();   
- 
 $pro->parse('admin_url',base_url().APPPATH.('views/admin/')); 
 $pro->parse('title',lang('title')); 
 $pro->parse('site_setting',lang('site_setting')); 
@@ -194,8 +245,7 @@ $pro->parse('web_url',$setting->url);
 $pro->parse('description',$setting->description); 
 $pro->parse('error',lang('error'));
 $pro->parse('success',lang('success'));
- 
- 
+  
  // here parse variable 
 
 $pro->includeFile('head',APPPATH.'views/admin/meta/head_all.php'); // Include bottom 

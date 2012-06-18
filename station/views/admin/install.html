@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>{title}</title>
+  <bloc:Head>{head}</bloc:Head>
+  
+ <link href="{admin_url}css/formwizard.css" rel="stylesheet" type="text/css">
+<script>
+
+	
+	$(document).ready(function(){
+	
+	$("#testando").click( 
+		
+	function(){
+ 
+	hostname = $("#hostname").val();
+	username =  $("#username").val();
+	dbpassword = $("#dbpassword").val();
+	database = $("#database").val();
+	prefix = $("#prefix").val();
+	
+		
+	$.post("<?php echo base_url() ?>index.php/install/verific", {"hostname":hostname, "username":username, "dbpassword": dbpassword, "database": database,"prefix": prefix,},
+	
+	function(data){
+	// verifica o retorno
+		$("#feedbackform").validationEngine('attach');
+	if(data)
+	{
+	 
+	noty({"text":"Error no connect with database ","layout":"topCenter","type":"error","animateOpen":{"height":"toggle"},"animateClose":{"height":"toggle"},"speed":500,"timeout":5000,"closeButton":true,"closeOnSelfClick":true,"closeOnSelfOver":false,"modal":false});;
+		 
+	}
+	else
+	{
+	noty({"text":"Your database is connect","layout":"topCenter","type":"success","animateOpen":{"height":"toggle"},"animateClose":{"height":"toggle"},"speed":500,"timeout":5000,"closeButton":true,"closeOnSelfClick":true,"closeOnSelfOver":false,"modal":true});;
+	
+	
+	}
+	
+	});
+	
+	});
+	
+	
+	});
+ 
+ 
+ 
+	$(document).ready(function(){
+	
+	$("#finish").click( 
+		
+	function(){
+ 
+/*	hostname = $("#hostname").val();
+	username =  $("#username").val();
+	dbpassword = $("#dbpassword").val();
+	database = $("#database").val();*/
+	company = $("#company").val();
+	name = $("#name").val();
+	email = $("#email").val();
+	password = $("#password").val();
+	url = $("#url").val();
+	ip = $("#ip").val();
+	port = $("#port").val();
+		
+	$.post("<?php echo base_url() ?>index.php/install/conection", {"hostname":hostname, "username":username, "dbpassword": dbpassword, "database": database,"prefix": prefix,"company": company,"email": email,"name": name,"password": password,"url": url,"ip": ip,"port": port,},
+	
+	function(data){
+	// verifica o retorno
+		$("#feedbackform").validationEngine('attach');
+	if(data)
+	{
+	 
+	noty({"text":"Install not successful","layout":"topCenter","type":"error","animateOpen":{"height":"toggle"},"animateClose":{"height":"toggle"},"speed":500,"timeout":5000,"closeButton":true,"closeOnSelfClick":true,"closeOnSelfOver":false,"modal":false});;
+		 
+	}
+	else
+	{
+	
+	alert(data);
+	
+	}
+	
+	});
+	
+	});
+	
+	
+	});
+ 
+ </script>
+ </head>
+<body>
+<div id="head"> <!-- DIV top Head -->
+
+</div>
+<!-- FINAL DIV top Head -->
+
+ 
+<div id="nav" class="container_12">
+ 
+  
+
+  
+  
+</div>
+ 
+
+<div id="content" class="container_12"> <!-- DIV  Content --> 
+
+
+<div id="left" class="grid_12 alpha"><!--div id content left -->
+  
+  	<img src="<?php echo  base_url().APPPATH.('views/admin/') ?>img/logo_home.png" width="230" height="45" alt="Logo Station PRO">
+<h1>Welcome Install Station PRO - Content Manager Online Radio </h1><p>
+ 
+ <form id="feedbackform" class="formee" action="javascript:void();">
+
+<fieldset class="sectionwrap">
+<legend>Data base Information</legend>
+    <div class="grid-10-12">
+          <label for="Hostname"><span class="formee-req">* </span> Hostname:</label>
+ <input  id="hostname" class="validate[required]" type="text" size="35" />
+ </div>
+  <div class="grid-10-12">
+          <label   for="Username"><span class="formee-req">* </span> Username:</label>
+ <input id="username" class="validate[required]" type="text" size="35" />
+ </div>
+  <div class="grid-10-12">
+          <label   for="Username">Password:</label>
+ <input id="dbpassword"  class="" type="text" size="35" />
+ </div>
+  <div class="grid-10-12">
+          <label  for="Database"><span class="formee-req">* </span> Database:</label>
+ <input id="database" class="validate[required]" type="text" size="35" />
+ </div>
+  <div class="grid-10-12">
+          <label for="prefix">db prefix:</label>
+ <input id="prefix"  type="text" size="35" />
+ </div>
+   <div class="grid-10-12">
+ <input class="formee-button" id="testando"     type="submit" value="Test Connect" /><br /> </div>
+
+</fieldset>
+
+
+ 
+<fieldset class="sectionwrap">
+<legend>Site configuration</legend>
+ <div class="grid-10-12">
+          <label for="company">Company name:</label>
+  <input id="company" type="text" size="35" />
+  </div> 
+  <div class="grid-4-12">
+          <label for="ip">Ip:</label>
+  <input id="ip" type="text" size="35" />
+  </div>
+   <div class="grid-3-12">
+          <label for="port">Port:</label>
+  <input id="port" type="text" size="35" />
+  </div>
+    <div class="grid-7-12">
+          <label for="port">Url Base:</label>
+  <input id="url" value="<?php echo base_url() ?>" type="text" size="35" />
+  </div>
+</fieldset>
+
+<fieldset class="sectionwrap">
+<legend>Your access control</legend>
+<div class="grid-10-12">
+          <label for="Name">Your name:</label>
+  <input id="name" type="text" size="35" />
+  </div> 
+<div class="grid-10-12">
+          <label for="email">Your email:</label>
+  <input id="email" type="text" size="35" />
+  </div>   
+<div class="grid-10-12">
+          <label for="Password">Your password:</label>
+  <input id="password" type="text" size="35" />
+  </div> 
+<div class="grid-10-12">
+          
+   <input class="formee-button" id="finish"     type="submit" value="Finish Install" /><br />
+  </div> 
+
+ 
+</fieldset>
+
+</form>
+</div>
+<p></p>
+<p></p>
+</div>
+<!-- DIV  Final Content -->
+
+<div id="footer" class="container_12">
+  <p></p>
+  <center>
+  
+ <!--CONTACT SUPPORT FOR REMOOVE COPYRIGHT LINK! PLEASE DON'T REMOVE IT LICENCE GNU AND MIT ALL RESERVED STATION PRO 2012! -->
+    <p class="sign">{powered}</p>
+ <!--CONTACT SUPPORT FOR REMOOVE COPYRIGHT LINK! PLEASE DON'T REMOVE IT LICENCE GNU AND MIT ALL RESERVED STATION PRO 2012! -->    
+  </center>
+</div>
+</body>
+</html>
