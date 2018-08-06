@@ -18,9 +18,15 @@
  * @package WordPress
  */
 
+// Username: stationpro
+// Password: luacho07
+// Database Name: stationpro
+// Connection URL: mysql://mariadb:3306/
+
+
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'station-wp');
+define('DB_NAME', 'stationpro');
 
 /** MySQL database username */
 define('DB_USER', 'stationpro');
@@ -29,7 +35,7 @@ define('DB_USER', 'stationpro');
 define('DB_PASSWORD', 'luacho07');
 
 /** MySQL hostname */
-define('DB_HOST', 'mariadb');
+define('DB_HOST', 'mariadb.mariadb.svc');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8mb4');
