@@ -18,27 +18,21 @@
  * @package WordPress
  */
 
-// Username: stationpro
-// Password: luacho07
-// Database Name: stationpro
-// Connection URL: mysql://mariadb:3306/
-
-
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define('DB_NAME', 'stationpro');
 
 /** MySQL database username */
-define('DB_USER', 'stationpro');
+define('DB_USER', 'root');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'luacho07');
+define('DB_PASSWORD', 'admin');
 
 /** MySQL hostname */
-define('DB_HOST', 'mariadb.mariadb.svc');
+define('DB_HOST', 'mysql');
 
 /** Database Charset to use in creating database tables. */
-define('DB_CHARSET', 'utf8mb4');
+define('DB_CHARSET', 'utf8');
 
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
@@ -52,14 +46,14 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         'RxK+*z-7+~$u%pX`d}vPKGa!V5ed!#7zCnmn=.H|e+,=z?dCsa(6[EF{xcF,.T<T');
-define('SECURE_AUTH_KEY',  'smCXtP5G74yl,DTkIvu-/Q:WL1;)K6i^E71hB?I6wsIbw[;;cdfhO ,t6o5F9j3W');
-define('LOGGED_IN_KEY',    'p/&7)JobFQ:y#TR35J]kyFm2Zal*d@8?uKA3FL? tpUOxL$txoBQ9@yStX%$pk8O');
-define('NONCE_KEY',        'Sp4}r]9=O!+?hL]C:_gRH,spL={Hb$PLi%7o(K]y&}MW1VYO?SYBPM`{Y}$S]/9H');
-define('AUTH_SALT',        '~I#g){gBOO-x eG*+<V6`dW|?[)d=<u>``-2xSB$tSMI25IF0Nx8KpLULExmk/8t');
-define('SECURE_AUTH_SALT', '0:T*hSd{c3aKVIjGn!(BBSOEzS}z:xr|3!,A/1#4fm!=;3RxHM00p%FVsl#,GBCs');
-define('LOGGED_IN_SALT',   'C{8Re~K$U[n3EwB?XV-dV2N,5OSy;zeDK/#:@i7u]>d?RUs&0{I@ Hu;mj[&?L#C');
-define('NONCE_SALT',       '~5Kvzxhnf]?P8>Hcgr=Sxk##|TiP^-n#lTkg{]Rv/LrMZbTT.Rw.zW-7/5p#wc^(');
+define('AUTH_KEY',         'e0616c0a5b5f05c604b0a53ddeeab0bb1db3c03a');
+define('SECURE_AUTH_KEY',  '26063ad1c994e84cbcff98b55ee6fa73476304a1');
+define('LOGGED_IN_KEY',    'd65ebeb1581c76eb8289d14d66306c3fb505d5dc');
+define('NONCE_KEY',        '453af2bcf181d326085ba2a73f721cb990748172');
+define('AUTH_SALT',        'f4f849dabc24460e0f4a6209807c279637fe617c');
+define('SECURE_AUTH_SALT', '5690ce918f45a56694c410e3b76c1a5265ffe465');
+define('LOGGED_IN_SALT',   '7150326f62b2f87855f44c0564a2c3693a4d3f65');
+define('NONCE_SALT',       'e1728dfa3e6aac974abc1cfdbdb83ff73f03121b');
 
 /**#@-*/
 
@@ -71,10 +65,12 @@ define('NONCE_SALT',       '~5Kvzxhnf]?P8>Hcgr=Sxk##|TiP^-n#lTkg{]Rv/LrMZbTT.Rw.
  */
 $table_prefix  = 'wp_';
 
-define('WP_HOME','http://stationpro.marviorocha.com');
-define('WP_SITEURL','http://stationpro.marviorocha.com');
+// Wordpress data domain for settings_errors
 
-define('WP_MEMORY_LIMIT', '3000M');
+define('WP_HOME','http://dev.local.me');
+define('WP_SITEURL','http://dev.local.me');
+
+
 
 /**
  * For developers: WordPress debugging mode.
@@ -88,9 +84,13 @@ define('WP_MEMORY_LIMIT', '3000M');
  *
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
-define('WP_DEBUG', false);
+define('WP_DEBUG', true);
 
-define('FS_METHOD', 'direct');
+// If we're behind a proxy server and using HTTPS, we need to alert Wordpress of that fact
+// see also http://codex.wordpress.org/Administration_Over_SSL#Using_a_Reverse_Proxy
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+	$_SERVER['HTTPS'] = 'on';
+}
 
 /* That's all, stop editing! Happy blogging. */
 
@@ -100,4 +100,3 @@ if ( !defined('ABSPATH') )
 
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
-

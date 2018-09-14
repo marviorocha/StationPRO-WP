@@ -19,20 +19,15 @@ return "bottom:0;";
 
 }
 }
-?>
+?><?php function style_player(){ ?>
 
-
-<?php function style_player(){ ?>
- 
   <style media="screen">
   #iframe_main{position:fixed;<?php echo player_layout(); ?>}
   #idiv{position:relative;height:70px;z-index:998;left:0;right:0;bottom:0}
   </style>
 
 <?php } // end style player function ?>
-<?php add_action('wp_head','style_player');  ?>
-
-<?php function player(){ ?>
+<?php add_action('wp_head','style_player');  ?><?php function player(){ ?>
 
   <div id='idiv'>
 
@@ -42,12 +37,8 @@ return "bottom:0;";
 
 <?php }
 add_action('wp_footer','player');
- // end player ?>
- 
- 
+ // end player ?><?php
 
-<?php 
- 
 add_filter('the_content','podstation');
 
 function podstation($content){
@@ -60,15 +51,15 @@ $content .= '
 <div class="wevescolor" src="'. $color_player[1] .'"></div>
 <div class="container">
 <div class="row">
-   
+
         <!-- Mz Player Card -->
 <div class="col s12 m12 l12">
 <div class="card">
     <div class="card-image">
         <div id="waveform"></div>
-            
+
         '. wp_get_attachment_image(  $podcast['podcast_image'], 'thumbnails') .'
-        
+
         <span class="card-title"> '.$podcast['podcast_title'].' </span>
 
 
@@ -82,9 +73,9 @@ $content .= '
     </div>
 </div>
 </div>
- 
+
  <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/2.0.5/wavesurfer.min.js"></script>
- 
+
 </div>
 </div>';
 
@@ -92,7 +83,7 @@ $content .= '
 return $content;
 } // end function podcast
 ?>
-<?php 
+<?php
 /**
  * Start Scandule Short
  */
@@ -108,5 +99,5 @@ function schendule_shortcode( $calendar) {
 add_shortcode( 'schedule', 'schendule_shortcode' );
 
 
- 
+
 ?>
