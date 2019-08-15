@@ -25,7 +25,8 @@ return "bottom:0;";
 <?php add_action('wp_head','style_player');  ?>
 <?php function player(){ ?>
   <div id='idiv'>
-    <iframe  id="iframe_main" scrolling="no" height="65" frameborder="0" src="<?php echo WP_PLUGIN_URL ?>/station-pro/lib/player/index.php"
+    <iframe  id="iframe_main" scrolling="no" height="70" frameborder="0" 
+    src="<?php echo WP_PLUGIN_URL ?>/station-pro/lib/player/index.php"
       width="100%"></iframe>
   </div>
 <?php }
@@ -75,22 +76,4 @@ $content .= '
 }
 return $content;
 } // end function podcast
-?>
-<?php 
-/**
- * Start Scandule Short
- */
-
-function schendule_shortcode( $calendar) {
-    $titan         = TitanFramework::getInstance('my-theme');
-    $url_scandule  = cs_get_option( 'teamup' );
-    $calendar .= '<iframe src="'.$url_scandule.'" frameborder="0" width="100%" height="700"></iframe>';
-
-    return $calendar;
-
-}
-add_shortcode( 'schedule', 'schendule_shortcode' );
-
-
- 
 ?>

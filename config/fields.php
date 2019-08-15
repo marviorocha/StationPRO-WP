@@ -21,10 +21,14 @@ function my_theme_create_options() {
     ) );
    
    
-     // Admin Geral Tabs
+     // Admin Panel
     $adminPanel = $panel->createAdminPanel( array(
     'name' => 'Settings',
     ) );
+
+    $adminPanel = $panel->createAdminPanel( array(
+      'name' => 'Status',
+      ) );
    
     $general = $adminPanel->createTab( array(
     'name' => 'Radio Genaral',
