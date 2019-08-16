@@ -1,6 +1,8 @@
 <?php require('../../../../../wp-load.php');
   global $wpdb;
 
+$root_path = plugins_url() . "/station-pro/assets/";
+
  $titan         = TitanFramework::getInstance('my-theme');
  $djname        = $titan->getOption('dj_name');
  $shoutcast     = $titan->getOption('shoutcast');
@@ -56,7 +58,7 @@ return $image_attributes[0];
   
     <!-- Compiled and minified CSS -->
     <!-- <link rel="stylesheet" href="css/materialize.css"> -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="<?php echo $root_path ?>/css/style.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- <link rel="stylesheet" href="css/player.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -75,6 +77,48 @@ return $image_attributes[0];
 
   </head>
   <body>
+  <div class="container">
+
+<div class="audioPlayer">
+  <div class="playerContainer">
+    <div class="albumArt">
+      <i class="fa fa-music"></i>
+    </div>
+
+    <div class="info">
+      <div class="audioName marquee" data-duration='5000' data-gap='50' data-duplicated='false'>Lorem ipsum dolor Lorem .</div>
+      <div class="seekBar">
+        <span class="outer">
+            <span class="inner" data-seek=0></span>
+        </span>
+      </div>
+      <div class="timing">
+        <span class="start">0:00</span>
+        <span class="end">0:00</span>
+      </div>
+    </div>
+
+    <div class="volumeControl">
+      <div class="wrapper">
+        <i class="fa fa-volume-up"></i>
+        <span class="outer">
+            <span class="inner"></span>
+        </span>
+      </div>
+    </div>
+    <button class="btn play">
+        <i class="fa fa-play"></i>
+        <i class="fa fa-pause"></i>
+      </button>
+  </div>
+
+  <audio class="audio">
+      <source src="http://shing.mobile9.com/download/media/3/gopalagopa_r9Tyhmkx.mp3">
+    </audio>
+</div>
+</div>
+
+
     <div id="<?php echo $autoplay ?>" class="radio_autoplayer"></div>
     <div class="navbar-fixed">
 
@@ -97,6 +141,7 @@ return $image_attributes[0];
               <div class="col s1 m1 l1 ">
                 <div class="valign-wrapper">
                   <a style="margin:5px" href="#!" class="">
+
 <?php echo  wp_get_attachment_image_src( $attachment_id = logo_player() )  ?>
 
               <img width="50" height="50" id="image" src="<?php echo logo_player()  ?>" class="circle responsive-img hide-on-small-only">
@@ -213,5 +258,6 @@ return $image_attributes[0];
     <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/2.0.5/wavesurfer.min.js"></script>
     <script type="text/javascript" src="./js/player.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.12/howler.min.js"></script>
+    <script type="text/javascript" src="<?php echo $path_url ?>/js/player.js"></script>
   </body>
 </html>

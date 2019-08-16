@@ -6,7 +6,7 @@
   "repository": "git@github.com:marviorocha/StationPRO.git",
   "author": "Marvio Rocha <marviorocha@marviorocha.com>",
   "scripts": {
-    "sass": "yarn gulp sass"
+    "sass": "yarn gulp default"
   },
   "dependencies": {
     "gulp": "^4.0.2",
