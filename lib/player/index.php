@@ -1,6 +1,9 @@
 <?php require('../../../../../wp-load.php');
   global $wpdb;
 
+
+
+
 $root_path = plugins_url() . "/station-pro/assets/";
 
  $titan         = TitanFramework::getInstance('my-theme');
@@ -11,6 +14,10 @@ $root_path = plugins_url() . "/station-pro/assets/";
  $color_player  = $titan->getOption('color_player');
  $brand         = $titan->getOption('brand');
  $layout_player = $titan->getOption('layout_player');
+
+// compile sass css with php
+
+$directory = plugins_url() . "/station-pro/assets/sass";
 
 
 /**
@@ -49,7 +56,8 @@ return $image_attributes[0];
 
 } // end radio function
 
-
+// get the images url
+wp_get_attachment_image_src( $attachment_id = logo_player() );
 
 ?>
 <!DOCTYPE html>
@@ -61,8 +69,7 @@ return $image_attributes[0];
     <link rel="stylesheet" href="<?php echo $root_path ?>/css/style.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- <link rel="stylesheet" href="css/player.css"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <style>
       .sp-bg {
@@ -77,23 +84,29 @@ return $image_attributes[0];
 
   </head>
   <body>
+  
+
   <div class="container">
 
 <div class="audioPlayer">
   <div class="playerContainer">
     <div class="albumArt">
-      <i class="fa fa-music"></i>
+    <img width="50" height="50" id="image" src="<?php echo logo_player()  ?>" class="circle responsive-img hide-on-small-only">
     </div>
 
     <div class="info">
-      <div class="audioName marquee" data-duration='5000' data-gap='50' data-duplicated='false'>Lorem ipsum dolor Lorem .</div>
+      <div class="audioName marquee" data-duration='5000' data-gap='50' data-duplicated='false'><?php echo $djname ?></div>
       <div class="seekBar">
         <span class="outer">
             <span class="inner" data-seek=0></span>
         </span>
       </div>
       <div class="timing">
-        <span class="start">0:00</span>
+        <span class="start">0:00</span> 
+        
+        <?php if($brand == true){  ?>
+       <a style="font-size:0.875rem" rel="follow" target="_blank" title="Station Pro - Easy Player Radio " href="https://stationpro.marviorocha.com/"><i class="fas fa-microphone"></i> by Station Pro</a>
+        <?php } // end brand enable ?>       
         <span class="end">0:00</span>
       </div>
     </div>
@@ -104,160 +117,55 @@ return $image_attributes[0];
         <span class="outer">
             <span class="inner"></span>
         </span>
+        
+       
       </div>
     </div>
     <button class="btn play">
         <i class="fa fa-play"></i>
         <i class="fa fa-pause"></i>
       </button>
+      
   </div>
-
+  
   <audio class="audio">
-      <source src="http://shing.mobile9.com/download/media/3/gopalagopa_r9Tyhmkx.mp3">
+      <source src="<?php echo radio(); ?>">
     </audio>
 </div>
 </div>
 
 
-    <div id="<?php echo $autoplay ?>" class="radio_autoplayer"></div>
-    <div class="navbar-fixed">
-
-      <div class="container">
-
-        <div id="btn-show" class="col s3 m3 right">
-          <p></p>
-          <button id="show" class="btn-floating btn waves-effect waves-light blue  darken-2 pulse"><i class="fas fa-music"></i></button>
-        </div>
-
-      </div>
-
-      <nav id="player-nav" class="transparent  darken-4">
-        <div class="sp-bg"> </div>
-        <div class="container">
-
-          <div class="nav-wrapper">
-            <div class="row">
-              <!-- Image Thumbinal  -->
-              <div class="col s1 m1 l1 ">
-                <div class="valign-wrapper">
-                  <a style="margin:5px" href="#!" class="">
-
-<?php echo  wp_get_attachment_image_src( $attachment_id = logo_player() )  ?>
-
-              <img width="50" height="50" id="image" src="<?php echo logo_player()  ?>" class="circle responsive-img hide-on-small-only">
-
-              </a>
-
-                </div>
-
-
-              </div>
-              <!-- Player to thumbinal  -->
-              <div class="col s3 m2">
-                <ul>
-                  <li>
-                    <span class="djlive"><?php echo $djname ?></span>
-                    <span class="live">Live</span>
-                    <li>
-                </ul>
-
-              </div>
-
-              <!-- player div start -->
-              <div class="col s6 m3">
-                <ul>
-                  <li class="active"><a title="<?php echo radio(); ?>" id="play" class="waves-effect pulse transparent">
-               <i class="far fa-play-circle fa-2x"></i></a></li>
-
-                  <li class="active"><a id="btnStop" class="waves-effect transparent">
-                        <i class="far fa-stop-circle fa-2x"></i></a></li>
-                  <li>
-
-                    <li class="vol hide-on-small-only">
-
-                      <i class="fas fa-volume-down"></i> <input class="range" type="range" id="volume" value="1" min="0" max="1" step="0.1" />
-                    </li>
-
-                    <li class="vol">
-                      <!-- Stations -->
-                      <div id="playing" class="playing hide-on-small-only">
-                        <div class="rect1"></div>
-                        <div class="rect2"></div>
-                        <div class="rect3"></div>
-                        <div class="rect4"></div>
-                        <div class="rect5"></div>
-                      </div>
-
-                    </li>
-
-                </ul>
-              </div>
-              <!-- end player div -->
 
 
 
-              <!-- left menu player -->
-              <div class="col s1 m5 ">
-
-                <ul>
-                  <li> <a id="hidden" href="javascript:;">
-                    <i class="far fa-minus-square"></i> Hide </a></li>
-                  <li>
-
-                      <a target="_parent" href="<?php echo home_url( $wp->request ) ?>/podstation/">
-                      <i class="fas fa-podcast"></i> Podcast</a></li>
-                      <li class="right">
-<?php if($brand == true){  ?>
-                        <a style="font-size:0.800em" rel="follow" target="_blank" title="Station Pro - Easy Player Radio " href="https://stationpro.marviorocha.com/"><i class="fas fa-microphone"></i> by Station Pro</a>
-<?php } // end brand enable ?>                     
-                      </li>
-                </ul>
-              </div>
 
 
-            </div>
-          </div>
-
-        </div>
-
-      </nav>
-
-    </div>
-    </div>
-    <!--  End App VUE -->
 
 
-    <br /><br />
 
 
-<div class="row">
-  <div class="col s12 m12">
-    <div class="">
-      <div class="row valign-wrapper">
-        <div class="col s2">
-          <img id="get_image-sp" src="images/song1.jpg" alt="" class="responsive-img">
-          <!-- notice the "circle" class -->
-        </div>
-        <div class="col s10">
-          <span class="black-text">
 
-          <div id="waveform"></div>
-       
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
+
+
+
+
+
+
+
+
+  <!-- End Player -->
 
  
 
  
     <script defer src="https://use.fontawesome.com/releases/v5.0.12/js/all.js" integrity="sha384-Voup2lBiiyZYkRto2XWqbzxHXwzcm4A5RfdfG6466bu5LqjwwrjXCMBQBLMWh7qR" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" charset="utf-8"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/2.0.5/wavesurfer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.Marquee/1.5.0/jquery.marquee.min.js"></script>
+    
+   <script type="text/javascript" src="<?php echo $root_path ?>/js/player.js"></script>
+   
     <script type="text/javascript" src="./js/player.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.12/howler.min.js"></script>
-    <script type="text/javascript" src="<?php echo $path_url ?>/js/player.js"></script>
   </body>
 </html>

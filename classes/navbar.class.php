@@ -19,13 +19,13 @@ return "bottom:0;";
 <?php function style_player(){ ?>
   <style media="screen">
   #iframe_main{position:fixed;<?php echo player_layout(); ?>}
-  #idiv{position:relative;height:70px;z-index:998;left:0;right:0;bottom:0}
+  #idiv{position:relative;height:7.80rem;z-index:998;left:0;right:0;bottom:0}
   </style>
 <?php } // end style player function ?>
 <?php add_action('wp_head','style_player');  ?>
 <?php function player(){ ?>
   <div id='idiv'>
-    <iframe  id="iframe_main" scrolling="no" height="70" frameborder="0" 
+    <iframe  id="iframe_main" scrolling="no" height="200" frameborder="0" 
     src="<?php echo WP_PLUGIN_URL ?>/station-pro/lib/player/index.php"
       width="100%"></iframe>
   </div>

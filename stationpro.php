@@ -45,6 +45,11 @@
  // ------------------------------------------------------------------------------------------------
  require_once plugin_dir_path( __FILE__ ) .'/classes/navbar.class.php';
  require_once plugin_dir_path( __FILE__ ) .'/classes/scripts.class.php';
+
+//  compile sass with a pho
+
+require_once plugin_dir_path( __FILE__ ) .'/classes/scss.inc.php';
+
 // load fields 
  require_once plugin_dir_path( __FILE__ ) .'/config/fields.php';
 //  load xcrud
