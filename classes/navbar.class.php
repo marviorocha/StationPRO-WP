@@ -1,6 +1,7 @@
 <?php
 
 require_once(ABSPATH.'wp-load.php');
+
 global $wpdb;
 global $post;
 

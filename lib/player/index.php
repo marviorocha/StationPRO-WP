@@ -1,10 +1,13 @@
 <?php require('../../../../../wp-load.php');
-  global $wpdb;
-
-
-
-
+require('../../classes/scssphp/scss.inc.php');
+global $wpdb;
 $root_path = plugins_url() . "/station-pro/assets/";
+use ScssPhp\ScssPhp\Compiler;
+$scss = new Compiler();
+$arquivo = file_get_contents($root_path . '/sass/style.scss');
+
+
+
 
  $titan         = TitanFramework::getInstance('my-theme');
  $djname        = $titan->getOption('dj_name');
@@ -15,9 +18,14 @@ $root_path = plugins_url() . "/station-pro/assets/";
  $brand         = $titan->getOption('brand');
  $layout_player = $titan->getOption('layout_player');
 
-// compile sass css with php
 
-$directory = plugins_url() . "/station-pro/assets/sass";
+
+$arquivo = str_replace('$padrao', $color_player[4], $arquivo);
+
+$style = $scss->compile($arquivo);
+
+ 
+// compile sass css with php
 
 
 /**
@@ -72,6 +80,10 @@ wp_get_attachment_image_src( $attachment_id = logo_player() );
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <style>
+
+      <?php echo $style; ?>
+
+
       .sp-bg {
         opacity: 0.8;
         width: 100%;

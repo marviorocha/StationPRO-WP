@@ -4,7 +4,7 @@
 $fontFamily: "Playball", cursive;
 $quicksand: "Roboto", sans-serif;
 
-$playerColor: #363732;
+$playerColor: $padrao;
 $white: #ffffff;
 $shadow: 0px 4px 20px rgba(darken($playerColor,10%), 0.8);
 
