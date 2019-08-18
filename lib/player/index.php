@@ -80,18 +80,7 @@ wp_get_attachment_image_src( $attachment_id = logo_player() );
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <style>
-
-      <?php echo $style; ?>
-
-
-      .sp-bg {
-        opacity: 0.8;
-        width: 100%;
-        display: block;
-        background-color: <?php echo $color_player[4] ?>;
-        height: 65px;
-        position: fixed;
-      }
+     <?php echo $style ?>
     </style>
 
   </head>
@@ -133,7 +122,7 @@ wp_get_attachment_image_src( $attachment_id = logo_player() );
        
       </div>
     </div>
-    <button class="btn play">
+    <button id="<?php echo $autoplay ?>"  class="btn play">
         <i class="fa fa-play"></i>
         <i class="fa fa-pause"></i>
       </button>
@@ -141,6 +130,7 @@ wp_get_attachment_image_src( $attachment_id = logo_player() );
   </div>
   
   <audio class="audio">
+       
       <source src="<?php echo radio(); ?>">
     </audio>
 </div>
@@ -154,7 +144,7 @@ wp_get_attachment_image_src( $attachment_id = logo_player() );
 
 
 
-
+<!-- Other Older player  -->
 
 
 
@@ -176,8 +166,8 @@ wp_get_attachment_image_src( $attachment_id = logo_player() );
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.Marquee/1.5.0/jquery.marquee.min.js"></script>
     
    <script type="text/javascript" src="<?php echo $root_path ?>/js/player.js"></script>
-   
-    <script type="text/javascript" src="./js/player.js"></script>
+ 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.12/howler.min.js"></script>
+   
   </body>
 </html>

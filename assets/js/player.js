@@ -16,11 +16,51 @@ $(document).ready(function() {
         var interval;
         var seekBarPercentage;
         var volumePercentage;
+        var autoplay = $('.btn').attr('id');
   
         /************************ on click of button playing the song *************************/
+
+      
+
+        $(window).ready(function() {
+
+         if (autoplay == true) {
+        
+         
+          $( ".btn" ).removeClass( "play" );
+          $( ".btn" ).addClass( "pause" );
+       
+            /**find length of audio */
+            length = audio.duration;
+  
+            /** set the end duration **/
+            $(player)
+              .find(".timing .end")
+              .text((length / 60).toFixed(2));
+
+            /**** play the audio ****/
+            audio.play();
+           
+            
+            
+          /**animating album art */
+          $(player)
+            .find(".albumArt")
+            .toggleClass("animate");
+        
+        }
+      
+      });
+    
+     
+
         $(player)
+       
           .find(".btn")
           .on("click", function() {
+
+           
+
             var _button = $(this);
             /**if the button has class play then */
             if (_button.hasClass("play")) {
@@ -36,7 +76,7 @@ $(document).ready(function() {
   
               /**** play the audio ****/
               audio.play();
-  
+             
               /**set seekbar percentage */
               interval = setInterval(function() {
                 /**run this function to update seekbar */
