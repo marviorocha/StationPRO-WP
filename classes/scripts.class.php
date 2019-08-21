@@ -25,22 +25,24 @@ Loading js
  // Register Script
 
  // Register Script
+
+
+
+
  
  
 function wpdocs_theme_name_scripts() {
-     
-    wp_deregister_script( 'jquery' );
-    wp_register_script( 'jquery', "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js", array(), '3.1.1' );
-   
-    wp_register_script( 'Ajaxfy', 'https://cdnjs.cloudflare.com/ajax/libs/ajaxify/7.3.9/ajaxify.min.js', null, null, true );
+    wp_register_script( 'Jquery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js', null, null, true );
+    wp_enqueue_script('Jquery');  
+ 
+    if(!is_admin()){
+    wp_register_script( 'Ajaxfy', 'https://cdn.jsdelivr.net/gh/arvgta/ajaxify@7.3.9/ajaxify.min.js', null, null, true );
     wp_enqueue_script('Ajaxfy');
     wp_register_script( 'Ajaxload', plugins_url('station-pro') . '/assets/js/ajaxfy.js', null, null, true );
     wp_enqueue_script('Ajaxload');
-    
+    }
 
-  
-    
- }
+}
  add_action( 'wp_enqueue_scripts', 'wpdocs_theme_name_scripts' );
 
 
