@@ -373,7 +373,7 @@ function my_theme_create_options() {
     'id' => 'class_menu',
     'type' => 'text',
     'default' => 'menu',
-    'desc' => 'Field div in which menu s ul, li present if you have any problem with menu use your id class'
+    'desc' => 'Class of a div menu ul, li present. Put here your menu class'
 ) );
 
   $ajax->createOption( array(
