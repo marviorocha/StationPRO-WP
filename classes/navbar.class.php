@@ -18,7 +18,7 @@ return "bottom:0;";
 }
 ?>
 <?php function style_player(){ ?>
-  <style media="screen">
+  <style>
   #iframe_main{position:fixed;<?php echo player_layout(); ?>}
   #idiv{position:relative;height:7.80rem;z-index:998;left:0;right:0;bottom:0}
   </style>

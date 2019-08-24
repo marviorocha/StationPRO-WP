@@ -1,7 +1,7 @@
 <?php 
 
 function __construct() {
-    add_action( 'tf_create_options', array( $this, 'my_theme_create_options' ) );
+    add_action( 'tf_create_options', array( $this, 'my_theme_create_options') );
 }
 
 
@@ -26,17 +26,24 @@ function my_theme_create_options() {
     'name' => 'Settings',
     ) );
 
-    $adminPanel = $panel->createAdminPanel( array(
-      'name' => 'Status',
-      ) );
-   
+    
     $general = $adminPanel->createTab( array(
     'name' => 'Radio Genaral',
     ) );
+
+
+    
+
     
     $style = $adminPanel->createTab( array(
     'name' => 'Style',
     ) );
+
+
+    
+    $ajax = $panel->createAdminPanel( array(
+      'name' => 'Ajax Loading',
+      ) );
    
     
    
@@ -332,7 +339,77 @@ function my_theme_create_options() {
     $style->createOption( array(
     'type' => 'save',
     ) );
+
+ 
+    /* Ajax Fields for news tabs ands fields
+    / developemnters
+    */
+
+   $ajax->createOption( array(
+      'name' => 'Ajax loading panel',
+      'type' => 'heading',
+   ) );
+
+   $ajax->createOption( array(
+    'type' => 'note',
+    'desc' => 'This is settings for loading page with Ajax without a refresh with player continue... It is only for Station Pro Premium. Upgrade now'
+    ) );
    
+
+    $ajax->createOption( array(
+      'name' => 'Select your container ids:*',
+      'id' => 'ajax_container',
+      'type' => 'text',
+      'default' => 'main',
+      'desc' => 'This is a field required for your pages is a ids the your container ex: main, page any one'
+  ) );
+
+  $ajax->createOption( array(
+    'name' => 'Menu container class:*',
+    'id' => 'class_menu',
+    'type' => 'text',
+    'default' => 'menu',
+    'desc' => 'Field div in which menu s ul, li present if you have any problem with menu use your id class'
+) );
+
+  $ajax->createOption( array(
+    'name' => 'Search form TAG ID/CLASS:',
+    'id' => 'search_ajax',
+    'type' => 'text',
+    'default' => 'searchform',
+    'desc' => 'The ID/CLASS Tag for your form seach Example: if form tag class is search-form then provide .#search-form if ID is search-form the provide #search-form'
+  ) );
+
+  $ajax->createOption( array(
+    'name' => 'Transition Effect:',
+    'id' => 'transition_ajax',
+    'type' => 'enable',
+    'default' => true,
+    
+  ) );
+
+  
+  $ajax->createOption( array(
+    'name' => 'Scroll to top Effect:',
+    'id' => 'scroll_ajax',
+    'type' => 'enable',
+    'default' => false,
+    
+  ) );
+
+  // $ajax->createOption( array(
+  //   'name' => 'Loader Image:',
+  //   'id' => 'scroll_ajax',
+  //   'type' => 'enable',
+  //   'default' => false,
+    
+  // ) );
+
+  $ajax->createOption( array(
+    'type' => 'save',
+    'reset' => 'reset'
+) );
+
    
     }
 
