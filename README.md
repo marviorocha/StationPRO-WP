@@ -4,7 +4,7 @@
 
 
 ![](https://img.shields.io/wordpress/plugin/v/station-pro?logo=wordpress&style=flat-square) 
-
+![](https://travis-ci.com/marviorocha/StationPRO.svg?branch=developer)
  
 # Description
 Now in its newest version the station Pro has more features and is compatible with most browsers and mobile device with a new technology for easily play in your radio station.
