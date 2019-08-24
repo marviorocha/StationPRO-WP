@@ -6,9 +6,7 @@ language: php
 
 # Versions of PHP to test against
 php:
-  - '5.4'
-  - hhvm # on Trusty only
-  - nightly
+  - '7.2'
   
 # Specify versions of WordPress to test against
 # WP_VERSION = WordPress version number (use "master" for SVN trunk)
@@ -22,9 +20,7 @@ env:
     - WP_VERSION=3.4.1 WP_MULTISITE=1
     - WP_VERSION=3.3.2 WP_MULTISITE=1 
     - WP_VERSION=3.2.1 WP_MULTISITE=1
-
-# Grab the setup script and execute
-script: phpunit
+ 
 
 # wordpress-plugin-tests specific config
 # Tells Travis CI not to run unit tests against the setup branch
