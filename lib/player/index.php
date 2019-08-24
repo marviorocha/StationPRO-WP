@@ -74,7 +74,7 @@ wp_get_attachment_image_src( $attachment_id = logo_player() );
   
     <!-- Compiled and minified CSS -->
     <!-- <link rel="stylesheet" href="css/materialize.css"> -->
-    <link rel="stylesheet" href="<?php echo $root_path ?>/css/style.min.css">
+     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- <link rel="stylesheet" href="css/player.css"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">

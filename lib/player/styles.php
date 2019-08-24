@@ -32,12 +32,6 @@ $style = $scss->compile($arquivo);
 <body>
   
 
-<div>
-<p>
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi hic unde rerum vitae, similique eaque ipsa, nam quos accusamus expedita nulla pariatur ad eum ipsam doloremque, laboriosam non dignissimos amet!
-
-</p>
-</div>
 
 
    </body>

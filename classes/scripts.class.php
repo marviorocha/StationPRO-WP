@@ -109,8 +109,4 @@ function ajax_load_scripts() {
 	
 	
 } // End of aws_load_scripts function
-
-
-
-
 ?>
