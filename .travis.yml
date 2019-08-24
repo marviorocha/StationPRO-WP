@@ -6,7 +6,9 @@ language: php
 
 # Versions of PHP to test against
 php:
-  - 7.2
+  - '5.4'
+  - hhvm # on Trusty only
+  - nightly
   
 # Specify versions of WordPress to test against
 # WP_VERSION = WordPress version number (use "master" for SVN trunk)
