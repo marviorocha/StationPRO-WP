@@ -1,11 +1,15 @@
 <?php 
 
+
 function __construct() {
     add_action( 'tf_create_options', array( $this, 'my_theme_create_options') );
 }
 
 
 function my_theme_create_options() {
+
+    global $plugin_dir_path;
+    $plugin_dir_path = plugin_dir_url(__FILE__);
     // Initialize Titan with my special unique namespace
     $titan = TitanFramework::getInstance( 'my-theme' );
    
@@ -397,13 +401,39 @@ function my_theme_create_options() {
     
   ) );
 
-  // $ajax->createOption( array(
-  //   'name' => 'Loader Image:',
-  //   'id' => 'scroll_ajax',
-  //   'type' => 'enable',
-  //   'default' => false,
-    
-  // ) );
+
+$ajax->createOption( array(
+  'name' => 'Input  your exclude ids:',
+  'id' => 'no_ids',
+  'type' => 'text',
+  'placeholder' => 'eg: id1,id2,id3...',
+  'desc' => 'Put here your ids when the ajax not go work.  <b>NOTE:</b> ids should be separated by comma(,) without any spaces. eg: id1,id2,id3'
+) );
+
+  $ajax->createOption( array(
+    'name' => 'Select your loader image',
+    'id' => 'loader',
+    'type' => 'radio-image',
+    'options' => array(),
+    'options' => array(
+        'loader1.gif' => $plugin_dir_path . '../assets/images/loader1.gif',
+        'loader2.gif' => $plugin_dir_path . '../assets/images/loader2.gif',
+        'loader3.gif' => $plugin_dir_path . '../assets/images/loader3.gif',
+        'loader4.gif' => $plugin_dir_path . '../assets/images/loader4.gif',
+        'loader5.gif' => $plugin_dir_path . '../assets/images/loader5.gif',
+        'loader6.gif' => $plugin_dir_path . '../assets/images/loader6.gif',
+        'loader7.gif' => $plugin_dir_path . '../assets/images/loader7.gif',
+        'loader8.gif' => $plugin_dir_path . '../assets/images/loader8.gif',
+        'loader9.gif' => $plugin_dir_path . '../assets/images/loader9.gif',
+        'loader10.gif' => $plugin_dir_path . '../assets/images/loader10.gif',
+        'loader11.gif' => $plugin_dir_path . '../assets/images/loader11.gif',
+        'loader12.gif' => $plugin_dir_path . '../assets/images/loader12.gif',
+     
+    ),
+    'default' => 'layout3',
+) );
+
+
 
   $ajax->createOption( array(
     'type' => 'save',

@@ -51,7 +51,7 @@
 
 // load fields 
  require_once plugin_dir_path( __FILE__ ) .'/config/fields.php';
- require_once plugin_dir_path( __FILE__ ) .'/config/ajax-fields.php';
+
 //  load xcrud
 //  require_once plugin_dir_path( __FILE__ ) .'/lib/xcrud_plugin.php';
  

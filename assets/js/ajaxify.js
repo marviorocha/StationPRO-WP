@@ -102,7 +102,7 @@
 			}
 			if( '' != aws_data['loader'] ) {
 				$content
-						.html('<img src="' + rootUrl + 'wp-content/plugins/ajaxify-wordpress-site/images/' + aws_data['loader'] + '" />')
+						.html('<img src="' + rootUrl + 'wp-content/plugins/station-pro/assets/images/' + aws_data['loader'] + '" />')
 						.css('text-align', 'center');
 			}
 

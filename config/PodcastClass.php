@@ -1,5 +1,5 @@
 <?php 
-class AjaxFieldsClass {
+class PodcastClass {
 
   function __construct() {
       add_action( 'tf_create_options', array( $this, 'ajax_fields' ) );
@@ -16,6 +16,6 @@ class AjaxFieldsClass {
    } 
 }
 
-new AjaxFieldsClass();
+new PodcastClass();
 
 ?>
