@@ -3,7 +3,6 @@ language: php
 # Build matrix options
 matrix:
   include:
-      env: WP_TRAVISCI=travis:phpunit
     - php: 7.2
       env: WP_TRAVISCI=travis:phpunit
     - php: hhvm
