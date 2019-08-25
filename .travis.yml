@@ -4,6 +4,12 @@ sudo: false
 
 services:
   - mysql
+
+addons:
+  apt:
+    packages:
+      - nginx
+
 php:
   - 7.0
   - 7.1
@@ -25,9 +31,6 @@ matrix:
 
 before_install:
   # Install helper scripts
-  - travis_retry composer global require --prefer-dist --no-suggest typisttech/travis-nginx-wordpress:"^2.0"
-  - export PATH=$HOME/.composer/vendor/bin:$PATH
-  - tnw-install-nginx
   - tnw-install-wordpress
   - tnw-prepare-codeception
 
