@@ -1,7 +1,4 @@
 node_modules/
-bin/
-test
-
 *.sql
 *.tar.gz
 *.zip
