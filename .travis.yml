@@ -25,10 +25,6 @@ matrix:
   fast_finish: true
 
 before_install:
-  # Install helper scripts
-  - tnw-install-wordpress
-  - tnw-prepare-codeception
-
   # Build the production plugin
   - travis_retry composer build
   # Install the medium plugin
