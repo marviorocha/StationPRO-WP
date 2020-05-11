@@ -5,7 +5,7 @@ title: Your Easy Radio Player - Station Pro
 email: marviorocha@marviorocha.com
 description: Your Easy Radio Player and Plugin WP for Web and Mobile
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "stationpro.marviorocha.com" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://stationpro.marviorocha.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: stationpro
 youtube_username:  stationpro
 facebook_username: stationpro
