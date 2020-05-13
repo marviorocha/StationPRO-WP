@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" class="has-navbar-fixed-bottom">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Player Station Pro</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.1/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    <link rel="stylesheet" href="./volume.css">
+</head>
+
+<style>
+
+  
+    .station {
+        
+        display: flex;
+        flex-direction: row;
+        flex-wrap:nowrap;
+        align-items:center;
+        justify-content:space-around;
+       
+    }
+
+    
+    .navbar {
+        height: 100px;
+    }
+
+    .station-album {
+ 
+        margin-inline-start: 10%;
+        flex-grouw:1;
+        
+    }
+    .station-title {
+        width: 200px;
+        margin-inline-end:50px;
+        margin-inline-start: 10px;
+        flex-grow: 1;
+    }
+   
+    .station-play {
+        
+        flex-grow: 1;
+        cursor: pointer;
+        padding-left: 20px;
+        padding-right: 20px;
+     }
+
+ 
+
+     .station-vol {
+
+        padding-left: 10px;
+        padding-right: 15px; 
+    
+     }
+    
+    .station-icons {
+        flex-grow: 1;
+     }
+
+    .station-arrown {
+        margin-block-end: 90px;
+        margin-inline-end: 10px;
+        height: 55px;
+        border-radius: 8px;
+    }
+
+
+/* Slider Customization */
+
+
+/* Material Icon Size */
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { 
+     font-size: 62px; transition: all 0.3s ease;  
+    
+    
+ }
+
+.material-icons.md-48:hover {
+
+ color: #ffffff;
+ text-shadow: 0px 0px 5px rgb(247, 247, 243);
+ opacity: 0.9;
+
+} 
+/* Waves Audio Animations */
+
+
+</style>
+
+<body>
+    
+    
+    
+  
+    
+    <nav class="navbar is-info is-fixed-bottom station" role="navigation" aria-label="main navigation">
+        
+        <figure class="station-item image  station-album">
+            <img src="https://picsum.photos/seed/picsum/120/120" alt="Album">
+        </figure>
+        <div class="station-item station-title ">
+            
+            My Song play now <br>
+            Radio One 
+        </div>
+        
+        <div class="station-item station-play">
+            <div class="icon">
+                <i class="material-icons md-48 ">play_circle_outline</i>
+                
+                <i class="material-icons station-vol">volume_up  
+                </i>
+            </div>
+        </div>
+ 
+        
+        
+        <div class="station-item station-icons is-hidden-mobile">
+            <i class="material-icons"> favorite_border </i>
+        </div>
+        
+        <div class="station-arrown  has-background-info">
+            <div class="icon">
+                <i class="material-icons md-36">expand_more</i>
+
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <section class="section">
+             <div class="audio">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            <div class="columns is-multiline">
+                
+                <div class="column is-12">
+                    <h1 class="title is-4">My Website hero</h1>
+                    <icon class="is-large">
+                        <i class="material-icons">face</i>
+                    </icon>
+                    <p class="content">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptas aperiam provident 
+                fugiat unde possimus voluptatem, aliquam ipsa mollitiap <p></p> quae ullam. Qui consectetur tempore amet harum non,
+                earum assumenda molestiae.
+                </p>
+            </div>
+            
+            <div class="column is-4">
+                <h1 class="title is-4">My Website hero</h1>
+              <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptas aperiam provident 
+                fugiat unde possimus voluptatem, aliquam ipsa mollitia quae ullam. Qui consectetur tempore amet harum non,
+                earum assumenda molestiae.
+              </p>
+            </div><div class="column is-4">
+                <h1 class="title is-4">My Website hero</h1>
+               <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptas aperiam provident 
+                fugiat unde possimus voluptatem, aliquam ipsa mollitia quae ullam. Qui consectetur tempore amet harum non,
+                earum assumenda molestiae.
+               </p>
+            </div><div class="column is-4">
+                <h1 class="title is-4">My Website hero</h1>
+                
+                <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptas aperiam provident 
+                    fugiat unde possimus voluptatem, aliquam ipsa mollitia quae ullam. Qui consectetur tempore amet harum non,
+                    earum assumenda molestiae.
+
+                </p>
+            </div>
+            <section class="section">
+                  <div class="column is-8">
+                <h1 class="title is-4">My Website hero</h1>
+                <p class="content">
+                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptas aperiam provident 
+                fugiat unde possimus voluptatem, aliquam ipsa mollitiap <p></p> quae ullam. Qui consectetur tempore amet harum non,
+                earum assumenda molestiae.
+                </p>
+            </div>
+            <div class="column is-8">
+                <h1 class="title is-4">My Website hero</h1>
+                <p class="content">
+                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptas aperiam provident 
+                fugiat unde possimus voluptatem, aliquam ipsa mollitiap <p></p> quae ullam. Qui consectetur tempore amet harum non,
+                earum assumenda molestiae.
+                </p>
+            </div>
+            </section>
+
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
