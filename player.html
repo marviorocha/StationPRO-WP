@@ -4,121 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Player Station Pro</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.8.7/tailwind.min.css" integrity="sha512-KO1h5ynYuqsFuEicc7DmOQc+S9m2xiCKYlC3zcZCSEw0RGDsxcMnppRaMZnb0DdzTDPaW22ID/gAGCZ9i+RT/w==" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
     rel="stylesheet">
-    <link rel="stylesheet" href="./volume.css">
+   
 </head>
 
-<style>
-
-  
-    .station {
-        
-        display: flex;
-        flex-direction: row;
-        flex-wrap:nowrap;
-        align-items:center;
-        justify-content:space-around;
-       
-    }
-
-    
-    .navbar {
-        height: 100px;
-    }
-
-    .station-album {
  
-        margin-inline-start: 10%;
-        flex-grouw:1;
-        
-    }
-    .station-title {
-        width: 200px;
-        margin-inline-end:50px;
-        margin-inline-start: 10px;
-        flex-grow: 1;
-    }
-   
-    .station-play {
-        
-        flex-grow: 1;
-        cursor: pointer;
-        padding-left: 20px;
-        padding-right: 20px;
-     }
-
- 
-
-     .station-vol {
-
-        padding-left: 10px;
-        padding-right: 15px; 
-    
-     }
-    
-    .station-icons {
-        flex-grow: 1;
-     }
-
-    .station-arrown {
-        margin-block-end: 90px;
-        margin-inline-end: 10px;
-        height: 55px;
-        border-radius: 8px;
-    }
-
-
-/* Slider Customization */
-
-
-/* Material Icon Size */
-
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { 
-     font-size: 62px; transition: all 0.3s ease;  
-    
-    
- }
-
-.material-icons.md-48:hover {
-
- color: #ffffff;
- text-shadow: 0px 0px 5px rgb(247, 247, 243);
- opacity: 0.9;
-
-} 
-/* Waves Audio Animations */
-
-
-</style>
-
 <body>
-    
-    
-    
+ 
+
+    <nav class="bg-blue-600  w-full fixed bottom-0 inset-x-0 sm:px-0 sm:pb-6 h-16 bg-opacity-100 ">
+        
+        <div class="container mx-auto px-4 flex flex-row space-x-40 ">
+
+       
+            <div   class="-mt-6">
+                <img class="shadow-md rounded-lg" src="https://picsum.photos/seed/picsum/120/120" alt="Album"> 
+            </div>
+            <div class=" p-2 text-white ">
+               <span class="font-bold text-lg"> My Song play now</span> <br>
+                <span class="text-md">Radio Name Here</span>   
+            </div>
+            <div class="">
+                <svg class=" w-12 h-12 mt-2 current-fill text-white block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                
+                <i class="material-icons w-16 h-16">volume_up  
+                </i>
+                
+            </div>
+            <div class="">
+                item 4
+                
+            </div>
+            <div class="">
+                item 5          
+            </div>
+        </div>
+        </nav>
   
     
     <nav class="navbar is-info is-fixed-bottom station" role="navigation" aria-label="main navigation">
         
         <figure class="station-item image  station-album">
-            <img src="https://picsum.photos/seed/picsum/120/120" alt="Album">
+            
         </figure>
         <div class="station-item station-title ">
             
-            My Song play now <br>
-            Radio One 
+          
         </div>
         
         <div class="station-item station-play">
             <div class="icon">
-                <i class="material-icons md-48 ">play_circle_outline</i>
-                
-                <i class="material-icons station-vol">volume_up  
-                </i>
+             
             </div>
         </div>
  
@@ -136,7 +77,7 @@
         </div>
     </nav>
     
-    <div class="container">
+    <div class="">
         <section class="section">
              <div class="audio">
                     <span></span>
@@ -154,17 +95,43 @@
                     <p class="content">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptas aperiam provident 
                 fugiat unde possimus voluptatem, aliquam ipsa mollitiap <p></p> quae ullam. Qui consectetur tempore amet harum non,
-                earum assumenda molestiae.
+                earum assumenda molesti 
+                
                 </p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, eligendi placeat recusandae eaque debitis eum animi inventore quis veniam nisi adipisci, dicta, iste earum consectetur perspiciatis! Alias facere reiciendis eligendi.</p>
             </div>
-            
-            <div class="column is-4">
-                <h1 class="title is-4">My Website hero</h1>
+            <div class="column leading-7 is-4">
+                <h1 class="font-bold text-3xl">My Website hero</h1>
               <p class="content">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptas aperiam provident 
                 fugiat unde possimus voluptatem, aliquam ipsa mollitia quae ullam. Qui consectetur tempore amet harum non,
                 earum assumenda molestiae.
+                
               </p>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, eligendi placeat recusandae eaque debitis eum animi inventore quis veniam nisi adipisci, dicta, iste earum consectetur perspiciatis! Alias facere reiciendis eligendi.</p>
+
+            </div>
+            <div class="column leading-7 is-4">
+                <h1 class="font-bold text-3xl">My Website hero</h1>
+              <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptas aperiam provident 
+                fugiat unde possimus voluptatem, aliquam ipsa mollitia quae ullam. Qui consectetur tempore amet harum non,
+                earum assumenda molestiae.
+                
+              </p>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, eligendi placeat recusandae eaque debitis eum animi inventore quis veniam nisi adipisci, dicta, iste earum consectetur perspiciatis! Alias facere reiciendis eligendi.</p>
+
+            </div>
+            <div class="column leading-7 is-4">
+                <h1 class="font-bold text-3xl">My Website hero</h1>
+              <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptas aperiam provident 
+                fugiat unde possimus voluptatem, aliquam ipsa mollitia quae ullam. Qui consectetur tempore amet harum non,
+                earum assumenda molestiae.
+                
+              </p>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, eligendi placeat recusandae eaque debitis eum animi inventore quis veniam nisi adipisci, dicta, iste earum consectetur perspiciatis! Alias facere reiciendis eligendi.</p>
+
             </div><div class="column is-4">
                 <h1 class="title is-4">My Website hero</h1>
                <p class="content">
@@ -203,7 +170,11 @@
 
         </div>
     </div>
+    
 </section>
+
+
+
 
 </body>
 </html>
