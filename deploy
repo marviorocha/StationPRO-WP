@@ -1,9 +1,0 @@
-JEKYLL_ENV=production bundle exec jekyll build
-git add _site
-git add -A
-git commit -m "🤖 New Station Pro Website ($ jekyll build)"
-
-TAG=deployed_at_$(date +"%F_%H-%M")
-
-git tag -m '' -a $TAG
-git push --follow-tags
