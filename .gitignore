@@ -3,5 +3,6 @@
 .jekyll-cache
 .sass-cache
 _site
+
 Imminent-master
 Gemfile.lock
