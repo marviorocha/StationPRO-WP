@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: admin
+      WORDPRESS_DB_PASSWORD: admin123
+      WORDPRESS_DB_NAME: stationpro
+    volumes:
+      - ./wordpress:/var/www/html
+    links:
+      - "db"
+    
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: stationpro
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin123
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:
