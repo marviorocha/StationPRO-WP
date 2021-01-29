@@ -551,7 +551,7 @@ msgstr ""
 
 #: add-ons/piklist-demos/parts/forms/user-profile.php:48
 #: add-ons/piklist-demos/parts/forms/user-register.php:71
-msgid "New Senha"
+msgid "New Password"
 msgstr ""
 
 #: add-ons/piklist-demos/parts/forms/user-profile.php:60

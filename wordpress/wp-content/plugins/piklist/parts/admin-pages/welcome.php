@@ -6,7 +6,7 @@ Page: piklist
 
 <div class="wrap about-wrap">
 
-<h1><?php echo __('Welcome to Station Pro','piklist') . '&nbsp;'  . piklist::$version; ?></h1>
+<h1><?php echo __('Welcome to Piklist','piklist') . '&nbsp;'  . piklist::$version; ?></h1>
 
 <div class="about-text"><?php _e('The most powerful framework available for WordPress.','piklist'); ?></div>
 
