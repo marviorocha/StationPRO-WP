@@ -148,11 +148,8 @@
         <div class="icons-button">
           <button class="material-icons text-white">favorite_border</button>
           <button class="material-icons text-white">share</button>
-          <div data-controller="hello">
-          <div data-controller="hello">
-  <input type="text">
-  <button data-action="click->hello#greet">Greet</button>
-</div>
+           
+          <my-tag></my-tag>
 
 
            
@@ -163,9 +160,8 @@
 
 
  
-
  
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
+    
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js" charset="utf-8"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.Marquee/1.5.0/jquery.marquee.min.js"></script>
      -->

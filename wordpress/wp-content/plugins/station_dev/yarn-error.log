@@ -1,5 +1,5 @@
 Arguments: 
-  /home/marviorocha/.asdf/installs/nodejs/12.18.2/bin/node /home/marviorocha/.asdf/installs/yarn/1.22.4/bin/yarn.js dev
+  /home/marviorocha/.asdf/installs/nodejs/12.18.2/bin/node /home/marviorocha/.asdf/installs/yarn/1.22.4/bin/yarn.js add react react-dom
 
 PATH: 
   /home/marviorocha/.asdf/installs/nodejs/12.18.2/bin:/home/marviorocha/.asdf/installs/nodejs/12.18.2/.npm/bin:/home/marviorocha/.asdf/installs/yarn/1.22.4/bin:/home/marviorocha/.asdf/shims:/home/marviorocha/.asdf/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/marviorocha/.fzf/bin
@@ -14,7 +14,7 @@ Platform:
   linux x64
 
 Trace: 
-  SyntaxError: /home/marviorocha/www/StationPRO/wordpress/wp-content/plugins/station_dev/package.json: Unexpected token ] in JSON at position 189
+  SyntaxError: /home/marviorocha/www/StationPRO/wordpress/wp-content/plugins/station_dev/package.json: Unexpected token } in JSON at position 769
       at JSON.parse (<anonymous>)
       at /home/marviorocha/.asdf/installs/yarn/1.22.4/lib/cli.js:1625:59
       at Generator.next (<anonymous>)
@@ -29,8 +29,7 @@ npm manifest:
     "main": "index.js",
     "babel": {
       "presets": [
-        "@babel/preset-env",
-        
+        "@babel/preset-env"
       ]
     },
     "scripts": {
@@ -55,7 +54,7 @@ npm manifest:
     },
     "dependencies": {
       "howler": "^2.2.1",
-      "stimulus": "^2.0.0"
+       
     }
   }
 
@@ -917,30 +916,6 @@ Lockfile:
       path-is-absolute "^1.0.0"
       readdirp "^2.2.1"
       upath "^1.1.1"
-  
-  "@stimulus/core@^2.0.0":
-    version "2.0.0"
-    resolved "https://registry.yarnpkg.com/@stimulus/core/-/core-2.0.0.tgz#140c85318d6a8a8210c0faf182223b8459348877"
-    integrity sha512-ff70GafKtzc8zQ1/cG+UvL06GcifPWovf2wBEdjLMh9xO2GOYURO3y2RYgzIGYUIBefQwyfX2CLfJdZFJrEPTw==
-    dependencies:
-      "@stimulus/mutation-observers" "^2.0.0"
-  
-  "@stimulus/multimap@^2.0.0":
-    version "2.0.0"
-    resolved "https://registry.yarnpkg.com/@stimulus/multimap/-/multimap-2.0.0.tgz#420cfa096ed6538df4a91dbd2b2842c1779952b2"
-    integrity sha512-pMBCewkZCFVB3e5mEMoyO9+9aKzHDITmf3OnPun51YWxlcPdHcwbjqm1ylK63fsoduIE+RowBpFwFqd3poEz4w==
-  
-  "@stimulus/mutation-observers@^2.0.0":
-    version "2.0.0"
-    resolved "https://registry.yarnpkg.com/@stimulus/mutation-observers/-/mutation-observers-2.0.0.tgz#3dbe37453bda47a6c795a90204ee8d77a799fb87"
-    integrity sha512-kx4VAJdPhIGBQKGIoUDC2tupEKorG3A+ckc2b1UiwInKTMAC1axOHU8ebcwhaJIxRqIrs8//4SJo9YAAOx6FEg==
-    dependencies:
-      "@stimulus/multimap" "^2.0.0"
-  
-  "@stimulus/webpack-helpers@^2.0.0":
-    version "2.0.0"
-    resolved "https://registry.yarnpkg.com/@stimulus/webpack-helpers/-/webpack-helpers-2.0.0.tgz#54296d2a2dffd4f962d2e802d99a3fdd84b8845f"
-    integrity sha512-D6tJWsAC024MwGEIKlUVYU8Ln87mlrmiwHvYAjipg+s8H4eLxUMQ3PZkWyPevfipH+oR3leuHsjYsK1gN5ViQA==
   
   "@types/eslint-scope@^3.7.0":
     version "3.7.0"
@@ -2694,6 +2669,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/slash/-/slash-2.0.0.tgz#de552851a1759df3a8f206535442f5ec4ddeab44"
     integrity sha512-ZYKh3Wh2z1PpEXWr0MpSBZ0V6mZHAQfYevttO11c51CaWjGTaadiKZ+wVt1PbMlDV5qhMFslpZCemhwOK7C89A==
   
+  slim-js@^4.0.7:
+    version "4.0.7"
+    resolved "https://registry.yarnpkg.com/slim-js/-/slim-js-4.0.7.tgz#0bff67a88f40cb0d7ab06cbe2c443870bff771e3"
+    integrity sha512-UiTdqWyxqSWsUCa6YTy3L0n8lngfELOY6QEAM4qVyYOhOK1XcsAl7lDXf3pij3lbn0L1ckwfXsTlg+nafsszSw==
+  
   snapdragon-node@^2.0.1:
     version "2.1.1"
     resolved "https://registry.yarnpkg.com/snapdragon-node/-/snapdragon-node-2.1.1.tgz#6c175f86ff14bdb0724563e8f3c1b021a286853b"
@@ -2782,14 +2762,6 @@ Lockfile:
     dependencies:
       define-property "^0.2.5"
       object-copy "^0.1.0"
-  
-  stimulus@^2.0.0:
-    version "2.0.0"
-    resolved "https://registry.yarnpkg.com/stimulus/-/stimulus-2.0.0.tgz#713c8b91a72ef90914b90955f0e705f004403047"
-    integrity sha512-xipy7BS5TVpg4fX6S8LhrYZp7cmHGjmk09WSAiVx1gF5S5g43IWsuetfUhIk8HfHUG+4MQ9nY0FQz4dRFLs/8w==
-    dependencies:
-      "@stimulus/core" "^2.0.0"
-      "@stimulus/webpack-helpers" "^2.0.0"
   
   string_decoder@~1.1.1:
     version "1.1.1"
