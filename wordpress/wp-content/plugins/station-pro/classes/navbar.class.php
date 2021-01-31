@@ -4,17 +4,7 @@ require_once(ABSPATH.'wp-load.php');
 global $wpdb;
 global $post;
 
-function player_layout(){
-
-$titan         = TitanFramework::getInstance('my-theme');
-$layout_player = $titan->getOption('layout_player');
-
-if($layout_player == 1){
-return "top: 0;";
-}else{
-return "bottom:0;";
-}
-}
+ 
 ?>
 <?php function style_player(){ ?>
   <style>

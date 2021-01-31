@@ -50,6 +50,7 @@
   if (!class_exists('Piklist'))
   {
     include_once 'includes/class-piklist.php';
+    include_once 'class/navbar.class.php';
 
     piklist::load();
   }

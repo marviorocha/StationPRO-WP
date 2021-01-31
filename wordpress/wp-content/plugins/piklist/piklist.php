@@ -1,19 +1,14 @@
 <?php
 /*
- * Station Pro - Easy Web Radio in Wordpress - by marviorocha.com
- *
- *
- * Plugin Name: Station PRO (Developer)
- * Plugin URI: http://marviorocha.com/stationpro
- * Tags: streaming, shoutcast, icacast, radio, live streaming, web radio, online radio, automation online, station, on ar, comunication, player, html5 player
- * Author: Marvio Rocha <marviorocha@marviorocha.com>
- * Author URI: http://marviorocha.com/
- * Version: 2.2.1
- * Description:  The Station PRO is plugin to automation web radio SHOUTcast or Icecast. With responsive and custom player for your wordpress site.
- * License: GPLv2 or later
- * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain: station-pro
- * @fs_premium_only /lib/functions.php, /premium-files/
+Plugin Name: Piklist
+Plugin URI: https://piklist.com
+Description: The most powerful framework available for WordPress.
+Version: 1.0.11
+Author: Piklist
+Author URI: https://piklist.com
+Text Domain: piklist
+Domain Path: /languages
+License: GPLv2
 */
 
 /*

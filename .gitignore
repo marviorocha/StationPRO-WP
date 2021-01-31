@@ -3,6 +3,7 @@
 .jekyll-cache
 .sass-cache
 _site
-
+wordpress/wp-content/uploads/*
+wordpress/wp-content/plugins/piklist/*
 Imminent-master
 Gemfile.lock

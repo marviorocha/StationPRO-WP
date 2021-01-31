@@ -81,18 +81,17 @@ class Piklist_Setting
   public static function admin_pages($pages)
   {
     $pages[] = array(
-      'page_title' => __('Station Pro', 'stationpro')
-      ,'menu_title' => __('Station Pro', 'stationpro')
+      'page_title' => __('About', 'piklist')
+      ,'menu_title' => __('Piklist', 'piklist')
       ,'capability' => defined('PIKLIST_SETTINGS_CAP') ? PIKLIST_SETTINGS_CAP : 'manage_options'
       ,'menu_slug' => 'piklist'
-      ,'position' => 21
       ,'single_line' => false
-      ,'menu_icon' => "dashicons-microphone"
+      ,'menu_icon' => piklist::$add_ons['piklist']['url'] . '/parts/img/piklist-menu-icon.svg'
       ,'page_icon' => piklist::$add_ons['piklist']['url'] . '/parts/img/piklist-page-icon-32.png'
     );
 
     $pages[] = array(
-      'page_title' => __('Station Pro Settings', 'piklist')
+      'page_title' => __('Piklist Settings', 'piklist')
       ,'menu_title' => __('Settings', 'piklist')
       ,'capability' => defined('PIKLIST_SETTINGS_CAP') ? PIKLIST_SETTINGS_CAP : 'manage_options'
       ,'sub_menu' => 'piklist'
@@ -104,7 +103,7 @@ class Piklist_Setting
     );
 
     $pages[] = array(
-      'page_title' => __('Station Pro Add-ons', 'piklist')
+      'page_title' => __('Piklist Add-ons', 'piklist')
       ,'menu_title' => __('Add-ons', 'piklist')
       ,'capability' => defined('PIKLIST_SETTINGS_CAP') ? PIKLIST_SETTINGS_CAP : 'manage_options'
       ,'sub_menu' => 'piklist'

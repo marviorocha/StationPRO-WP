@@ -1,0 +1,242 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Night Club Lite\n"
+"POT-Creation-Date: 2020-12-06 21:31+0530\n"
+"PO-Revision-Date: 2020-12-06 21:31+0530\n"
+"Last-Translator: \n"
+"Language-Team: Grace Themes <support@gracethemes.com>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _;__;_e;gettext;gettext_noop;esc_attr;esc_attr__;"
+"esc_attr_e;esc_html;esc_html__\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: comments.php:30
+#, php-format
+msgid "One thought on &ldquo;%s&rdquo;"
+msgstr ""
+
+#: content-page.php:18 content-search.php:28 content-single.php:25
+#: content.php:38 image.php:56 template-full-width.php:23
+msgid "Pages:"
+msgstr ""
+
+#: content-page.php:23 content-search.php:39 content-single.php:36
+#: image.php:30 image.php:62
+msgid "Edit"
+msgstr ""
+
+#: content-single.php:15 content.php:16
+msgid ", "
+msgstr ""
+
+#: content.php:35
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: customize-pro/class-customize.php:76
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: customize-pro/class-customize.php:77
+msgid "Upgrade Now"
+msgstr ""
+
+#: functions.php:36
+msgid "Primary Menu"
+msgstr ""
+
+#: functions.php:37
+msgid "Footer Menu"
+msgstr ""
+
+#: functions.php:46
+msgid "Blog Sidebar"
+msgstr ""
+
+#: functions.php:47
+msgid "Appears on blog page sidebar"
+msgstr ""
+
+#: functions.php:56
+msgid "Footer Widget 1"
+msgstr ""
+
+#: functions.php:57 functions.php:67 functions.php:77 functions.php:87
+msgid "Appears on footer"
+msgstr ""
+
+#: functions.php:66
+msgid "Footer Widget 2"
+msgstr ""
+
+#: functions.php:76
+msgid "Footer Widget 3"
+msgstr ""
+
+#: functions.php:86
+msgid "Footer Widget 4"
+msgstr ""
+
+#: functions.php:138
+msgid "Open the main menu"
+msgstr ""
+
+#: functions.php:139
+msgid "Close the main menu"
+msgstr ""
+
+#: functions.php:140
+msgid "expand submenu"
+msgstr ""
+
+#: functions.php:141
+msgid "collapse submenu"
+msgstr ""
+
+#: image.php:35
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr ""
+
+#: image.php:36
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: inc/about-themes.php:11
+msgid "About Theme Info"
+msgstr ""
+
+#: inc/customizer.php:41
+msgid "Theme Options Panel"
+msgstr ""
+
+#: inc/customizer.php:46
+msgid "Site Layout Options"
+msgstr ""
+
+#: inc/customizer.php:57
+msgid "Check to Show Box Layout"
+msgstr ""
+
+#: inc/customizer.php:58
+msgid "If you want to show box layout please check the Box Layout Option."
+msgstr ""
+
+#: inc/customizer.php:69
+msgid "Color Options"
+msgstr ""
+
+#: inc/customizer.php:70
+msgid "More color options available in PRO Version"
+msgstr ""
+
+#: inc/customizer.php:78
+msgid "Top Contact Section"
+msgstr ""
+
+#: inc/customizer.php:91
+msgid "enter phone number here"
+msgstr ""
+
+#: inc/customizer.php:102
+msgid "enter email id here."
+msgstr ""
+
+#: inc/customizer.php:116 inc/customizer.php:193
+msgid "Check To show This Section"
+msgstr ""
+
+#: inc/customizer.php:123
+msgid "Header social Sections"
+msgstr ""
+
+#: inc/customizer.php:124
+msgid "Add social icons link here to display icons in header."
+msgstr ""
+
+#: inc/customizer.php:135
+msgid "Add facebook link here"
+msgstr ""
+
+#: inc/customizer.php:146
+msgid "Add twitter link here"
+msgstr ""
+
+#: inc/customizer.php:157
+msgid "Add google plus link here"
+msgstr ""
+
+#: inc/customizer.php:168
+msgid "Add linkedin link here"
+msgstr ""
+
+#: inc/customizer.php:179
+msgid "Add instagram link here"
+msgstr ""
+
+#: inc/customizer.php:200
+msgid "Frontpage Slider Sections"
+msgstr ""
+
+#: inc/customizer.php:202
+msgid "Default image size for slider is 1400 x 745 pixel."
+msgstr ""
+
+#: inc/customizer.php:214
+msgid "Select page for slider 1:"
+msgstr ""
+
+#: inc/customizer.php:226
+msgid "Select page for slider 2:"
+msgstr ""
+
+#: inc/customizer.php:238
+msgid "Select page for slider 3:"
+msgstr ""
+
+#: inc/customizer.php:249
+msgid "enter slider Read more button name here"
+msgstr ""
+
+#: inc/customizer.php:263 inc/customizer.php:344
+msgid "Check To Show This Section"
+msgstr ""
+
+#: inc/customizer.php:270
+msgid "Four Circle column Services Section"
+msgstr ""
+
+#: inc/customizer.php:271
+msgid "Select pages from the dropdown for 4 circle column services sections"
+msgstr ""
+
+#: inc/customizer.php:284
+msgid "Enter services section title here"
+msgstr ""
+
+#: inc/customizer.php:351
+msgid "Sidebar Options"
+msgstr ""
+
+#: inc/customizer.php:365
+msgid "Check to hide sidebar from latest post page"
+msgstr ""
+
+#: inc/customizer.php:379
+msgid "Check to hide sidebar from single post"
+msgstr ""
+
+#: no-results.php:17
+msgid "Ready to publish your first post? Get started here."
+msgstr ""
+
+#: search.php:17
+#, php-format
+msgid "Search Results for: %s"
+msgstr ""

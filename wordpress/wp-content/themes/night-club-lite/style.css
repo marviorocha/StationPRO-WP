@@ -1,0 +1,669 @@
+/*
+Theme Name: Night Club Lite
+Theme URI: https://gracethemes.com/themes/free-music-streaming-wordpress-theme/
+Author: Grace Themes
+Author URI: https://gracethemes.com/
+Description: Night Club Lite is a fantastic and versatile music streaming WordPress theme for the nightclubs and music industry. It is specially developed for the music bands, orchestra, radio stations, festival event, artists, restaurants and bars, DJ websites and entertainment sites. With its extremely clean and futuristic design, this theme is mainly focused on the underground music and nightclub scene. 
+Demo Link: http://www.gracethemesdemo.com/night-club/
+
+Version: 1.3
+License: GNU General Public License version 2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: night-club-lite
+Requires PHP:  5.2
+Tested up to: 5.6
+Tags:blog,food-and-drink,two-columns,right-sidebar,full-width-template,custom-colors,custom-menu,custom-header,custom-logo,featured-images,editor-style,custom-background,threaded-comments,theme-options, translation-ready
+
+Night Club Lite WordPress Theme has been created by Grace Themes(gracethemes.com), 2020.
+Night Club Lite WordPress Theme is released under the terms of GNU GPL
+*/
+
+body{
+font-family:'Poppins', sans-serif;background-color:#ffffff; color:#717171;margin:0; padding:0;line-height:28px; font-size:16px; -ms-word-wrap:break-word; word-wrap:break-word;}
+*{ margin:0; padding:0; outline:none; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
+img{ border:none; margin:0; padding:0; height:auto; max-width:100%;}
+
+/*image align css*/
+.alignnone{ width:100%;}
+img.alignleft, .alignleft{ float:left; margin:0 15px 0 0; padding:5px; border:1px solid #cccccc;}
+img.alignright, .alignright{ float:right; margin:0 0 0 15px; padding:5px; border:1px solid #cccccc;}
+.aligncenter, img.aligncenter { clear: both; display: block; margin-left: auto; margin-right: auto; margin-top:0;  height:auto;}
+.wp-caption, .wp-caption-text, .sticky, .gallery-caption, .aligncenter{ margin:0; padding:0; max-width:100% !important;}
+p{ margin:0; padding:0;}
+a{ text-decoration:none; color:#efc62c;}
+a:hover{ color:#111;}
+.clear{ clear:both;}
+.left{ float:left;}
+.right{ float:right;}
+
+figcaption,figure{	display: block;}
+figure {margin: 1em 0;}
+blockquote{ background-color:#eee; padding:10px 10px 10px 30px; color:#666; font-size:15px; line-height:1.5; margin-bottom:30px; font-style:italic;}
+blockquote p{ margin-bottom:0 !important;}
+hr {-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box;	height: 0;	overflow: visible;}
+.textwidget select{ width:100%;}
+.tagcloud a{ font-size:12px !important; color:#fff; border:1px solid #fff; padding:5px 12px; margin:0 5px 5px 0; display:inline-block;}
+.tagcloud a:hover{ border:1px solid #fff;}
+table{ width:100%}
+
+/*
+Lists style CSS
+-------------------------------------------------------------*/
+ol,ul{ margin:0; padding:0;}
+ul li ul, ul li ul li ul, ol li ol, ol li ol li ol{ margin-left:10px;}
+ul,ol { margin:0; padding: 0;}
+ul {list-style: inside none disc;}
+ol {list-style: decimal;}
+ul li,ol li {margin-bottom: 0;	margin-left: 1.5em;}
+dt {font-weight: 700;}
+dd {margin: 0 1.5em 1.5em;}
+audio:not([controls]) {	display: none;height: 0;}
+img {border-style: none;}
+svg:not(:root) {overflow: hidden;}
+a {	background-color: transparent;	-webkit-text-decoration-skip: objects;}
+a:active, a:hover {outline-width: 0;}
+b, strong {	font-weight: bold;}
+pre {background: #ddd;font-size: 14px;	font-size: 0.9375rem;line-height: 1.4;margin-bottom: 1.6em;	max-width: 100%;overflow: auto;	padding:20px;}
+iframe{max-width:100%;}
+.breadcrumbs{padding:10px 0; margin-bottom:0;}
+nav.pagination{ clear:both;}
+#comment-nav-above .nav-previous, #comment-nav-below .nav-previous{ float:none !important; margin:10px 0;}
+nav.pagination .page-numbers{ background-color:#ccc; padding:10px 15px; font-size:15px; font-weight:600; color:#444;}
+nav.pagination .page-numbers:hover{background-color:#d81362; color:#fff;}
+nav.pagination .page-numbers.current{background-color:#d81362; color:#fff;}
+ol.comment-list li{ list-style:none; margin-bottom:5px;}
+
+/* = Navigation Focus CSS
+-------------------------------------------- */
+
+button:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="range"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="week"]:focus,
+input[type="time"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="color"]:focus,
+textarea:focus,
+#templatelayout a:focus {	
+	outline: thin dotted #d81362;
+}
+
+/* = Heading tags
+--------------------------------------------- */
+h1,h2,h3,h4,h5,h6{ color:#303030; margin:0 0 20px; padding:0; line-height:1.1; }
+h1.entry-title{ font-weight:bold; margin-bottom:35px; font-size:30px; text-transform:uppercase; }
+h1{ font-size:35px;}
+h2{ font-size:30px;}
+h3{ font-size:28px;}
+h4{ font-size:24px;}
+h5{ font-size:20px;}
+h6{ font-size:16px;}
+
+
+/* = Default Button CSS
+--------------------------------------------- */
+.button{  border:1px solid #404040; color:#404040; padding:10px 30px; display:inline-block; border-radius:25px; -moz-border-radius:25px; -webkit-border-radius:25px; -o-border-radius:25px; -ms-border-radius:25px; }
+.button:hover{ border:1px solid #d81362; color:#d81362; }
+.learnmore{ background-color:#202020; color:#fff ;display: inline-block; padding:12px 35px; text-transform:uppercase; font-weight:600; border-radius:25px; -moz-border-radius:25px; -webkit-border-radius:25px; -o-border-radius:25px; -ms-border-radius:25px; font-size:16px; }
+.learnmore:hover{ background-color:#d81362;color:#fff ;}
+a.blogreadmore{ background-color:#505050; color:#fff ; padding:5px 20px; display:inline-block; border-radius:3px;}
+a.blogreadmore:hover{ background-color:#404040; color:#fff; }
+
+/* = Site Header CSS
+--------------------------------------------- */
+.site-header.fixed{ position: fixed; top:0; z-index:99999; width:100%; }
+.topsocial_icons{ display:inline-block; line-height:45px;}
+.topsocial_icons a{ width:30px; height:30px; line-height:30px; text-align:center;  vertical-align:middle; display:inline-block; margin:0 5px 0 0; transition:0.6s; -moz-transition:0.6s; -webkit-transition:0.6s; -o-transition:0.6s; font-size:13px; color:#fff; }
+.topsocial_icons a:hover{ color:#000 !important; }
+.topsocial_icons br{ display:none;}
+.infobox{ display:inline-block; margin:0 5% 0 0; text-align:left; color:#fff; font-size:16px; font-weight:600; line-height:45px;}
+.infobox a{ color:#fff;}
+.infobox i{ float:left; margin:8px 15px 0 0; line-height:28px; text-align:center; font-size:18px; color:#fff;}
+
+/* = slider curved SVG file
+-------------------------------------------------------------*/
+.bottom-shadow-top{position: absolute; top: -133px; left: 0; right: 0; z-index: 1; }
+.bottom-shadow-top svg{ width:100%;}
+.bottom-shadow-bottom{ position: absolute; bottom: -133px; left: 0; right: 0; z-index: 1; }
+.bottom-shadow-bottom svg{ width:100%;}
+
+
+/* = Main site CSS
+-------------------------------------------------------------*/
+#templatelayout{ margin:0 auto; overflow-x:hidden;}
+.container{ width:1170px; margin:0 auto; position:relative;}
+.site-header{ width:100%; z-index:999; box-sizing:border-box; position: absolute; background-color:rgba(0,0,0,0.7) !important; }
+.site-header.siteinner{ position:relative; }
+.logo{  width:25%; float:left; padding:15px 0;}
+.logo a{ color: #fff; z-index:999; position:relative}
+.logo h1 {font-size:32px; margin:0;}
+.logo p{ color:#f2f2f2; display:block; }
+
+
+/* = Header Navigation CSS
+-------------------------------------------------------------*/
+#mainnavigator{ float:right; width:75%; color:#555; text-align:right;}
+.site-navigation {display: block; margin:0;}
+
+/* Styling the links */
+.site-navigation a {
+	display: block;
+	font-size: 1.05rem;
+	padding: 0.75em 0.75em;
+	color: #fff;	
+	text-decoration: none;
+	box-sizing: border-box;
+	width: 100%;
+	white-space: normal;
+}
+
+/* Background color change on Hover */
+.site-navigation .menu a:hover,
+.site-navigation .menu a:focus { 	
+	color:#cf317c;
+}
+
+/* Set menu item's width to 100% */
+.site-navigation .menu li {
+	display: inline-block;
+	width: 100%;
+}
+
+/* Styling the toggle buttons */
+.menu-toggle {	
+	padding:5px;
+	color: #111;
+	font-size:14px;
+	text-decoration: none;
+	border: 1px solid #111;
+	border-radius: 4px;
+	display: block;
+	position: absolute;
+	top:20px;
+	right:22px;	
+	z-index:999999;
+}
+
+.menu-toggle .dashicons {
+	vertical-align: text-bottom;
+}
+
+.menu-toggle .dashicons:before {
+	content: '\f228';
+}
+
+.toggled .menu-toggle {
+	background-color: #606060;
+}
+
+.toggled .menu-toggle .dashicons:before {
+	content: '\f158';
+}
+
+.dropdown-toggle {
+	background-color: transparent;
+	padding: 0.5em;
+	position: absolute;
+	top: 0.5em;
+	right: 0.5em;
+	border: 1px solid transparent;
+	border-left: 1px solid #bbb;
+	border-radius: 0;
+	color: #fff;
+	text-align: center;
+}
+
+.dropdown-toggle:hover,
+.dropdown-toggle:focus {
+	border: 1px dashed;
+}
+
+.dropdown-toggle .dashicons {
+	font-size: 1.25rem;
+}
+
+.dropdown-toggle .dashicons:before {
+	content: '\f347';
+	color:#fff;
+}
+
+.toggled-on > .dropdown-toggle .dashicons:before {
+	content: '\f343';
+	color:#fff;
+}
+
+/* Hide Submenus by default using absolute positioning instead of display:none;. */
+.site-navigation .menu,
+.site-navigation .menu li,
+.site-navigation .menu ul,
+.site-navigation .menu li:hover > ul,
+.site-navigation .menu li:focus > ul {
+	position: absolute;
+	top: 100%;
+	left: -9999em;
+	color: #000000;
+	padding: 0;
+	margin: 0;
+}
+
+/* Display the menu when clicked on Menu Toggle */
+.toggled .menu {
+	display: block;
+	position: relative;
+	top: 0;
+	left: 0;
+	background-color:#444;
+}
+
+.toggled .menu li {
+	position: relative;
+	left: unset;
+	border-bottom:1px solid #bbb;
+}
+
+.toggled .menu li > .sub-menu {
+	display: none;
+}
+
+.toggled .menu .toggled-on > .sub-menu {
+	display: block;
+	position: relative;
+	left: 0;
+	top: 100%;
+}
+
+.site-navigation .menu ul a,
+.site-navigation .menu ul ul a {
+	padding: 1.25em 0.75em;
+}
+
+.site-navigation .menu ul a {
+	padding: 0.75em 1.25em;
+}
+
+.site-navigation .menu ul ul a {
+	padding: 1.25em 1.75em;
+}
+
+.site-navigation .menu ul a,
+.site-navigation .menu ul ul a {
+	/*color: #fff; */
+	padding: 1.25em 1.75em;
+}
+
+
+/*--------------------------------------------------------------
+8. Clearings
+--------------------------------------------------------------*/
+.clear:before,
+.clear:after,
+.site-header:before,
+.site-header:after,
+.site-content:before,
+.site-content:after,
+.site-footer:before,
+.site-footer:after,
+nav:before,
+nav:after {
+	content: "";
+	display: block;
+}
+
+.clear:after,
+.site-header:after,
+.site-content:after,
+.site-footer:after,
+nav:after {
+	clear: both;
+}
+
+
+@media screen and (min-width: 981px) {
+
+/*
+5. Navigation
+	5.1 Links	
+*/
+
+/* 5.2 Menus */
+
+.menu-toggle,
+.dropdown-toggle {
+	display: none;
+}
+
+.site-navigation {
+	/*display: flex;*/
+	align-items: start;
+}
+
+.site-navigation .primary-menu,
+.site-navigation .social-menu {
+	/*display: flex;*/
+	position: static;
+}
+
+.site-navigation .social-menu {
+	border-left: 1px solid #bbb;
+}
+
+.site-navigation .menu li {
+	position: relative;
+	width: auto;
+	left: unset;
+}
+
+.site-navigation .menu ul li:first-child {
+	border-top: 0;
+}
+
+.site-navigation .menu a{
+	font-size: 1.05rem;
+	padding: 1.85em 0.75em;
+}
+
+
+.site-navigation .menu ul a,
+.site-navigation .menu ul ul a {	
+	padding: 0.55em 0.75em;
+	border-bottom:1px solid #555;
+}
+
+
+/* Hide Dropdowns by Default
+ * and giving it a position of absolute */
+.site-navigation .menu ul {
+	position: absolute;
+	 background-color:rgba(0,0,0,0.8);
+	text-align:left; 	
+	top: 100%;
+	left: -9999em;
+	box-shadow:0 0 1px #555;	
+}
+	
+/* Display Dropdowns on hover and focus */
+.site-navigation .menu li:hover > ul,
+.site-navigation .menu li:focus > ul,
+.site-navigation .menu li.focus > ul {
+	left: 0;
+}
+	
+/* First Tier Dropdown */
+.site-navigation .menu ul li {
+	position: relative;
+	width: 182px;
+}
+
+/* Second, Third and more Tiers	
+ * We move the 2nd and 3rd etc tier dropdowns to the left
+ * by the amount of the width of the first tier.
+*/
+.site-navigation .menu li li:hover > ul,
+.site-navigation .menu li li:focus > ul,
+.site-navigation .menu li li.focus > ul {
+	top: 0;
+	left: 100%; 
+}
+
+.site-navigation .menu ul a:hover,
+.site-navigation .menu ul a:focus { 	
+	color: #cf317c;
+}
+
+.menu-item-has-children > a:after,
+.page_item_has_children > a:after {
+	font-family: dashicons;
+	content: '\f347';
+	vertical-align: bottom;
+	margin-left: 0.25em;
+}
+
+.menu-item-has-children .menu-item-has-children > a:after,
+.menu-item-has-children .page_item_has_children > a:after,
+.page_item_has_children .menu-item-has-children > a:after,
+.page_item_has_children .page_item_has_children > a:after {
+	content: '\f345';
+	font-family: dashicons;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translate(0, -50%);
+}
+
+}
+
+
+
+/* = Four Column Circle Services Section CSS
+-------------------------------------------------------------- */
+#frontpage_services_panel{ z-index:9999; padding:30px 0 20px; position:relative; text-align:center; }
+h2.servicestitle{ font-size:64px; text-align:center; position:relative; display:block; margin-bottom:50px;}
+.column4circle_box{ width:25%; float:left; margin:0; padding:0; position:relative; box-sizing:border-box; text-align:center; }
+.column4circle_box p{ margin-bottom:15px; }
+.column4circle_box h3{ font-size:17px; font-weight:700; margin:0 0 15px 0; line-height:100%; text-transform:uppercase; }
+.column4circle_box h3 a{ color:#121212;}
+.column4circle_box:hover h3 a{color:#fff;}
+.column4circle_box .srviconbox{ margin:0 auto 20px auto; overflow:hidden; width:232px; height:232px; border-radius:100%; position:relative; border:solid 15px #f0f0f0;}
+.column4circle_box .srviconbox img { height:auto; min-height:232px; object-fit:cover; width:100%; transition: all .2s ease-in-out;}
+.short_content_col a.readmore{ font-weight:bold; font-size:16px; text-transform:uppercase;}
+.column4circle_box:hover .srviconbox{ border-color:#d81362;}
+.column4circle_box:hover .srviconbox img{transform: scale(1.1);}
+.short_content_col{ padding:25px; position:relative; }
+
+
+/* = Page layout css
+-------------------------------------------------------------- */
+.template_contentbx{ float:left; width:68%; margin:0; padding:0;  }
+.template_contentbx ul, .template_contentbx ol{ margin:0 0 20px 20px; }
+.template_contentbx ul li, .template_contentbx ol li{ margin:0; }
+.template_contentbx ul ul, .template_contentbx ol ol{ margin:0 0 0 30px; }
+.fullwidth{ width:100% !important; float:none  !important;}
+.fullwidth p{ margin-bottom:15px;}
+.boxlayout{ width:1210px; margin:0 auto; background-color:#fff; position:relative; box-shadow:0 -8px 8px #111;}
+.fulllayout{ width:100% !important;}
+#tabnavigator{ padding:60px 0 50px;}
+#tabnavigator p{ margin-bottom:25px;}
+.slider_wrapper{ position:relative;}
+h2.sectiontitle{font-weight:600; font-size:40px; margin-bottom:50px; position:relative; text-align:center;}
+.last_column{clear:right; margin-right:0 !important; }
+.template_contentbx a{ text-decoration:underline;}
+
+/* = Sidebar CSS
+-------------------------------------------------------------- */
+#sidebar{ float:right; width:28%;}
+
+aside.widget{ background-color:#fff; margin-bottom:30px; padding:20px; box-shadow:0 0 10px #ddd; }
+aside.widget ul{ list-style:disc inside; }
+h3.widget-title{ font-weight:400; padding:15px; margin:-20px -20px 15px; color:#fff; font-size:22px; position:relative; background-color:#d81362;}
+#sidebar ul li{ border-bottom:1px solid #ddd; list-style:none; margin:0 0 2px 0; padding:7px 10px 7px 0; -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;  }
+#sidebar ul li:hover{padding-left:5px;}		
+#sidebar ul li a{ color:#3b3b3b; }
+#sidebar ul li a:hover{ color:#34c6f6;}
+#sidebar ul li:last-child{ border:none;}
+aside .textwidget, #sidebar .gallery, aside.widget_media_image{ padding:20px; background-color:#fff; box-shadow:0px 0px 30px 0px rgba(0, 0, 0, 0.1);}
+aside .textwidget a{ text-decoration:underline;}
+
+
+/*sidebar search form css*/
+#sidebar .search-form{ margin-bottom:20px;}
+#sidebar .search-form input.search-field{ background-color:#fff; width:80%; padding: 13px 15px 13px 15px; border:1px solid #ddd;  }
+#sidebar .search-form input.search-submit{ background:url(images/search-icon.png) no-repeat center center #efc62c; padding: 12px 0 12px 0; font-size:0; width:19%; height:43px; float:right; border:0;}
+#sidebar input[type="submit"]:focus{outline:auto}
+
+
+/* = Blog post styles
+-------------------------------------------------------------- */
+.listview_blogstyle{ margin:0 0 50px 0; padding:0; }
+.listview_blogstyle .blgimagebx{ float:left; width:30%; margin:0 35px 20px 0; position:relative;}
+.listview_blogstyle .blgimagebx img{ height:auto;}
+.listview_blogstyle h3, h3.single-title{ margin-bottom:15px; font-size:24px; font-weight:600;}
+.listview_blogstyle h3 a{ color:#484f5e;}
+.listview_blogstyle h3 a:hover{ color:#efc62c;}
+.listview_blogstyle p{ margin-bottom:20px;}
+.blog-meta{ font-style:italic; margin-bottom:8px;}
+.post-date, 
+.post-comment, 
+.post-categories, 
+.edit-link{ display:inline; color:#333; font-weight:600; text-transform:uppercase; margin:0 10px 0 0;} 
+.single_title{ margin-bottom:5px;}
+body.single-post .listview_blogstyle { width:100%; float:none; margin:0; }
+
+.blog_postmeta{ margin-bottom:25px; color:#888; padding-bottom:15px; border-bottom:1px solid #e8e8e8; }
+.blog_postmeta a{ color:#999;}
+.blog_postmeta a:hover{ color:#d81362;}
+.blogreadbtn{ background-color:#505050; color:#fff; padding:7px 20px; font-weight:600; display:inline-block; }
+.blogreadbtn:hover{ background-color:#303030; color:#fff;}
+
+/* = Site Footer css
+-------------------------------------------- */
+.site-footer{ background-color:#100d0e; padding:0; position:relative; color:#c1c0c0;}
+.copyright-txt span{color:#fff;}
+.powerby{ padding-top:10px; }
+.site-footer h5{ font-size:30px; font-weight:600; margin-bottom:30px; position:relative; color:#d81362;}
+
+.site-footer .widget{ padding:60px 0 50px;}
+.widget-column-1{ width:23%; float:left; margin:0 3% 0 0; }
+.widget-column-2{ width:23%; float:left; margin:0 3% 0 0; }
+.widget-column-3{ width:23%; float:left; margin:0 3% 0 0; }
+.widget-column-4{ width:22%; float:left; margin:0; }
+.site-footer ul{ margin:0; padding:0;}
+.site-footer ul li { list-style:none; padding:0 0 8px 0; margin:0; color:#c1c0c0;}
+.site-footer ul li a { color:#c1c0c0; }
+.site-footer ul li::before{ content: "\f105"; font-family: 'Font Awesome 5 Solid'; margin-right:15px; color:#fff;}
+.site-footer ul li a:hover, .site-footer ul li.current_page_item a { color:#d81362; }
+
+
+/* = Footer Copyrigh wrapper css
+-------------------------------------------- */
+.copyrigh-wrapper{ background-color:#050404; color:#fff; position:relative; text-align:center; padding:15px 0;}
+.copyrigh-wrapper a:hover{ color:#fff;}
+
+/* Accessibility */
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important; 
+  /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+}
+
+.screen-reader-text:focus {
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+  clip: auto !important;
+  clip-path: none;
+  color: #21759b;
+  display: block;
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
+  /* Above WP toolbar. */
+}
+
+/* Do not show the outline on the skip link target. */
+#tabnavigator[tabindex="-1"]:focus {
+  outline: 0;
+}
+
+
+
+/* = Comment Form css
+-------------------------------------------------------------- */
+h1.screen-reader-text{font-family: 'Assistant', sans-serif; font-size:22px;}
+.site-nav-previous, .nav-previous{ float:left;}
+.site-nav-next, .nav-next{ float:right;}
+h3#reply-title{ font-size:20px;}
+#comments{ margin:30px 0 0; padding:0;}
+nav#nav-below{ margin-top:15px;}
+
+ol.commentlist{list-style:none;}
+#commentform p{margin:5px 0;}
+#commentform label{display:block;}
+#commentform input#email, #commentform input#url, #commentform input#author, #commentform textarea, #commentform input#eazycfc_captcha{max-width:96%; border:1px #ccc solid; padding:5px 2%;}
+#commentform input#submit{ background-color:#32373a; border:none; padding:12px 25px; color:#fff; display:inline-block; cursor:pointer; border-radius:5px; text-transform:uppercase;}
+#commentform input#submit:hover{background:#34c6f6; color:#fff;}
+.form-allowed-tags{display:none;}
+.entry-content table, .comment-body table{ border-collapse:collapse; margin:10px 0;}
+.entry-content table td, .entry-content table th, .comment-body table td, .comment-body table th{padding:10px 5px; text-align:left;}
+.entry-content table th, .comment-body table th{color:#676767; font:normal 18px Oswald; border-bottom:1px #888 solid;}
+.entry-content table td, .comment-body table td{border-bottom:1px #ccc solid;}
+.fvch-codeblock:hover .comment-form-url{display:block !important;}
+.commentlist, ol.commentlist {list-style:none; box-shadow:0 0 5px #666; -moz-box-shadow:0 0 5px #666; -webkit-box-shadow:0 0 5px #666; -khtml-box-shadow:0 0 5px #666; margin:10px 0; background-color:#fff; padding:10px 0;}
+.commentlist li, ol.commentlist li { list-style:none; background-image:none !important; padding:0px 15px;}
+.commentlist li ol li.depth-2, .commentlist li ol li.depth-3, .commentlist li ol li.depth-4, ol.commentlist li ol li.depth-2, ol.commentlist li ol li.depth-3, ol.commentlist li ol li.depth-4 { border-bottom:none;}
+.commentlist li.bypostauthor article, ol.commentlist li.bypostauthor article { background:#f9ffe1;}
+.commentlist article, .commentlist li.bypostauthor li article, ol.commentlist li.bypostauthor li article { border:none !important; padding:10px; position:relative; background-color:#fff;}
+.commentlist li .fn { font-weight:normal; font-size:15px; font-style:normal;}
+.commentlist li.bypostauthor .fn, ol.commentlist li.bypostauthor .fn { color:#000;}
+img.avatar { vertical-align:middle; position:static; display:inline-block;}
+.commentlist article a time { display:block; clear:both; padding:5px 0 10px; font-size:11px; font-style:italic; }
+.commentlist, ol.commentlist p { font-size:14px;}
+.commentlist .reply span, ol.commentlist .reply span { display:none;}
+.commentlist .reply a, ol.commentlist .reply a { display:block;	padding:10px; text-align:center; background:#f6f6f6; margin:5px 0; border:1px #ddd solid;}
+.comment-author.vcard{display:inline-block; margin-right:15px;}
+.comment-list ul.children li.comment{background-image:none; padding-left:5px;}
+
+/* = Contact Form 7 css
+-------------------------------------------------------------- */
+.wpcf7{ margin:30px 0 0; padding:0;}
+.wpcf7 input[type="text"], .wpcf7 input[type="tel"], .wpcf7 input[type="email"]{ width:40%; border:1px solid #cccccc; box-shadow:inset 1px 1px 2px #ccc; height:35px; padding:0 15px; color:#797979; margin-bottom:0;}
+.wpcf7 textarea{width:60%; border:1px solid #cccccc; box-shadow:inset 1px 1px 2px #ccc; height:150px; color:#797979; margin-bottom:25px; font:12px arial; padding:10px; padding-right:0;}
+.wpcf7 input[type="submit"]{background-color:#efc62c; width:auto; border:none; cursor:pointer; color:#ffffff; padding:12px 40px; border-radius:3px; font-size:16px; text-transform:uppercase;}
+.wpcf7 input[type="submit"]:hover{background-color:#101010; }
+
+
+/* = WooCommerce plugin css code
+-------------------------------------------------------------- */
+a.added_to_cart{background:#e1472f; padding:5px; display:inline-block; color:#fff; line-height:1;}
+a.added_to_cart:hover{background:#000000;}
+a.button.added:before{content:'' !important;}
+#bbpress-forums ul li{padding:0;}
+#subscription-toggle a.subscription-toggle{padding:5px 10px; display:inline-block; color:#e1472f; margin-top:4px;}
+textarea.wp-editor-area{border:1px #ccc solid;}
+.woocommerce input[type=text], .woocommerce textarea{border:1px #ccc solid; padding:4px;}
+form.woocommerce-ordering select{ padding:5px; color:#777777;}
+.woocommerce table.shop_table th, .woocommerce-page table.shop_table th{ color:#ff8a00;}
+.woocommerce ul.products li.product .price, .woocommerce-page ul.products li.product .price{ color:inherit !important;}
+h1.product_title, p.price{ margin-bottom:10px;}
+
+.woocommerce table.shop_table th, .woocommerce-page table.shop_table th{ color:#ff6d84;}
+.woocommerce ul.products li, #payment ul.payment_methods li{ list-style:none !important;}
+.woocommerce ul.products li.product .price, .woocommerce-page ul.products li.product .price{ color:inherit !important;}
+.woocommerce table.shop_table th, .woocommerce table.shop_table td{ border-bottom:0px !important}
+
+.woocommerce .quantity .qty{ padding:7px; border:1px solid #ccc;}
+.woocommerce-Price-amount.amount{font-size:14px !important;}
+.woocommerce div.product .product_title{ padding-bottom:20px !important;}
+.woocommerce div.product form.cart{ margin-top:15px !important;}

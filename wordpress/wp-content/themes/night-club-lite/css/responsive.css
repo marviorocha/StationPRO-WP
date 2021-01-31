@@ -1,0 +1,98 @@
+/* Mobile Portrait View */
+@media screen and (max-width:767px) {
+*{box-sizing:border-box;}
+.left, .right, .copyright-txt, .design-by, .powerby{ width:auto; float:none; text-align:center;}
+.container { width:auto; padding:0 20px;}
+.site-header{ position:relative;}
+/*coloumn css*/
+.blgimagebx{ width:100%; float:none; margin:0 0 10px;}
+/*sidebar css*/
+#sidebar{ width:100%; float:none;}
+.content-area{ width:auto; margin:0; padding:50px 20px;}
+.template_contentbx{ width:auto; float:none;}
+.topsocial_icons{ padding:0 20px;}
+#mainnavigator{ text-align:left; width:auto; float:none; padding:10px 0;}
+#mainnavigator span{ display:block;}
+.widget-column-1, .widget-column-2, .widget-column-3, .widget-column-4{ float:none; width:100%; margin:0 0 5px; padding:0; text-align:left;}
+.site-footer .container{ padding:0 20px;}
+.copyrigh-wrapper .container{ padding:0 20px;}
+.infobox{ margin:0 auto 5px auto; padding:0; border:none; text-align:center;}
+.infobox i{ float:none;}
+.infobox span{ display:inline;}
+/*slider css*/
+#slider{ top:0; margin:0;}
+.nivo-caption{ width:90%;}
+.nivo-caption h2{ font-size:24px !important; line-height:24px !important; margin:0 0 10px !important;}
+.nivo-caption h2 span{ font-size:20px !important; }
+.nivo-caption p{ line-height:16px; font-size:14px; margin-bottom:20px;}
+.nivo-caption .slide_morebtn{ padding:5px 20px; font-size:12px;}
+.nivo-directionNav a{ top:35% !important;}
+.nivo-controlNav{ display:none !important;}
+a.nivo-prevNav{ left:1%;}
+a.nivo-nextNav{right:1%;}
+
+h2.section_title{ font-size:34px; margin-bottom:25px;}
+/*front blog post*/
+#frontpage_services_panel{ padding:35px 0 10px; margin:0;}
+.wpcf7 input[type="text"], .wpcf7 input[type="tel"], .wpcf7 input[type="email"], .wpcf7 textarea{ width:100%;}
+#templatelayout{ width:100%;}
+.listview_blogstyle .blgimagebx{ width:auto; height:auto; overflow:hidden; float:none; margin:0 0 25px 0;}
+.listview_blogstyle .blgimagebx img{ height:auto; min-height: inherit;}
+.listview_blogstyle{ float:none; width:100%; margin:0 0 30px 0;}
+.template_contentbx{ padding:0;}
+.site-footer .widget{ padding:40px 0 20px;}
+.copyrigh-wrapper:before{ display:none;}
+.column4circle_box{ float:none; width:100%;}
+h2.services_title{ font-size:30px;}
+}
+
+/* Mobile Landscape View */
+@media screen and (min-width: 481px) and (max-width: 767px){
+*{box-sizing:border-box;}
+.container, .content-area{ width:440px; margin:0 auto;}
+.nivo-controlNav{ display:none !important;}
+.blgimagebx{ width:50%; float:left; margin:5px 20px 10px 0;}
+
+}
+/* Mobile Landscape View */
+@media screen and (min-width: 300px) and (max-width: 481px){
+*{box-sizing:border-box;}
+.topsocial_icons{ display:block; padding:0; position:relative; text-align:center;}
+.topsocial_icons a{ padding:0; padding:0; display:inline-table; line-height:40px; width:30px;}
+.nivo-directionNav{ display:none;}
+}
+
+@media screen and (min-width:768px) and (max-width: 980px){
+.nivo-directionNav a{ top:40%;}
+#mainnavigator{ float:none; width:100%; text-align:center; padding:10px 0;}
+.bg_column{ padding:20px;}
+a.getanappointment{ padding:12px 15px;}
+.topsocial_icons a{ margin-right:2px;}
+.column4circle_box .srviconbox{ width:150px; height:150px;}
+.column4circle_box .srviconbox img{ min-height:150px;}
+}
+
+/* Tablet View */
+@media screen and (max-width:1169px) and (min-width:768px) { 
+*{box-sizing:border-box;}
+.container { width:auto; padding:0 20px;}
+/*slider css*/
+.nivo-caption{ width:60%; top:60%; }
+.nivo-caption h2{ font-size:42px; line-height:45px;}
+.content-area{ width:auto; margin:0; padding:50px 20px;}
+#sidebar{ width:30%;}
+.template_contentbx{ width:65%;}
+#templatelayout{ width:100%;}
+}
+
+@media screen and (max-width: 980px){
+.site-header{ position:relative; }
+.logo{ float:none; width:auto; position:relative; padding:15px 0 0 0;}
+.site-navigation a{ color:#fff;}
+.site-navigation .menu ul a,
+.site-navigation .menu ul ul a {	
+	padding: 0.75em 1.75em;
+}
+.bottom-shadow-top{ display:none;}
+h2.servicestitle{ font-size:40px; margin-bottom:35px;}
+}
