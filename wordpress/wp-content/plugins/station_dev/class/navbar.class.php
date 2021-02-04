@@ -3,7 +3,8 @@
 function wpdocs_theme_name_scripts() {
   
   wp_enqueue_style( 'tailwindcss', "https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" );
-  
+ 
+ 
 }
 add_action( 'wp_enqueue_scripts', 'wpdocs_theme_name_scripts' );
 ?>
@@ -17,5 +18,5 @@ add_action( 'wp_enqueue_scripts', 'wpdocs_theme_name_scripts' );
     </div>
  
 <?php }
-add_action('wp_footer','player');
+// add_action('wp_footer','player');
  // end player ?>
