@@ -3,7 +3,13 @@
  global $wpdb;
  
  
+ wp_enqueue_script( 'swp', plugins_url( './../', dirname( __FILE__ ) ), array(), time(), true );
+ wp_enqueue_style( 'swp', plugins_url( '../../assets/build/bundle.css', dirname( __FILE__ ) ), array(), time() );
+       
+ $option = get_option(piklist_core);
  
+ 
+
  
 
 //  $titan         = TitanFramework::getInstance('my-theme');
@@ -69,21 +75,15 @@
 <html lang="eng">
   <head>
   
- 
-    <link href="" rel="stylesheet">
- 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
-    <link rel="stylesheet" href="<?php echo plugins_url('../../dist/bundle.css', __FILE__) ?>">
-    <script src="<?php echo plugins_url('../../dist/bundle.js', __FILE__) ?>"></script>
-  </head>
-  <body>
-
-    
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js" charset="utf-8"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.Marquee/1.5.0/jquery.marquee.min.js"></script>
-     -->
   
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+    <link rel="stylesheet" href="<?php echo plugins_url('../../assets/build/bundle.css', __FILE__) ?>">
+ 
+  </head>
+  <body  data-station='<?php echo json_encode($option) ?>' >
+ 
+    <script src="<?php echo plugins_url('../../assets/build/bundle.js', __FILE__) ?>"></script>
   </body>
 </html>

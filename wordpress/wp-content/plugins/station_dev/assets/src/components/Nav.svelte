@@ -6,36 +6,39 @@
 <script>
    import {Howl, Howler} from 'howler';
    import Play from "./Play.svelte"
+   import Volume from './Volume.svelte';
+   const stationData = document.body.dataset.station
+   const station = JSON.parse(stationData)
+   
    let sound = new Howl({
-     src: "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_q",
+     src: station.icecast != "" ? station.icecast : station.shoutcast,
+     autoplay: false,
      html5: true, 
      format: ['mp3', 'aac']
     });
-
-   let active = false;
-     
+    let m = { x: 0 }
+ 
+  let active = false;
+  
   const station_player = () => {
-   if(active == true){
+  
+  if(active == true){
      sound.stop()
+      
   }else{
      sound.play()
    }
     
   }
-  
  
-    
-  
-  
      
 </script>
 
-<div class="fixed w-full overscroll-y-none overscroll-x-none  bottom-0"  id="player_stationpro">
  
 
-    <div id="app"></div> 
  
-    <nav id="app" class="bg-blue-500    mt-20 flex items-center bg-opacity-100 h-24">
+ 
+    <nav id="app" class="bg-blue-500 mt-16 flex items-center bg-opacity-100 h-24">
         
         <div class="relative flex space-x-9 items-center   w-full w-screen  max-w-screen-lg container mx-auto ">
         
@@ -51,8 +54,9 @@
         
         <div class="flex justify-center items-center px-1 md:px-24 space-x-3">
         
+          
             
-            <Play on:click={station_player} on:click={() => {active = !active}} ></Play>
+            <Play toggle={sound._autoplay} on:click={station_player} on:click={() => {active = !active}}   ></Play>
        
           <span
             class="text-xs font-semibold antialiased text-xs text-white shadow-md bg-red-600 p-1 rounded-md uppercase"
@@ -60,17 +64,10 @@
           > 
           
           
-          <button class="material-icons  text-white">
-            volume_down 
-          </button>
-        
-          <div class="relative right-20">
-  
-            <input type="range" class="rounded-full absolute  opacity-90 overflow-hidden 
-            appearance-none transform rotate-90 bottom-14 left-2  cursor-pointer bg-gray-400 h-4 w-24" min="1" max="100" step="1">
-            
-          </div>
-  
+        <Volume volume={40} >
+          
+        </Volume>
+          
        
           <span class="leading-8 hidden md:block text-white">Time: {sound.state()}</span>
           <div class="icons-button">
@@ -87,4 +84,4 @@
    
    
 
-</div>
+ 

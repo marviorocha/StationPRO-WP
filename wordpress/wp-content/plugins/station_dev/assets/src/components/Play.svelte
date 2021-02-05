@@ -1,8 +1,11 @@
 <script>
- let active = false;
+   
   export let icon_play = "play_circle_outline";
   export let icon_pause = "pause_circle_outline";
   export let toggle = false;
+
+ 
+   
 </script>
  
 <button id="player" on:click on:click={() => {toggle = !toggle}} class="transition transform duration-500 ease-in hover:scale-105">
@@ -19,8 +22,7 @@
       shadow-lg  hover:text-opacity-70">
          {icon_play}
         </span> 
-     
-          {/if}
+   {/if}
  </button>
   
     

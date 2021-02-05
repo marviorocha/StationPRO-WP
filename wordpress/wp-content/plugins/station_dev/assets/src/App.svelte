@@ -7,7 +7,6 @@
   import Container from "./components/Container.svelte"
   import Nav from "./components/Nav.svelte"
     
-    let name = "Marvio Rocha"
  
 </script>
 

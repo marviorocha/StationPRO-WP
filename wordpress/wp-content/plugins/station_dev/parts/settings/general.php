@@ -56,12 +56,12 @@ piklist('field', array(
 
   piklist('field', array(
     'type' => 'checkbox'
-    ,'field' => 'checkbox'
+    ,'field' => 'autoplay'
     ,'help' => 'If it enabled you load the player with song the your radio'
     ,'label' => __('Auto Player', 'stationpro')
     ,'value' => 'third'
     ,'choices' => array(
-      'autoplay' => __('Auto Start Radio', 'piklist-demo')
+      'autoplay' => __('Auto Start Radio when started', 'piklist-demo')
     )
   ));
 

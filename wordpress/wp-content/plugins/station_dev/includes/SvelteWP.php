@@ -9,8 +9,8 @@ class SvelteWP
 
     public function swp_dependencies() 
     {
-        wp_enqueue_script( 'swp', plugins_url( 'assets/build/bundle.js', dirname( __FILE__ ) ), array(), time(), true );
-        wp_enqueue_style( 'swp', plugins_url( 'assets/build/bundle.css', dirname( __FILE__ ) ), array(), time() );
+        // wp_enqueue_script( 'swp', plugins_url( 'assets/build/bundle.js', dirname( __FILE__ ) ), array(), time(), true );
+        // wp_enqueue_style( 'swp', plugins_url( 'assets/build/bundle.css', dirname( __FILE__ ) ), array(), time() );
         
         // Optional
         wp_localize_script( 'swp', 'wordpress_object', array(
