@@ -28,6 +28,17 @@ var app = (function () {
     function safe_not_equal(a, b) {
         return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
     }
+    function validate_store(store, name) {
+        if (!store || typeof store.subscribe !== 'function') {
+            throw new Error(`'${name}' is not a store with a 'subscribe' method`);
+        }
+    }
+    function subscribe(component, store, callback) {
+        const unsub = store.subscribe(callback);
+        component.$$.on_destroy.push(unsub.unsubscribe
+            ? () => unsub.unsubscribe()
+            : unsub);
+    }
     function create_slot(definition, ctx, fn) {
         if (definition) {
             const slot_ctx = get_slot_context(definition, ctx, fn);
@@ -63,6 +74,9 @@ var app = (function () {
     function space() {
         return text(' ');
     }
+    function empty() {
+        return text('');
+    }
     function listen(node, event, handler, options) {
         node.addEventListener(event, handler, options);
         return () => node.removeEventListener(event, handler, options);
@@ -84,10 +98,29 @@ var app = (function () {
         if (text.data !== data)
             text.data = data;
     }
+    function custom_event(type, detail) {
+        const e = document.createEvent('CustomEvent');
+        e.initCustomEvent(type, false, false, detail);
+        return e;
+    }
 
     let current_component;
     function set_current_component(component) {
         current_component = component;
+    }
+    function createEventDispatcher() {
+        const component = current_component;
+        return (type, detail) => {
+            const callbacks = component.$$.callbacks[type];
+            if (callbacks) {
+                // TODO are there situations where events could be dispatched
+                // in a server (non-DOM) environment?
+                const event = custom_event(type, detail);
+                callbacks.slice().forEach(fn => {
+                    fn.call(component, event);
+                });
+            }
+        };
     }
     // TODO figure out if we still want to support
     // shorthand events, or if we want to implement
@@ -111,8 +144,14 @@ var app = (function () {
             resolved_promise.then(flush);
         }
     }
+    function add_binding_callback(fn) {
+        binding_callbacks.push(fn);
+    }
     function add_render_callback(fn) {
         render_callbacks.push(fn);
+    }
+    function add_flush_callback(fn) {
+        flush_callbacks.push(fn);
     }
     function flush() {
         const seen_callbacks = new Set();
@@ -174,6 +213,13 @@ var app = (function () {
             });
             block.o(local);
         }
+    }
+
+    function bind(component, name, callback) {
+        if (component.$$.props.indexOf(name) === -1)
+            return;
+        component.$$.bound[name] = callback;
+        callback(component.$$.ctx[name]);
     }
     function mount_component(component, target, anchor) {
         const { fragment, on_mount, on_destroy, after_render } = component.$$;
@@ -3799,7 +3845,28 @@ var app = (function () {
 
     const file$2 = "assets/src/components/Volume.svelte";
 
-    // (13:4) {#if volume >= 30 }
+    // (23:29) 
+    function create_if_block_3(ctx) {
+    	var t;
+
+    	return {
+    		c: function create() {
+    			t = text("volume_down");
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, t, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(t);
+    			}
+    		}
+    	};
+    }
+
+    // (21:4) {#if volume < 0.40 }
     function create_if_block_2(ctx) {
     	var t;
 
@@ -3820,29 +3887,8 @@ var app = (function () {
     	};
     }
 
-    // (16:4) {#if volume >= 50 }
+    // (26:4) {#if volume > 0.60 }
     function create_if_block_1(ctx) {
-    	var t;
-
-    	return {
-    		c: function create() {
-    			t = text("volume_down");
-    		},
-
-    		m: function mount(target, anchor) {
-    			insert(target, t, anchor);
-    		},
-
-    		d: function destroy(detaching) {
-    			if (detaching) {
-    				detach(t);
-    			}
-    		}
-    	};
-    }
-
-    // (19:4) {#if volume > 50 }
-    function create_if_block$1(ctx) {
     	var t;
 
     	return {
@@ -3862,14 +3908,61 @@ var app = (function () {
     	};
     }
 
+    // (34:4) {#if show == true}
+    function create_if_block$1(ctx) {
+    	var input, dispose;
+
+    	return {
+    		c: function create() {
+    			input = element("input");
+    			attr(input, "type", "range");
+    			attr(input, "class", "rounded-full absolute  z-50 opacity-90 overflow-hidden \n     appearance-none transform rotate-90 bottom-14 left-2   cursor-pointer bg-gray-400 h-4 w-24");
+    			attr(input, "min", "0.1");
+    			attr(input, "max", ".99");
+    			attr(input, "step", ".01");
+    			add_location(input, file$2, 34, 5, 572);
+
+    			dispose = [
+    				listen(input, "change", ctx.input_change_input_handler),
+    				listen(input, "input", ctx.input_change_input_handler),
+    				listen(input, "change", ctx.change_volume)
+    			];
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, input, anchor);
+
+    			input.value = ctx.value;
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.value) input.value = ctx.value;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(input);
+    			}
+
+    			run_all(dispose);
+    		}
+    	};
+    }
+
     function create_fragment$2(ctx) {
-    	var button, t0, t1, t2, t3, t4, div, input, dispose;
+    	var button, t0, t1, div, dispose;
 
-    	var if_block0 = (ctx.volume >= 30) && create_if_block_2();
+    	function select_block_type(ctx) {
+    		if (ctx.volume < 0.40) return create_if_block_2;
+    		if (ctx.volume < 0.60) return create_if_block_3;
+    	}
 
-    	var if_block1 = (ctx.volume >= 50) && create_if_block_1();
+    	var current_block_type = select_block_type(ctx);
+    	var if_block0 = current_block_type && current_block_type(ctx);
 
-    	var if_block2 = (ctx.volume > 50) && create_if_block$1();
+    	var if_block1 = (ctx.volume > 0.60) && create_if_block_1();
+
+    	var if_block2 = (ctx.show == true) && create_if_block$1(ctx);
 
     	return {
     		c: function create() {
@@ -3878,27 +3971,13 @@ var app = (function () {
     			t0 = space();
     			if (if_block1) if_block1.c();
     			t1 = space();
-    			if (if_block2) if_block2.c();
-    			t2 = space();
-    			t3 = text(ctx.volume);
-    			t4 = space();
     			div = element("div");
-    			input = element("input");
+    			if (if_block2) if_block2.c();
     			attr(button, "class", "material-icons  text-white");
-    			add_location(button, file$2, 8, 0, 55);
-    			attr(input, "type", "range");
-    			attr(input, "class", "rounded-full absolute  z-50 opacity-90 overflow-hidden \n    appearance-none transform rotate-90 bottom-14 left-2  cursor-pointer bg-gray-400 h-4 w-24");
-    			attr(input, "min", "1");
-    			attr(input, "max", "100");
-    			attr(input, "step", "1");
-    			add_location(input, file$2, 26, 4, 321);
+    			add_location(button, file$2, 18, 0, 282);
     			attr(div, "class", "relative right-20");
-    			add_location(div, file$2, 24, 2, 284);
-
-    			dispose = [
-    				listen(input, "change", ctx.input_change_input_handler),
-    				listen(input, "input", ctx.input_change_input_handler)
-    			];
+    			add_location(div, file$2, 32, 2, 512);
+    			dispose = listen(button, "mouseenter", ctx.mouseenter_handler);
     		},
 
     		l: function claim(nodes) {
@@ -3910,56 +3989,44 @@ var app = (function () {
     			if (if_block0) if_block0.m(button, null);
     			append(button, t0);
     			if (if_block1) if_block1.m(button, null);
-    			append(button, t1);
-    			if (if_block2) if_block2.m(button, null);
-    			insert(target, t2, anchor);
-    			insert(target, t3, anchor);
-    			insert(target, t4, anchor);
+    			insert(target, t1, anchor);
     			insert(target, div, anchor);
-    			append(div, input);
-
-    			input.value = ctx.volume;
+    			if (if_block2) if_block2.m(div, null);
     		},
 
     		p: function update(changed, ctx) {
-    			if (ctx.volume >= 30) {
-    				if (!if_block0) {
-    					if_block0 = create_if_block_2();
+    			if (current_block_type !== (current_block_type = select_block_type(ctx))) {
+    				if (if_block0) if_block0.d(1);
+    				if_block0 = current_block_type && current_block_type(ctx);
+    				if (if_block0) {
     					if_block0.c();
     					if_block0.m(button, t0);
     				}
-    			} else if (if_block0) {
-    				if_block0.d(1);
-    				if_block0 = null;
     			}
 
-    			if (ctx.volume >= 50) {
+    			if (ctx.volume > 0.60) {
     				if (!if_block1) {
     					if_block1 = create_if_block_1();
     					if_block1.c();
-    					if_block1.m(button, t1);
+    					if_block1.m(button, null);
     				}
     			} else if (if_block1) {
     				if_block1.d(1);
     				if_block1 = null;
     			}
 
-    			if (ctx.volume > 50) {
-    				if (!if_block2) {
-    					if_block2 = create_if_block$1();
+    			if (ctx.show == true) {
+    				if (if_block2) {
+    					if_block2.p(changed, ctx);
+    				} else {
+    					if_block2 = create_if_block$1(ctx);
     					if_block2.c();
-    					if_block2.m(button, null);
+    					if_block2.m(div, null);
     				}
     			} else if (if_block2) {
     				if_block2.d(1);
     				if_block2 = null;
     			}
-
-    			if (changed.volume) {
-    				set_data(t3, ctx.volume);
-    			}
-
-    			if (changed.volume) input.value = ctx.volume;
     		},
 
     		i: noop,
@@ -3972,44 +4039,78 @@ var app = (function () {
 
     			if (if_block0) if_block0.d();
     			if (if_block1) if_block1.d();
-    			if (if_block2) if_block2.d();
 
     			if (detaching) {
-    				detach(t2);
-    				detach(t3);
-    				detach(t4);
+    				detach(t1);
     				detach(div);
     			}
 
-    			run_all(dispose);
+    			if (if_block2) if_block2.d();
+    			dispose();
     		}
     	};
     }
 
     function instance$2($$self, $$props, $$invalidate) {
-    	let { volume = '0.5' } = $$props;
+    	const dispatch = createEventDispatcher();
 
-    	const writable_props = ['volume'];
+      
+      let { value = "0", volume = value, show } = $$props;
+     
+      const change_volume = () => {
+        dispatch('vol', {
+          change: volume
+        });
+      };
+
+    	const writable_props = ['value', 'volume', 'show'];
     	Object.keys($$props).forEach(key => {
     		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<Volume> was created with unknown prop '${key}'`);
     	});
 
+    	function mouseenter_handler(event) {
+    		bubble($$self, event);
+    	}
+
     	function input_change_input_handler() {
-    		volume = to_number(this.value);
-    		$$invalidate('volume', volume);
+    		value = to_number(this.value);
+    		$$invalidate('value', value);
     	}
 
     	$$self.$set = $$props => {
+    		if ('value' in $$props) $$invalidate('value', value = $$props.value);
     		if ('volume' in $$props) $$invalidate('volume', volume = $$props.volume);
+    		if ('show' in $$props) $$invalidate('show', show = $$props.show);
     	};
 
-    	return { volume, input_change_input_handler };
+    	return {
+    		value,
+    		volume,
+    		show,
+    		change_volume,
+    		mouseenter_handler,
+    		input_change_input_handler
+    	};
     }
 
     class Volume extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$2, create_fragment$2, safe_not_equal, ["volume"]);
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, ["value", "volume", "show"]);
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+    		if (ctx.show === undefined && !('show' in props)) {
+    			console.warn("<Volume> was created without expected prop 'show'");
+    		}
+    	}
+
+    	get value() {
+    		throw new Error("<Volume>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set value(value) {
+    		throw new Error("<Volume>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	get volume() {
@@ -4019,13 +4120,353 @@ var app = (function () {
     	set volume(value) {
     		throw new Error("<Volume>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
+
+    	get show() {
+    		throw new Error("<Volume>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set show(value) {
+    		throw new Error("<Volume>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* assets/src/components/Live.svelte generated by Svelte v3.6.1 */
+
+    const file$3 = "assets/src/components/Live.svelte";
+
+    // (11:0) {:else}
+    function create_else_block$1(ctx) {
+    	var span;
+
+    	return {
+    		c: function create() {
+    			span = element("span");
+    			span.textContent = "Offline";
+    			attr(span, "class", "text-xs font-semibold antialiased text-xs text-white shadow-md bg-gray-500 p-1 rounded-md uppercase");
+    			add_location(span, file$3, 11, 0, 203);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, span, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(span);
+    			}
+    		}
+    	};
+    }
+
+    // (8:0) {#if live == true }
+    function create_if_block$2(ctx) {
+    	var span;
+
+    	return {
+    		c: function create() {
+    			span = element("span");
+    			span.textContent = "Live";
+    			attr(span, "class", "text-xs font-semibold antialiased text-xs text-white shadow-md bg-red-600 p-1 rounded-md uppercase");
+    			add_location(span, file$3, 8, 0, 69);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, span, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(span);
+    			}
+    		}
+    	};
+    }
+
+    function create_fragment$3(ctx) {
+    	var if_block_anchor;
+
+    	function select_block_type(ctx) {
+    		if (ctx.live == true) return create_if_block$2;
+    		return create_else_block$1;
+    	}
+
+    	var current_block_type = select_block_type(ctx);
+    	var if_block = current_block_type(ctx);
+
+    	return {
+    		c: function create() {
+    			if_block.c();
+    			if_block_anchor = empty();
+    		},
+
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			if_block.m(target, anchor);
+    			insert(target, if_block_anchor, anchor);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (current_block_type !== (current_block_type = select_block_type(ctx))) {
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			}
+    		},
+
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if_block.d(detaching);
+
+    			if (detaching) {
+    				detach(if_block_anchor);
+    			}
+    		}
+    	};
+    }
+
+    function instance$3($$self, $$props, $$invalidate) {
+    	let { live } = $$props;
+
+    	const writable_props = ['live'];
+    	Object.keys($$props).forEach(key => {
+    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<Live> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$set = $$props => {
+    		if ('live' in $$props) $$invalidate('live', live = $$props.live);
+    	};
+
+    	return { live };
+    }
+
+    class Live extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, ["live"]);
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+    		if (ctx.live === undefined && !('live' in props)) {
+    			console.warn("<Live> was created without expected prop 'live'");
+    		}
+    	}
+
+    	get live() {
+    		throw new Error("<Live>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set live(value) {
+    		throw new Error("<Live>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /**
+     * Create a `Writable` store that allows both updating and reading by subscription.
+     * @param {*=}value initial value
+     * @param {StartStopNotifier=}start start and stop notifications for subscriptions
+     */
+    function writable(value, start = noop) {
+        let stop;
+        const subscribers = [];
+        function set(new_value) {
+            if (safe_not_equal(value, new_value)) {
+                value = new_value;
+                if (!stop) {
+                    return; // not ready
+                }
+                subscribers.forEach((s) => s[1]());
+                subscribers.forEach((s) => s[0](value));
+            }
+        }
+        function update(fn) {
+            set(fn(value));
+        }
+        function subscribe(run, invalidate = noop) {
+            const subscriber = [run, invalidate];
+            subscribers.push(subscriber);
+            if (subscribers.length === 1) {
+                stop = start(set) || noop;
+            }
+            run(value);
+            return () => {
+                const index = subscribers.indexOf(subscriber);
+                if (index !== -1) {
+                    subscribers.splice(index, 1);
+                }
+                if (subscribers.length === 0) {
+                    stop();
+                    stop = null;
+                }
+            };
+        }
+        return { set, update, subscribe };
+    }
+
+    /* assets/src/components/Timer.svelte generated by Svelte v3.6.1 */
+
+    const file$4 = "assets/src/components/Timer.svelte";
+
+    function create_fragment$4(ctx) {
+    	var span, i, t1, t2_value = new ctx.Date(ctx.$now).toLocaleTimeString({timeZone}), t2;
+
+    	return {
+    		c: function create() {
+    			span = element("span");
+    			i = element("i");
+    			i.textContent = "schedule";
+    			t1 = space();
+    			t2 = text(t2_value);
+    			attr(i, "class", "material-icons");
+    			add_location(i, file$4, 10, 52, 239);
+    			attr(span, "class", " leading-8 hidden md:block text-white");
+    			add_location(span, file$4, 10, 0, 187);
+    		},
+
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, span, anchor);
+    			append(span, i);
+    			append(span, t1);
+    			append(span, t2);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if ((changed.$now) && t2_value !== (t2_value = new ctx.Date(ctx.$now).toLocaleTimeString({timeZone}))) {
+    				set_data(t2, t2_value);
+    			}
+    		},
+
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(span);
+    			}
+    		}
+    	};
+    }
+
+    const now = writable(Date.now());
+    let timeZone = 'UTC';
+
+    setInterval(() => {
+    now.set(Date.now());
+    }, 1000);
+
+    function instance$4($$self, $$props, $$invalidate) {
+    	let $now;
+
+    	validate_store(now, 'now');
+    	subscribe($$self, now, $$value => { $now = $$value; $$invalidate('$now', $now); });
+
+    	return { Date, $now };
+    }
+
+    class Timer extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, []);
+    	}
+    }
+
+    const playerOrigin='https://example.com';let fetchController,fetchSignal=null;self.addEventListener('fetch',a=>{if(console.log(a),'audio'==a.request.destination){let b=new Headers({'Icy-Metadata':'1'}),c=new ReadableStream({start(d){function f(l){let m=+l.headers.get('icy-metaint'),n=l.body,o=n.getReader();return o.read().then(function p(q){if(!q.done){let r=q.value;for(let s=0;s<r.length;s++)if(g.push(r[s]),g.length>m+4080){let t=Uint8Array.from(g.splice(0,m)),u=16*g.shift();if(0<u){let v=j.decode(Uint8Array.from(g.splice(0,u)));self.clients.matchAll().then(function(w){w.forEach(function(x){x.postMessage({msg:v});});});}1==fetchSignal&&fetchController.abort(),d.enqueue(t);}return o.read().then(p)}})}let g=[];fetchController=new AbortController;let h=fetchController.signal,j=new TextDecoder,k=fetch(a.request.url,{signal:h,headers:b});k.then(l=>f(l)).then(()=>d.close()).catch(function(){console.log('Connection to stream cancelled'),fetchSignal=0,sendMsg('Dropped connection');});}});a.respondWith(new Response(c,{headers:{'Content-Type':'audio/mpeg'}}));}}),self.addEventListener('install',()=>{self.skipWaiting();}),self.addEventListener('activate',()=>{clients.claim();}),self.addEventListener('message',a=>{a.origin!=playerOrigin||(fetchSignal=1);});function sendMsg(a){self.clients.matchAll().then(function(b){b.forEach(function(c){c.postMessage({msg:a});});});}
+
+    /* assets/src/components/Metadata.svelte generated by Svelte v3.6.1 */
+
+    const file$5 = "assets/src/components/Metadata.svelte";
+
+    function create_fragment$5(ctx) {
+    	var div0, img, t0, div1, b, t2, br;
+
+    	return {
+    		c: function create() {
+    			div0 = element("div");
+    			img = element("img");
+    			t0 = space();
+    			div1 = element("div");
+    			b = element("b");
+    			b.textContent = "PLAY NOW:";
+    			t2 = text(" Marvio Rocha ");
+    			br = element("br");
+    			attr(img, "class", "w-24 block h-24 duration-75 delay-500  rounded-xl absolute bottom-0");
+    			attr(img, "src", "https://placeimg.com/640/480/natural");
+    			attr(img, "alt", "");
+    			add_location(img, file$5, 15, 4, 428);
+    			attr(div0, "class", "p-1 mr-20");
+    			add_location(div0, file$5, 14, 0, 400);
+    			attr(b, "class", "");
+    			add_location(b, file$5, 23, 6, 675);
+    			add_location(br, file$5, 23, 46, 715);
+    			attr(div1, "class", "text-white antialiased text-xs md:text-base md:antialiased");
+    			add_location(div1, file$5, 22, 2, 596);
+    		},
+
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div0, anchor);
+    			append(div0, img);
+    			insert(target, t0, anchor);
+    			insert(target, div1, anchor);
+    			append(div1, b);
+    			append(div1, t2);
+    			append(div1, br);
+    		},
+
+    		p: noop,
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div0);
+    				detach(t0);
+    				detach(div1);
+    			}
+    		}
+    	};
+    }
+
+    function instance$5($$self) {
+    	navigator.serviceWorker.addEventListener('message', event => {
+        if(event.origin != 'http://113fm-edge2.cdnstream.com/5117_128'){
+            return;
+        }
+        var meta = event.data.msg;
+        meta = meta.substring(meta.indexOf("'") + 1,meta.lastIndexOf("'"));
+        document.querySelector('div').innerText = meta;
+        console.log(meta);
+    });
+
+    	return {};
+    }
+
+    class Metadata extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$5, create_fragment$5, safe_not_equal, []);
+    	}
     }
 
     /* assets/src/components/Nav.svelte generated by Svelte v3.6.1 */
 
-    const file$3 = "assets/src/components/Nav.svelte";
+    const file$6 = "assets/src/components/Nav.svelte";
 
-    // (67:8) <Volume volume={40} >
+    // (55:10) <Metadata>
     function create_default_slot(ctx) {
     	return {
     		c: noop,
@@ -4034,84 +4475,88 @@ var app = (function () {
     	};
     }
 
-    function create_fragment$3(ctx) {
-    	var nav, div4, div0, img, t0, div1, b, t2, br, t3, div3, t4, span0, t6, t7, span1, t8, t9_value = ctx.sound.state(), t9, t10, div2, button0, t12, button1, current;
+    function create_fragment$6(ctx) {
+    	var nav, div2, t0, div1, t1, t2, updating_value, t3, t4, div0, button0, t6, button1, current;
 
-    	var play = new Play({
-    		props: { toggle: ctx.sound._autoplay },
-    		$$inline: true
-    	});
-    	play.$on("click", ctx.station_player);
-    	play.$on("click", ctx.click_handler);
-
-    	var volume = new Volume({
+    	var metadata = new Metadata({
     		props: {
-    		volume: 40,
     		$$slots: { default: [create_default_slot] },
     		$$scope: { ctx }
     	},
     		$$inline: true
     	});
 
+    	var play = new Play({
+    		props: { toggle: ctx.sound._autoplay },
+    		$$inline: true
+    	});
+    	play.$on("click", ctx.click_handler);
+    	play.$on("click", ctx.station_player);
+    	play.$on("click", ctx.click_handler_1);
+
+    	var live = new Live({
+    		props: { live: ctx.live_on },
+    		$$inline: true
+    	});
+
+    	function volume_1_value_binding(value) {
+    		ctx.volume_1_value_binding.call(null, value);
+    		updating_value = true;
+    		add_flush_callback(() => updating_value = false);
+    	}
+
+    	let volume_1_props = {
+    		show: ctx.show,
+    		volume: ctx.volume
+    	};
+    	if (ctx.volume !== void 0) {
+    		volume_1_props.value = ctx.volume;
+    	}
+    	var volume_1 = new Volume({ props: volume_1_props, $$inline: true });
+
+    	add_binding_callback(() => bind(volume_1, 'value', volume_1_value_binding));
+    	volume_1.$on("mouseenter", ctx.mouseenter_handler);
+    	volume_1.$on("vol", ctx.get_volume_change);
+
+    	var timer = new Timer({
+    		props: { timeZone: "America/Sao_paulo" },
+    		$$inline: true
+    	});
+
     	return {
     		c: function create() {
     			nav = element("nav");
-    			div4 = element("div");
-    			div0 = element("div");
-    			img = element("img");
+    			div2 = element("div");
+    			metadata.$$.fragment.c();
     			t0 = space();
     			div1 = element("div");
-    			b = element("b");
-    			b.textContent = "PLAY NOW:";
-    			t2 = text(" Music Forrever ");
-    			br = element("br");
-    			t3 = space();
-    			div3 = element("div");
     			play.$$.fragment.c();
+    			t1 = space();
+    			live.$$.fragment.c();
+    			t2 = space();
+    			volume_1.$$.fragment.c();
+    			t3 = space();
+    			timer.$$.fragment.c();
     			t4 = space();
-    			span0 = element("span");
-    			span0.textContent = "Live";
-    			t6 = space();
-    			volume.$$.fragment.c();
-    			t7 = space();
-    			span1 = element("span");
-    			t8 = text("Time: ");
-    			t9 = text(t9_value);
-    			t10 = space();
-    			div2 = element("div");
+    			div0 = element("div");
     			button0 = element("button");
     			button0.textContent = "favorite_border";
-    			t12 = space();
+    			t6 = space();
     			button1 = element("button");
     			button1.textContent = "share";
-    			attr(img, "class", "w-24 block h-24 duration-75 delay-500  rounded-xl absolute bottom-0");
-    			attr(img, "src", "https://placeimg.com/640/480/natural");
-    			attr(img, "alt", "");
-    			add_location(img, file$3, 45, 10, 1041);
-    			attr(div0, "class", "p-1 mr-20");
-    			add_location(div0, file$3, 44, 8, 1007);
-    			attr(b, "class", "");
-    			add_location(b, file$3, 52, 80, 1319);
-    			add_location(br, file$3, 52, 122, 1361);
-    			attr(div1, "class", "text-white antialiased text-xs md:text-base md:antialiased");
-    			add_location(div1, file$3, 52, 8, 1247);
-    			attr(span0, "class", "text-xs font-semibold antialiased text-xs text-white shadow-md bg-red-600 p-1 rounded-md uppercase");
-    			add_location(span0, file$3, 60, 10, 1629);
-    			attr(span1, "class", "leading-8 hidden md:block text-white");
-    			add_location(span1, file$3, 71, 10, 1901);
     			attr(button0, "class", "material-icons text-white");
-    			add_location(button0, file$3, 73, 12, 2030);
+    			add_location(button0, file$6, 71, 12, 1937);
     			attr(button1, "class", "material-icons text-white");
-    			add_location(button1, file$3, 74, 12, 2109);
-    			attr(div2, "class", "icons-button");
-    			add_location(div2, file$3, 72, 10, 1991);
-    			attr(div3, "class", "flex justify-center items-center px-1 md:px-24 space-x-3");
-    			add_location(div3, file$3, 54, 8, 1391);
-    			attr(div4, "class", "relative flex space-x-9 items-center   w-full w-screen  max-w-screen-lg container mx-auto ");
-    			add_location(div4, file$3, 42, 8, 885);
+    			add_location(button1, file$6, 73, 12, 2030);
+    			attr(div0, "class", "icons-button");
+    			add_location(div0, file$6, 70, 10, 1898);
+    			attr(div1, "class", "flex justify-center items-center px-1 md:px-24 space-x-3");
+    			add_location(div1, file$6, 56, 8, 1348);
+    			attr(div2, "class", "relative flex space-x-9 items-center   w-full w-screen  max-w-screen-lg container mx-auto ");
+    			add_location(div2, file$6, 52, 8, 1179);
     			attr(nav, "id", "app");
     			attr(nav, "class", "bg-blue-500 mt-16 flex items-center bg-opacity-100 h-24");
-    			add_location(nav, file$3, 40, 4, 789);
+    			add_location(nav, file$6, 50, 4, 1083);
     		},
 
     		l: function claim(nodes) {
@@ -4120,55 +4565,68 @@ var app = (function () {
 
     		m: function mount(target, anchor) {
     			insert(target, nav, anchor);
-    			append(nav, div4);
-    			append(div4, div0);
-    			append(div0, img);
-    			append(div4, t0);
-    			append(div4, div1);
-    			append(div1, b);
+    			append(nav, div2);
+    			mount_component(metadata, div2, null);
+    			append(div2, t0);
+    			append(div2, div1);
+    			mount_component(play, div1, null);
+    			append(div1, t1);
+    			mount_component(live, div1, null);
     			append(div1, t2);
-    			append(div1, br);
-    			append(div4, t3);
-    			append(div4, div3);
-    			mount_component(play, div3, null);
-    			append(div3, t4);
-    			append(div3, span0);
-    			append(div3, t6);
-    			mount_component(volume, div3, null);
-    			append(div3, t7);
-    			append(div3, span1);
-    			append(span1, t8);
-    			append(span1, t9);
-    			append(div3, t10);
-    			append(div3, div2);
-    			append(div2, button0);
-    			append(div2, t12);
-    			append(div2, button1);
+    			mount_component(volume_1, div1, null);
+    			append(div1, t3);
+    			mount_component(timer, div1, null);
+    			append(div1, t4);
+    			append(div1, div0);
+    			append(div0, button0);
+    			append(div0, t6);
+    			append(div0, button1);
     			current = true;
     		},
 
     		p: function update(changed, ctx) {
+    			var metadata_changes = {};
+    			if (changed.$$scope) metadata_changes.$$scope = { changed, ctx };
+    			metadata.$set(metadata_changes);
+
     			var play_changes = {};
     			if (changed.sound) play_changes.toggle = ctx.sound._autoplay;
     			play.$set(play_changes);
 
-    			var volume_changes = {};
-    			if (changed.$$scope) volume_changes.$$scope = { changed, ctx };
-    			volume.$set(volume_changes);
+    			var live_changes = {};
+    			if (changed.live_on) live_changes.live = ctx.live_on;
+    			live.$set(live_changes);
+
+    			var volume_1_changes = {};
+    			if (changed.show) volume_1_changes.show = ctx.show;
+    			if (changed.volume) volume_1_changes.volume = ctx.volume;
+    			if (!updating_value && changed.volume) {
+    				volume_1_changes.value = ctx.volume;
+    			}
+    			volume_1.$set(volume_1_changes);
     		},
 
     		i: function intro(local) {
     			if (current) return;
+    			transition_in(metadata.$$.fragment, local);
+
     			transition_in(play.$$.fragment, local);
 
-    			transition_in(volume.$$.fragment, local);
+    			transition_in(live.$$.fragment, local);
+
+    			transition_in(volume_1.$$.fragment, local);
+
+    			transition_in(timer.$$.fragment, local);
 
     			current = true;
     		},
 
     		o: function outro(local) {
+    			transition_out(metadata.$$.fragment, local);
     			transition_out(play.$$.fragment, local);
-    			transition_out(volume.$$.fragment, local);
+    			transition_out(live.$$.fragment, local);
+    			transition_out(volume_1.$$.fragment, local);
+    			transition_out(timer.$$.fragment, local);
     			current = false;
     		},
 
@@ -4177,52 +4635,83 @@ var app = (function () {
     				detach(nav);
     			}
 
+    			destroy_component(metadata, );
+
     			destroy_component(play, );
 
-    			destroy_component(volume, );
+    			destroy_component(live, );
+
+    			destroy_component(volume_1, );
+
+    			destroy_component(timer, );
     		}
     	};
     }
 
-    function instance$3($$self, $$props, $$invalidate) {
+    function instance$6($$self, $$props, $$invalidate) {
     	
        const stationData = document.body.dataset.station;
        const station = JSON.parse(stationData);
-       
+     
        let sound = new howler_2({
          src: station.icecast != "" ? station.icecast : station.shoutcast,
          autoplay: false,
          html5: true, 
+         usingWebAudio: true,
          format: ['mp3', 'aac']
         });
-     
-      let active = false;
+      
+        let active = false;
+        let volume = "0.5";
+        let show = false;
+        let live_on = false;
+       
+        const get_volume_change = (event) => {
+          sound.volume(event.detail.change);
+        };
       
       const station_player = () => {
       
       if(active == true){
-         sound.stop();
+         sound.stop(); 
           
       }else {
          sound.play();
+         
        }
         
       };
 
-    	function click_handler() {active = !active; $$invalidate('active', active);}
+    	function click_handler() {live_on = !live_on; $$invalidate('live_on', live_on);}
+
+    	function click_handler_1() {active = !active; $$invalidate('active', active);}
+
+    	function volume_1_value_binding(value) {
+    		volume = value;
+    		$$invalidate('volume', volume);
+    	}
+
+    	function mouseenter_handler() {show = !show; $$invalidate('show', show);}
 
     	return {
     		sound,
     		active,
+    		volume,
+    		show,
+    		live_on,
+    		get_volume_change,
     		station_player,
-    		click_handler
+    		click_handler,
+    		click_handler_1,
+    		volume_1_value_binding,
+    		mouseenter_handler
     	};
     }
 
     class Nav extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$3, create_fragment$3, safe_not_equal, []);
+    		init(this, options, instance$6, create_fragment$6, safe_not_equal, []);
     	}
     }
 
@@ -4262,7 +4751,7 @@ var app = (function () {
     	};
     }
 
-    function create_fragment$4(ctx) {
+    function create_fragment$7(ctx) {
     	var current;
 
     	var container = new Container({
@@ -4314,7 +4803,7 @@ var app = (function () {
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, null, create_fragment$4, safe_not_equal, []);
+    		init(this, options, null, create_fragment$7, safe_not_equal, []);
     	}
     }
 

@@ -12,6 +12,5 @@
 
 
 <Container>
-   
- <Nav />
+    <Nav />
 </Container>

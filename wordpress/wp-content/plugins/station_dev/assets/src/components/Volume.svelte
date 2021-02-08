@@ -1,30 +1,38 @@
 <script>
-	 
- export let volume = '0.5'
- 
- 
+  import {createEventDispatcher} from "svelte"
+  
+  const dispatch = createEventDispatcher();
 
+  
+  export let value = "0";
+  export let volume = value;
+  export let show;
+ 
+  const change_volume = () => {
+    dispatch('vol', {
+      change: volume
+    })
+  }
+ 
 </script>
 
-<button  class="material-icons  text-white">
-  
-     
-  
-    {#if volume >= 30 }
+<button on:mouseenter class="material-icons  text-white">
+ 
+    {#if volume < 0.40 }
     volume_mute
-    {/if}
-    {#if volume >= 50 }
+    {:else if volume < 0.60 }
     volume_down
     {/if}
-    {#if volume > 50 }
+    {#if volume > 0.60 }
     volume_up
     {/if}
-   
-</button>
-{volume}
+    
+  </button>
+ 
+  
   <div class="relative right-20">
-
-    <input  bind:value={volume} type="range" class="rounded-full absolute  z-50 opacity-90 overflow-hidden 
-    appearance-none transform rotate-90 bottom-14 left-2  cursor-pointer bg-gray-400 h-4 w-24" min="1" max="100" step="1">
-     
+    {#if show == true}
+     <input  on:change={change_volume}  bind:value type="range"  class="rounded-full absolute  z-50 opacity-90 overflow-hidden 
+     appearance-none transform rotate-90 bottom-14 left-2   cursor-pointer bg-gray-400 h-4 w-24" min="0.1" max=".99" step=".01" >
+    {/if}
   </div>
