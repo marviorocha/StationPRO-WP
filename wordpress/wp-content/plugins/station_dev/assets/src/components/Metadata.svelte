@@ -1,14 +1,6 @@
 <script>
-   import "../radio-libs/worker.min.js"
-   navigator.serviceWorker.addEventListener('message', event => {
-    if(event.origin != 'http://113fm-edge2.cdnstream.com/5117_128'){
-        return;
-    }
-    var meta = event.data.msg;
-    meta = meta.substring(meta.indexOf("'") + 1,meta.lastIndexOf("'"));
-    document.querySelector('div').innerText = meta;
-    console.log(meta);
-});
+
+export let radio_name;
 
 </script>
 
@@ -19,6 +11,7 @@
       alt=""
     />
   </div>
-
-  <div class="text-white antialiased text-xs md:text-base md:antialiased">
-      <b class=""> PLAY NOW:</b> Marvio Rocha <br /></div>
+ 
+  
+     <div class="text-white antialiased  text-xs md:text-base md:antialiased">
+      <b class="text-sm">{radio_name}</b>  <br /> www.stationpro.com</div>

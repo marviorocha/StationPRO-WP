@@ -12,7 +12,7 @@
    import Metadata from './Metadata.svelte';
    const stationData = document.body.dataset.station
    const station = JSON.parse(stationData)
- 
+    
    let sound = new Howl({
      src: station.icecast != "" ? station.icecast : station.shoutcast,
      autoplay: false,
@@ -22,9 +22,10 @@
     });
   
     let active = false;
-    let volume = "0.5";
+    let volume = "0.2";
     let show = false;
     let live_on = false;
+    let radio_name = station.radio_name;
    
     const get_volume_change = (event) => {
       sound.volume(event.detail.change)
@@ -52,7 +53,7 @@
         
         <div class="relative flex space-x-9 items-center   w-full w-screen  max-w-screen-lg container mx-auto ">
         
-          <Metadata> </Metadata>
+          <Metadata radio_name={radio_name}> </Metadata>
              
         <div class="flex justify-center items-center px-1 md:px-24 space-x-3">
         
@@ -65,7 +66,7 @@
      
        <Volume  on:mouseenter={() => {show = !show}}  show={show}  on:vol={get_volume_change}  volume={volume} bind:value={volume}></Volume>
             
-        <Timer timeZone="America/Sao_paulo" ></Timer>
+       <Timer timeZone="America/Sao_paulo" ></Timer>
          
           
           <div class="icons-button">

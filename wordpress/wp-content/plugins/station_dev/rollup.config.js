@@ -1,5 +1,7 @@
 import svelte from "rollup-plugin-svelte";
 import resolve from "rollup-plugin-node-resolve";
+import builtins from "rollup-plugin-node-builtins";
+import globals from "rollup-plugin-node-globals";
 import commonjs from "rollup-plugin-commonjs";
 import { terser } from "rollup-plugin-terser";
 import sveltePreprocess from "svelte-preprocess";
@@ -38,7 +40,8 @@ export default {
     // https://github.com/rollup/rollup-plugin-commonjs
     resolve({ browser: true }),
     commonjs(),
-
+    builtins(),
+    globals(),
     // If we're building for production (npm run build
     // instead of npm run dev), minify
     production && terser(),
