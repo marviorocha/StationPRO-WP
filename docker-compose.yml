@@ -1,33 +1,42 @@
-version: '3.1'
-
+version: '3'
 services:
+    php:
+        image: atillay/lemp-php:7.3 # Also available : atillay/lemp-php:7.2
+        env_file:
+            - .env
+        volumes:
+            - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+            - .:/var/www:cached
+    nginx:
+        image: atillay/lemp-nginx
+        ports:
+            - ${SERVER_PORT}:80
+        volumes:
+            - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./log:/var/log/nginx
+            - ./public:/var/www/public
 
-  wordpress:
-    image: wordpress
-    restart: always
-    ports:
-      - 8080:80
-    environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: admin
-      WORDPRESS_DB_PASSWORD: admin123
-      WORDPRESS_DB_NAME: stationpro
-    volumes:
-      - ./wordpress:/var/www/html
-    links:
-      - "db"
-    
+    mysql:
+        image: mysql:5.7
+        environment:
+            - MYSQL_ROOT_PASSWORD=StrongPassword
+            - MYSQL_DATABASE=${DB_NAME}
+            - MYSQL_USER=${DB_USER}
+            - MYSQL_PASSWORD=${DB_PASSWORD}
+        volumes:
+            - ./docker/mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf
+            - ./docker/db:/var/lib/mysql:cached
+   
 
-  db:
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_DATABASE: stationpro
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin123
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
-    volumes:
-      - dbdata:/var/lib/mysql
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - ${PMA_PORT}:80
+        environment:
+            - PMA_HOST=${DB_HOST}
 
-volumes:
-  dbdata:
+    maildev:
+        image: djfarrelly/maildev
+        ports:
+            - ${MAILDEV_PORT}:80
+

@@ -1,9 +1,11 @@
 *.gem
 .bundle
-.jekyll-cache
 .sass-cache
 _site
 wordpress/wp-content/uploads/*
 wordpress/wp-content/plugins/piklist/*
+docker/db
+log
 Imminent-master
 Gemfile.lock
+wordpress _olders
