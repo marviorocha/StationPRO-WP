@@ -15,5 +15,5 @@ jobs:
           server: f34-preview.awardspace.net
           username: ${{ secrets.username }}
           password: ${{ secrets.password }}
-          server-dir: /home/www/stationpro
+          server-dir: /home/www/stationpro/
           local-dir: ./public/
