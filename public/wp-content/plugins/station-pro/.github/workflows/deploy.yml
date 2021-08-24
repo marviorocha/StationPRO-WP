@@ -1,0 +1,28 @@
+name: Deploy to WordPress.org
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+"
+    pull_request:
+      tags:
+        - "[0-9]+.[0-9]+.[0-9]+"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Build
+        run: |
+          npm install
+          npm run build
+      - name: Deploy WordPress plugin
+        uses: yukihiko-shinoda/action-deploy-wordpress-plugin@v2.1.0
+
+        env:
+          SVN_REPOSITORY_URL: ${{ secrets.SvnRepositoryUrl }}
+          SVN_USER_NAME: ${{ secrets.SvnUserName }}
+          SVN_USER_PASSWORD: ${{ secrets.SvnUserPassword }}
