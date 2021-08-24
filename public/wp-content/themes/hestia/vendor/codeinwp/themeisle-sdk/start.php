@@ -13,25 +13,25 @@ namespace ThemeisleSDK;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-$products      = apply_filters( 'themeisle_sdk_products', array() );
-$path          = dirname( __FILE__ );
-$files_to_load = [
-	$path . '/src/' . 'Loader.php',
-	$path . '/src/' . 'Product.php',
+$products               = apply_filters( 'themeisle_sdk_products', array() );
+$themeisle_library_path = dirname( __FILE__ );
+$files_to_load          = [
+	$themeisle_library_path . '/src/Loader.php',
+	$themeisle_library_path . '/src/Product.php',
 
-	$path . '/src/' . 'Common/Abstract_module.php',
-	$path . '/src/' . 'Common/Module_factory.php',
+	$themeisle_library_path . '/src/Common/Abstract_module.php',
+	$themeisle_library_path . '/src/Common/Module_factory.php',
 
-	$path . '/src/' . 'Modules/Dashboard_widget.php',
-	$path . '/src/' . 'Modules/Rollback.php',
-	$path . '/src/' . 'Modules/Uninstall_feedback.php',
-	$path . '/src/' . 'Modules/Licenser.php',
-	$path . '/src/' . 'Modules/Endpoint.php',
-	$path . '/src/' . 'Modules/Notification.php',
-	$path . '/src/' . 'Modules/Logger.php',
-	$path . '/src/' . 'Modules/Translate.php',
-	$path . '/src/' . 'Modules/Review.php',
-	$path . '/src/' . 'Modules/Recommendation.php',
+	$themeisle_library_path . '/src/Modules/Dashboard_widget.php',
+	$themeisle_library_path . '/src/Modules/Rollback.php',
+	$themeisle_library_path . '/src/Modules/Uninstall_feedback.php',
+	$themeisle_library_path . '/src/Modules/Licenser.php',
+	$themeisle_library_path . '/src/Modules/Endpoint.php',
+	$themeisle_library_path . '/src/Modules/Notification.php',
+	$themeisle_library_path . '/src/Modules/Logger.php',
+	$themeisle_library_path . '/src/Modules/Translate.php',
+	$themeisle_library_path . '/src/Modules/Review.php',
+	$themeisle_library_path . '/src/Modules/Recommendation.php',
 ];
 
 $files_to_load = array_merge( $files_to_load, apply_filters( 'themeisle_sdk_required_files', [] ) );

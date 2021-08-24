@@ -181,8 +181,10 @@ if ( ! function_exists( 'astra_logo' ) ) {
 	 */
 	function astra_logo( $echo = true ) {
 
-		$display_site_tagline = astra_get_option( 'display-site-tagline' );
-		$display_site_title   = astra_get_option( 'display-site-title' );
+		$site_tagline         = astra_get_option( 'display-site-tagline-responsive' );
+		$display_site_tagline = ( $site_tagline['desktop'] || $site_tagline['tablet'] || $site_tagline['mobile'] ) ? true : false;
+		$site_title           = astra_get_option( 'display-site-title-responsive' );
+		$display_site_title   = ( $site_title['desktop'] || $site_title['tablet'] || $site_title['mobile'] ) ? true : false;
 
 		$html = '';
 
@@ -399,7 +401,7 @@ if ( ! function_exists( 'astra_get_search' ) ) {
 	function astra_get_search( $option = '', $device = '' ) {
 		ob_start();
 		?>
-		<div class="ast-search-menu-icon slide-search" <?php echo apply_filters( 'astra_search_slide_toggle_data_attrs', '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>id="ast-search-form" role="search" tabindex="-1">
+		<div class="ast-search-menu-icon slide-search" <?php echo apply_filters( 'astra_search_slide_toggle_data_attrs', '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>id="ast-search-form" tabindex="-1">
 			<div class="ast-search-icon">
 				<a class="slide-search astra-search-icon" aria-label="<?php esc_attr_e( 'Search icon link', 'astra' ); ?>" href="#">
 					<span class="screen-reader-text"><?php esc_html_e( 'Search', 'astra' ); ?></span>
@@ -1589,3 +1591,20 @@ if ( ! function_exists( 'astra_get_addon_name' ) ) :
 		return apply_filters( 'astra_addon_name', $pro_name );
 	}
 endif;
+
+/**
+ * Added this filter to modify the post navigation template to remove the h2 tag from screen reader text.
+ */
+function astra_post_navigation_template() {
+
+	$new_template = '
+	        <nav class="navigation %1$s" role="navigation" aria-label="%4$s">
+	                <span class="screen-reader-text">%2$s</span>
+	                <div class="nav-links">%3$s</div>
+	        </nav>';
+
+	return $new_template;
+
+}
+
+add_filter( 'navigation_markup_template', 'astra_post_navigation_template' );

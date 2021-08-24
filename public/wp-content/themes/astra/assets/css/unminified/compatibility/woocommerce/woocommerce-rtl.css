@@ -1297,7 +1297,7 @@ p.demo_store a,
   background-color: #77a464;
   color: white;
   -webkit-font-smoothing: antialiased;
-  z-index: 99;
+  z-index: 9;
 }
 
 .woocommerce .products ul,
@@ -4298,16 +4298,6 @@ button.pswp__button--zoom:hover {
   padding: 2px 0px;
 }
 
-.woocommerce ul.product-categories > li ul li:before {
-  content: "\e900";
-  padding: 0 5px 0 5px;
-  display: inline-block;
-  font-family: Astra;
-  transform: rotate(90deg);
-  font-size: 11px;
-  font-size: 0.7rem;
-}
-
 .woocommerce ul.product-categories > li:first-child {
   border: none;
 }
@@ -4495,11 +4485,11 @@ button.pswp__button--zoom:hover {
  * Woocommerce Pagination RTL
  */
 .rtl .woocommerce-pagination .page-numbers li:last-child .next {
-  transform: rotateY(180deg);
+  transform: rotateY(-180deg);
 }
 
 .rtl .woocommerce-pagination .page-numbers li:first-child .prev {
-  transform: rotateY(-180deg);
+  transform: rotateY(180deg);
 }
 
 .ast-site-header-cart .widgettitle {

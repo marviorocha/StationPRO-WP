@@ -18,6 +18,15 @@ Hestia is distributed under the terms of the GNU GPLv2 or later
 
 ## Changelog ##
 
+##### [Version 3.0.17](https://github.com/Codeinwp/hestia-pro/compare/v3.0.16...v3.0.17) (2021-07-21)
+
+- Check if is a fresh site for transparent header
+- Fix customizer issue in WP 5.8
+- Fix avatars that still shows even if they are hidden from the dashboard settings
+
+
+
+
 ##### [Version 3.0.16](https://github.com/Codeinwp/hestia-pro/compare/v3.0.15...v3.0.16) (2021-04-19)
 
 - [Fix] Page template on the front page not appearing

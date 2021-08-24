@@ -647,7 +647,7 @@ final class Astra_Builder_Helper {
 			'astra_header_desktop_items',
 			array(
 				'logo'    => array(
-					'name'    => __( 'Logo', 'astra' ),
+					'name'    => __( 'Site Identity & Logo', 'astra' ),
 					'icon'    => 'admin-appearance',
 					'section' => 'title_tagline',
 					'delete'  => false,
@@ -710,7 +710,7 @@ final class Astra_Builder_Helper {
 			'astra_header_mobile_items',
 			array(
 				'logo'           => array(
-					'name'    => __( 'Logo', 'astra' ),
+					'name'    => __( 'Site Identity & Logo', 'astra' ),
 					'icon'    => 'admin-appearance',
 					'section' => 'title_tagline',
 				),
@@ -808,12 +808,12 @@ final class Astra_Builder_Helper {
 	 * @return array $args Updated arguments as per the filter.
 	 */
 	public function deprecate_old_header_and_footer( $args ) {
-
 		if ( self::$is_header_footer_builder_active ) {
 			unset( $args['mobile-header'] );
 			unset( $args['header-sections'] );
 			unset( $args['advanced-footer'] );
 		}
+
 		return $args;
 	}
 

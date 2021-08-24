@@ -2,27 +2,23 @@
     "packages": [
         {
             "name": "codeinwp/themeisle-sdk",
-            "version": "3.2.16",
-            "version_normalized": "3.2.16.0",
+            "version": "3.2.21",
+            "version_normalized": "3.2.21.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-sdk.git",
-                "reference": "b116dffbe39ea9e37169fdd683bab54c545fe560"
+                "reference": "cafd016b61ec0928c0234e312046782a77c14318"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/b116dffbe39ea9e37169fdd683bab54c545fe560",
-                "reference": "b116dffbe39ea9e37169fdd683bab54c545fe560",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/cafd016b61ec0928c0234e312046782a77c14318",
+                "reference": "cafd016b61ec0928c0234e312046782a77c14318",
                 "shasum": ""
             },
             "require-dev": {
-                "automattic/vipwpcs": "^1.0.0",
-                "dealerdirect/phpcodesniffer-composer-installer": "0.7.0",
-                "phpcompatibility/php-compatibility": "^9",
-                "squizlabs/php_codesniffer": "^3.3",
-                "wp-coding-standards/wpcs": "^1"
+                "codeinwp/phpcs-ruleset": "dev-main"
             },
-            "time": "2020-11-17T08:35:16+00:00",
+            "time": "2021-06-30T10:55:18+00:00",
             "type": "library",
             "installation-source": "dist",
             "notification-url": "https://packagist.org/downloads/",
@@ -43,7 +39,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Codeinwp/themeisle-sdk/issues",
-                "source": "https://github.com/Codeinwp/themeisle-sdk/tree/v3.2.16"
+                "source": "https://github.com/Codeinwp/themeisle-sdk/tree/v3.2.21"
             },
             "install-path": "../codeinwp/themeisle-sdk"
         },
@@ -130,6 +126,7 @@
                 "issues": "https://github.com/Codeinwp/ti-onboarding/issues",
                 "source": "https://github.com/Codeinwp/ti-onboarding/tree/v1.8.3"
             },
+            "abandoned": true,
             "install-path": "../codeinwp/ti-onboarding"
         },
         {
@@ -185,6 +182,7 @@
                 "issues": "https://github.com/Codeinwp/ti-white-label/issues",
                 "source": "https://github.com/Codeinwp/ti-white-label/tree/v1.0.7"
             },
+            "abandoned": true,
             "install-path": "../codeinwp/ti-white-label"
         }
     ],

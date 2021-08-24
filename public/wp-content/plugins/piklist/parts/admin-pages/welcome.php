@@ -1,6 +1,6 @@
 <?php
 /*
-Page: piklist
+Page: station-pro
 */
 ?>
 
@@ -8,7 +8,7 @@ Page: piklist
 
 <h1><?php echo __('Welcome to Piklist','piklist') . '&nbsp;'  . piklist::$version; ?></h1>
 
-<div class="about-text"><?php _e('The most powerful framework available for WordPress.','piklist'); ?></div>
+<div class="about-text"><?php _e('<i class="fas fa-user"> </i> The most powerful framework available for WordPress.','piklist'); ?></div>
 
 <div class="piklist-badge">
   <?php printf(__('%sP%sIKLIST%s','piklist'),'<span>','</span>','<br>');?>
@@ -307,7 +307,7 @@ Page: piklist
 
 <h4 class="wp-people-group"><?php _e('Contributing Developers','piklist');?></h4>
 
-<ul class="wp-people-group " id="wp-people-group-project-leaders">
+<!-- <ul class="wp-people-group " id="wp-people-group-project-leaders">
 
   <li class="wp-person" id="wp-person-menard">
     <img src="https://s.gravatar.com/avatar/81f9841b95f38689faf73f1db763e754?s=60" class="gravatar" alt="Jason Adams" />
@@ -330,28 +330,12 @@ Page: piklist
     <span>Daniel Rampanelli</span>
   </li>
 
-</ul>
+</ul> -->
 
 
 
 
-
-<p class="about-description">
-  <?php _e('Follow Piklist','piklist');?>
-</p>
-
-
-<div class="piklist-social-links">
-  <a class="facebook_link" href="http://facebook.com/piklist">
-    <span class="dashicons dashicons-facebook-alt"></span>
-  </a>
-  <a class="twitter_link" href="http://twitter.com/piklist">
-    <span class="dashicons dashicons-twitter"></span>
-  </a>
-  <a class="google_plus_link" href="https://plus.google.com/u/0/b/108403125978548990804/108403125978548990804/posts">
-    <span class="dashicons dashicons-googleplus"></span>
-  </a>
-</div><!-- .piklist-social-links -->
+ 
 
 </div>
 

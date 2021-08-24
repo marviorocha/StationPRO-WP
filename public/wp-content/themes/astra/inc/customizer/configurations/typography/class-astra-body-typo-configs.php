@@ -155,6 +155,7 @@ if ( ! class_exists( 'Astra_Body_Typo_Configs' ) ) {
 					'transport'         => 'postMessage',
 					'section'           => 'section-body-typo',
 					'priority'          => 25,
+					'divider'           => array( 'ast_class' => 'ast-bottom-divider' ),
 					'title'             => __( 'Paragraph Margin Bottom', 'astra' ),
 					'suffix'            => 'em',
 					'input_attrs'       => array(
@@ -162,6 +163,20 @@ if ( ! class_exists( 'Astra_Body_Typo_Configs' ) ) {
 						'step' => 0.01,
 						'max'  => 5,
 					),
+				),
+
+				/**
+				 * Option: Underline links in entry-content.
+				 */
+				array(
+					'name'      => ASTRA_THEME_SETTINGS . '[underline-content-links]',
+					'default'   => astra_get_option( 'underline-content-links' ),
+					'type'      => 'control',
+					'control'   => 'ast-toggle-control',
+					'section'   => 'section-body-typo',
+					'priority'  => 27,
+					'title'     => __( 'Underline Content Links', 'astra' ),
+					'transport' => 'postMessage',
 				),
 
 				/**

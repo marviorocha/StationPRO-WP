@@ -107,17 +107,22 @@ if ( ! function_exists( 'hestia_comments_template' ) ) {
 	 * @since Hestia 1.0
 	 */
 	function hestia_comments_template() {
-		if ( is_user_logged_in() ) {
-			$current_user = get_avatar( wp_get_current_user(), 64 );
-		} else {
-			$current_user = '<img src="' . get_template_directory_uri() . '/assets/img/placeholder.jpg" height="64" width="64"/>';
+
+		$title_reply_after = '</h3>';
+		$show_avatar       = get_option( 'show_avatars' );
+		if ( $show_avatar ) {
+			$image = '<img src="' . get_template_directory_uri() . '/assets/img/placeholder.jpg" alt="' . esc_html__( 'Avatar placeholder', 'hestia' ) . '" height="64" width="64"/>';
+			if ( is_user_logged_in() ) {
+				$image = get_avatar( wp_get_current_user(), 64 );
+			}
+			$title_reply_after .= '<span class="pull-left author"><div class="avatar">' . $image . '</div></span>';
 		}
 
 		$args = array(
 			'class_form'         => 'form media-body',
 			'class_submit'       => 'btn btn-primary pull-right',
 			'title_reply_before' => '<h3 class="hestia-title text-center">',
-			'title_reply_after'  => '</h3> <span class="pull-left author"> <div class="avatar">' . $current_user . '</div> </span>',
+			'title_reply_after'  => $title_reply_after,
 			'must_log_in'        => '<p class="must-log-in">' .
 									sprintf(
 										wp_kses(
@@ -149,10 +154,11 @@ if ( ! function_exists( 'hestia_comments_list' ) ) {
 	 * @since Hestia 1.0
 	 */
 	function hestia_comments_list( $comment, $args, $depth ) {
+		$show_avatar = get_option( 'show_avatars' );
 		?>
 		<div <?php comment_class( empty( $args['has_children'] ) ? 'media' : 'parent media' ); ?>
 				id="comment-<?php comment_ID(); ?>">
-			<?php if ( $args['type'] !== 'pings' ) : ?>
+			<?php if ( $args['type'] !== 'pings' && $show_avatar ) : ?>
 				<a class="pull-left" href="<?php echo esc_url( get_comment_author_url( $comment ) ); ?> ">
 					<div class="comment-author avatar vcard">
 						<?php

@@ -65,7 +65,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 
 			add_action( 'woocommerce_before_main_content', array( $this, 'before_main_content_start' ) );
 			add_action( 'woocommerce_after_main_content', array( $this, 'before_main_content_end' ) );
-			add_filter( 'wp_enqueue_scripts', array( $this, 'add_styles' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'add_styles' ) );
 			add_action( 'wp', array( $this, 'shop_customization' ), 5 );
 			add_action( 'wp_head', array( $this, 'single_product_customization' ), 5 );
 			add_action( 'wp', array( $this, 'woocommerce_init' ), 1 );
@@ -996,6 +996,57 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 				);
 			}
 
+			if ( false === Astra_Icons::is_svg_icons() ) {
+				$css_output['.woocommerce ul.product-categories > li ul li:before'] = array(
+					'content'     => '"\e900"',
+					'padding'     => '0 5px 0 5px',
+					'display'     => 'inline-block',
+					'font-family' => 'Astra',
+					'transform'   => 'rotate(-90deg)',
+					'font-size'   => '11px',
+					'font-size'   => '0.7rem',
+				);
+			} else {
+				$css_output['.woocommerce ul.product-categories > li ul li'] = array(
+					'position' => 'relative',
+				);
+				if ( $is_site_rtl ) {
+					$css_output['.woocommerce ul.product-categories > li ul li:before'] = array(
+						'content'           => '""',
+						'border-width'      => '1px 0 0 1px',
+						'border-style'      => 'solid',
+						'display'           => 'inline-block',
+						'width'             => '6px',
+						'height'            => '6px',
+						'position'          => 'absolute',
+						'top'               => '50%',
+						'margin-top'        => '-2px',
+						'-webkit-transform' => 'rotate(45deg)',
+						'transform'         => 'rotate(45deg)',
+					);
+					$css_output['.woocommerce ul.product-categories > li ul li a']      = array(
+						'margin-right' => '15px',
+					);
+				} else {
+					$css_output['.woocommerce ul.product-categories > li ul li:before'] = array(
+						'content'           => '""',
+						'border-width'      => '1px 1px 0 0',
+						'border-style'      => 'solid',
+						'display'           => 'inline-block',
+						'width'             => '6px',
+						'height'            => '6px',
+						'position'          => 'absolute',
+						'top'               => '50%',
+						'margin-top'        => '-2px',
+						'-webkit-transform' => 'rotate(45deg)',
+						'transform'         => 'rotate(45deg)',
+					);
+					$css_output['.woocommerce ul.product-categories > li ul li a']      = array(
+						'margin-left' => '15px',
+					);
+				}
+			}
+
 			/* Parse WooCommerce General CSS from array() */
 			$css_output = astra_parse_css( $css_output );
 
@@ -1482,6 +1533,18 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 				);
 
 				$css_output .= astra_parse_css( $woo_global_button_css );
+			}
+
+			if ( ! is_shop() && ! is_product() ) {
+
+				$css_output .= astra_parse_css(
+					array(
+						'.widget_product_search button' => array(
+							'flex'    => '0 0 auto',
+							'padding' => '10px 20px;',
+						),
+					)
+				);
 			}
 
 			if ( $is_site_rtl ) {

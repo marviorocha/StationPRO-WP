@@ -132,7 +132,7 @@ class Uninstall_Feedback extends Abstract_Module {
 	/**
 	 * Loads the additional resources
 	 */
-	function load_resources() {
+	public function load_resources() {
 		$screen = get_current_screen();
 
 		if ( ! $screen || ! in_array( $screen->id, array( 'theme-install', 'plugins' ) ) ) {
@@ -178,7 +178,7 @@ class Uninstall_Feedback extends Abstract_Module {
 					echo wp_kses_post( $info_disclosure_link );
 					echo wp_kses_post( $this->get_disclosure_labels() );
 					echo '<div class="buttons">';
-					echo get_submit_button(
+					echo get_submit_button( //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, Function has an internal sanitization.
 						$button_submit,
 						'secondary',
 						$this->product->get_key() . 'ti-deactivate-yes',
@@ -414,7 +414,7 @@ class Uninstall_Feedback extends Abstract_Module {
 				display: block;
 			}
 
-			tr[data-plugin^="<?php echo $this->product->get_slug(); ?>"] .deactivate {
+			tr[data-plugin^="<?php echo esc_attr( $this->product->get_slug() ); ?>"] .deactivate {
 				position: relative;
 			}
 
@@ -475,20 +475,20 @@ class Uninstall_Feedback extends Abstract_Module {
 						var radio = $(this);
 						if (radio.parent().find('textarea').length > 0 &&
 							radio.parent().find('textarea').val().length === 0) {
-							$('#<?php echo $key; ?>ti-deactivate-yes').attr('disabled', 'disabled');
+							$('#<?php echo esc_attr( $key ); ?>ti-deactivate-yes').attr('disabled', 'disabled');
 							radio.parent().find('textarea').on('keyup', function (e) {
 								if ($(this).val().length === 0) {
-									$('#<?php echo $key; ?>ti-deactivate-yes').attr('disabled', 'disabled');
+									$('#<?php echo esc_attr( $key ); ?>ti-deactivate-yes').attr('disabled', 'disabled');
 								} else {
-									$('#<?php echo $key; ?>ti-deactivate-yes').removeAttr('disabled');
+									$('#<?php echo esc_attr( $key ); ?>ti-deactivate-yes').removeAttr('disabled');
 								}
 							});
 						} else {
-							$('#<?php echo $key; ?>ti-deactivate-yes').removeAttr('disabled');
+							$('#<?php echo esc_attr( $key ); ?>ti-deactivate-yes').removeAttr('disabled');
 						}
 					});
 
-					$('#<?php echo $key; ?>ti-deactivate-yes').on('click', function (e) {
+					$('#<?php echo esc_attr( $key ); ?>ti-deactivate-yes').on('click', function (e) {
 						e.preventDefault();
 						e.stopPropagation();
 
@@ -496,7 +496,7 @@ class Uninstall_Feedback extends Abstract_Module {
 							'.ti-theme-uninstall-feedback-drawer input[name="ti-deactivate-option"]:checked');
 						$.post(ajaxurl, {
 							'action': '<?php echo esc_attr( $key ) . '_uninstall_feedback'; ?>',
-							'nonce': '<?php echo wp_create_nonce( (string) __CLASS__ ); ?>',
+							'nonce': '<?php echo esc_attr( wp_create_nonce( (string) __CLASS__ ) ); ?>',
 							'id': selectedOption.parent().attr('ti-option-id'),
 							'msg': selectedOption.parent().find('textarea').val(),
 							'type': 'theme',
@@ -529,12 +529,12 @@ class Uninstall_Feedback extends Abstract_Module {
 				<li ti-option-id="<?php echo esc_attr( $attributes['id'] ); ?>">
 					<input type="radio" name="ti-deactivate-option" id="<?php echo esc_attr( $key . $attributes['id'] ); ?>">
 					<label for="<?php echo esc_attr( $key . $attributes['id'] ); ?>">
-						<?php echo str_replace( '{theme}', $this->product->get_name(), $title ); ?>
+						<?php echo esc_attr( str_replace( '{theme}', $this->product->get_name(), $title ) ); ?>
 					</label>
 					<?php
 					if ( array_key_exists( 'type', $attributes ) ) {
 						$placeholder = array_key_exists( 'placeholder', $attributes ) ? $attributes['placeholder'] : '';
-						echo '<textarea width="100%" rows="' . $inputs_row_map[ $attributes['type'] ] . '" name="comments" placeholder="' . esc_attr( $placeholder ) . '"></textarea>';
+						echo '<textarea width="100%" rows="' . esc_attr( $inputs_row_map[ $attributes['type'] ] ) . '" name="comments" placeholder="' . esc_attr( $placeholder ) . '"></textarea>';
 					}
 					?>
 				</li>
@@ -567,13 +567,13 @@ class Uninstall_Feedback extends Abstract_Module {
 					echo wp_kses_post( $info_disclosure_link );
 					echo wp_kses_post( $this->get_disclosure_labels() );
 					echo '<div class="buttons">';
-					echo get_submit_button(
+					echo get_submit_button( //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, Function internals are escaped.
 						$button_cancel,
 						'secondary',
 						$this->product->get_key() . 'ti-deactivate-no',
 						false
 					);
-					echo get_submit_button(
+					echo get_submit_button( //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, Function internals are escaped.
 						$button_submit,
 						'primary',
 						$this->product->get_key() . 'ti-deactivate-yes',
@@ -602,7 +602,7 @@ class Uninstall_Feedback extends Abstract_Module {
 		<script type="text/javascript" id="ti-deactivate-js">
 			(function ($) {
 				$(document).ready(function () {
-					var targetElement = 'tr[data-plugin^="<?php echo $this->product->get_slug(); ?>/"] span.deactivate a';
+					var targetElement = 'tr[data-plugin^="<?php echo esc_attr( $this->product->get_slug() ); ?>/"] span.deactivate a';
 					var redirectUrl = $(targetElement).attr('href');
 					if ($('.ti-feedback-overlay').length === 0) {
 						$('body').prepend('<div class="ti-feedback-overlay"></div>');
@@ -628,20 +628,20 @@ class Uninstall_Feedback extends Abstract_Module {
 						var radio = $(this);
 						if (radio.parent().find('textarea').length > 0 &&
 							radio.parent().find('textarea').val().length === 0) {
-							$('<?php echo esc_attr( $popup_id ); ?> #<?php echo $key; ?>ti-deactivate-yes').attr('disabled', 'disabled');
+							$('<?php echo esc_attr( $popup_id ); ?> #<?php echo esc_attr( $key ); ?>ti-deactivate-yes').attr('disabled', 'disabled');
 							radio.parent().find('textarea').on('keyup', function (e) {
 								if ($(this).val().length === 0) {
-									$('<?php echo esc_attr( $popup_id ); ?> #<?php echo $key; ?>ti-deactivate-yes').attr('disabled', 'disabled');
+									$('<?php echo esc_attr( $popup_id ); ?> #<?php echo esc_attr( $key ); ?>ti-deactivate-yes').attr('disabled', 'disabled');
 								} else {
-									$('<?php echo esc_attr( $popup_id ); ?> #<?php echo $key; ?>ti-deactivate-yes').removeAttr('disabled');
+									$('<?php echo esc_attr( $popup_id ); ?> #<?php echo esc_attr( $key ); ?>ti-deactivate-yes').removeAttr('disabled');
 								}
 							});
 						} else {
-							$('<?php echo esc_attr( $popup_id ); ?> #<?php echo $key; ?>ti-deactivate-yes').removeAttr('disabled');
+							$('<?php echo esc_attr( $popup_id ); ?> #<?php echo esc_attr( $key ); ?>ti-deactivate-yes').removeAttr('disabled');
 						}
 					});
 
-					$('<?php echo esc_attr( $popup_id ); ?> #<?php echo $key; ?>ti-deactivate-no').on('click', function (e) {
+					$('<?php echo esc_attr( $popup_id ); ?> #<?php echo esc_attr( $key ); ?>ti-deactivate-no').on('click', function (e) {
 						e.preventDefault();
 						e.stopPropagation();
 						$(targetElement).unbind('click');
@@ -652,7 +652,7 @@ class Uninstall_Feedback extends Abstract_Module {
 						}
 					});
 
-					$('<?php echo esc_attr( $popup_id ); ?> #<?php echo $key; ?>ti-deactivate-yes').on('click', function (e) {
+					$('<?php echo esc_attr( $popup_id ); ?> #<?php echo esc_attr( $key ); ?>ti-deactivate-yes').on('click', function (e) {
 						e.preventDefault();
 						e.stopPropagation();
 						$(targetElement).unbind('click');
@@ -660,7 +660,7 @@ class Uninstall_Feedback extends Abstract_Module {
 							'<?php echo esc_attr( $popup_id ); ?> input[name="ti-deactivate-option"]:checked');
 						var data = {
 							'action': '<?php echo esc_attr( $key ) . '_uninstall_feedback'; ?>',
-							'nonce': '<?php echo wp_create_nonce( (string) __CLASS__ ); ?>',
+							'nonce': '<?php echo esc_attr( wp_create_nonce( (string) __CLASS__ ) ); ?>',
 							'id': selectedOption.parent().attr('ti-option-id'),
 							'msg': selectedOption.parent().find('textarea').val(),
 							'type': 'plugin',
@@ -725,7 +725,7 @@ class Uninstall_Feedback extends Abstract_Module {
 	 *
 	 * @param array $options The options array.
 	 */
-	function randomize_options( $options ) {
+	public function randomize_options( $options ) {
 		$new  = array();
 		$keys = array_keys( $options );
 		shuffle( $keys );
@@ -740,7 +740,7 @@ class Uninstall_Feedback extends Abstract_Module {
 	/**
 	 * Called when the deactivate button is clicked.
 	 */
-	function post_deactivate() {
+	public function post_deactivate() {
 		check_ajax_referer( (string) __CLASS__, 'nonce' );
 
 		$this->post_deactivate_or_cancel();
@@ -754,8 +754,8 @@ class Uninstall_Feedback extends Abstract_Module {
 		$this->call_api(
 			array(
 				'type'    => 'deactivate',
-				'id'      => $_POST['id'],
-				'comment' => isset( $_POST['msg'] ) ? $_POST['msg'] : '',
+				'id'      => sanitize_key( $_POST['id'] ),
+				'comment' => isset( $_POST['msg'] ) ? sanitize_textarea_field( $_POST['msg'] ) : '',
 			)
 		);
 		wp_send_json( [] );
@@ -766,14 +766,14 @@ class Uninstall_Feedback extends Abstract_Module {
 	 * Called when the deactivate/cancel button is clicked.
 	 */
 	private function post_deactivate_or_cancel() {
-		if ( ! isset( $_POST['type'] ) || ! isset( $_POST['key'] ) ) {
+		if ( ! isset( $_POST['type'] ) || ! isset( $_POST['key'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Missing, Nonce already present in caller function.
 			return;
 		}
-		if ( 'theme' !== $_POST['type'] ) {
+		if ( 'theme' !== $_POST['type'] ) { //phpcs:ignore WordPress.Security.NonceVerification.Missing, Nonce already present in caller function.
 			return;
 		}
 
-		set_transient( 'ti_sdk_pause_' . $_POST['key'], true, self::PAUSE_DEACTIVATE_WINDOW_DAYS * DAY_IN_SECONDS );
+		set_transient( 'ti_sdk_pause_' . sanitize_text_field( $_POST['key'] ), true, self::PAUSE_DEACTIVATE_WINDOW_DAYS * DAY_IN_SECONDS );//phpcs:ignore WordPress.Security.NonceVerification.Missing, Nonce already present in caller function.
 
 	}
 

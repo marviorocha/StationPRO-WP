@@ -1,10 +1,11 @@
 === Station Pro Plugin ===
-Contributors: Marvio Rocha marviorocha@marviorocha.com
+Contributors: Marvio Rocha marviorocha.com
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V7R7EKZBXWVVC
 Tags: station pro, radio, station, streaming, shoutcast, live, online radio station, wordpress, plugin podcast
-Requires at least: 3.5.1
-Tested up to: 5.2.2
-Stable tag: 2.2.1
+Requires at least: 4.9
+Tested up to: 5.8
+Stable tag: 2.2.2
+Requires PHP: 5.2.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -18,7 +19,7 @@ Now you can customize your Player yourself through wordpress!
 
 Now it's easy to have your radio station where you'll install your URL and let Station Pro work for you with a simple, fast and functional touch!
 
- [**Demo**](https://stationpro.marviorocha.com/)
+ [**Demo**](https://stationpro.co/)
  
 
 = Including: =
@@ -26,7 +27,7 @@ Now it's easy to have your radio station where you'll install your URL and let S
 * Security listen
 * Support player: Windows Media, Winamp, Android, iTunes and HTML5
 * Players Theme settings
-* Responsive player support (mobile)
+* New Responsive Player Support (mobile)
 * logfiles
 * multi language ability
 * uninstall routine
@@ -39,9 +40,8 @@ That is very simple make a broadcast and optimized for visit in your web site.
 
 == We recommend you use that premium version that including:== 
 
-- Limited color player
+- Change color of player
 - $ Ads code for you monetize
-- Setting vol started
 - Station analytics
 - Schandule integrete 
 - Free video tutorial (Secret how to make a server cast )
@@ -96,7 +96,7 @@ Redux is an options framework... in other words, it's not designed to do anythin
  
 
 = You don't have much content in this FAQ section =
-*
+
 
 == Screenshots ==
 
@@ -109,6 +109,76 @@ Redux is an options framework... in other words, it's not designed to do anythin
 
 == Changelog ==
 
+= Aug 21, 2021 =
+* Components fix
+* Build of svelte
+* Fix class of player
+* Added svelte for howler working
+* Update components fix bugs
+* New metadata for player
+* Image to preloading
+
+= May 20, 2021 =
+* Added README for this branch
+ 
+* Deleted the older wordpress
+ 
+* New wordpress with LEMP
+ 
+ 
+= Feb 8, 2021  =
+* Added metadata to player
+
+
+ 
+ 
+ 
+
+= Jan 30, 2021 =
+* webpacker to plugin now with jquery
+
+ 
+
+* added plugin with webpacker
+
+
+
+ 
+
+= Jan 29, 2021 =
+* update backend the plugin
+
+
+
+ 
+
+= Jan 28, 2021 =
+* new plugin code with piklist framework
+
+
+
+ 
+
+= Jan 7, 2021 =
+
+
+ 
+
+* Install Wordpress with Docker-Compose
+
+
+* update player the Station Pro
+
+* update player with tailwindcss framework
+
+
+ 
+
+= Sep 25, 2020 =
+* Add player icon
+
+ 
+ 
 = 0.1.1.2 (03.03.2011) =
 * adding submenus
 

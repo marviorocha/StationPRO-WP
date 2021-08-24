@@ -64,7 +64,7 @@ class Recommendation extends Abstract_Module {
 	 * @param array $strings - list of translated strings.
 	 * @param array $preferences - list of preferences.
 	 */
-	function render_products_box( $plugins_list, $themes_list, $strings, $preferences = array() ) {
+	public function render_products_box( $plugins_list, $themes_list, $strings, $preferences = array() ) {
 
 		if ( empty( $plugins_list ) && empty( $themes_list ) ) {
 			return;
@@ -90,7 +90,7 @@ class Recommendation extends Abstract_Module {
 
 				foreach ( $list as $theme ) {
 					echo '<div class="plugin_box">';
-					echo '  <img class="theme-banner" src="' . $theme->screenshot_url . '">';
+					echo '  <img class="theme-banner" src="' . esc_url( $theme->screenshot_url ) . '">';
 					echo '	<div class="title-action-wrapper">';
 					echo '		<span class="plugin-name">' . esc_html( $theme->custom_name ) . '</span>';
 					if ( ! isset( $preferences['description'] ) || ( isset( $preferences['description'] ) && $preferences['description'] ) ) {
@@ -118,7 +118,7 @@ class Recommendation extends Abstract_Module {
 
 				foreach ( $list as $current_plugin ) {
 					echo '<div class="plugin_box">';
-					echo '      <img class="plugin-banner" src="' . $current_plugin->custom_image . '">';
+					echo '      <img class="plugin-banner" src="' . esc_url( $current_plugin->custom_image ) . '">';
 					echo '	<div class="title-action-wrapper">';
 					echo '		<span class="plugin-name">' . esc_html( $current_plugin->custom_name ) . '</span>';
 					if ( ! isset( $preferences['description'] ) || ( isset( $preferences['description'] ) && $preferences['description'] ) ) {
@@ -185,7 +185,7 @@ class Recommendation extends Abstract_Module {
 			return $theme;
 		}
 
-		$products = wp_remote_get(
+		$products = $this->safe_get(
 			'https://api.wordpress.org/themes/info/1.1/?action=query_themes&request[theme]=' . $slug . '&request[per_page]=1'
 		);
 		$products = json_decode( wp_remote_retrieve_body( $products ) );
@@ -246,7 +246,7 @@ class Recommendation extends Abstract_Module {
 	 * @return array|mixed|object
 	 */
 	private function call_plugin_api( $slug ) {
-		include_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
+		include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
 
 		$call_api = get_transient( 'ti_plugin_info_' . $slug );
 
@@ -303,27 +303,30 @@ class Recommendation extends Abstract_Module {
 			}
 
 			.recommend-product .theme-banner {
-				width:200px;
+				width: 200px;
 				margin: auto;
 			}
+
 			.recommend-product .plugin-banner {
 				width: 100px;
 				margin: auto;
 			}
 
-			.recommend-product .plugin_box .button span{
+			.recommend-product .plugin_box .button span {
 
 				margin-top: 2px;
 				margin-right: 7px;
 			}
-			.recommend-product .plugin_box .button{
-				margin-bottom:10px;
+
+			.recommend-product .plugin_box .button {
+				margin-bottom: 10px;
 			}
+
 			.recommend-product .plugin_box {
 				margin-bottom: 20px;
 				padding-top: 5px;
 				display: flex;
-				box-shadow: 0px 0px 10px -5px rgba(0,0,0,0.55);
+				box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.55);
 				background: #fff;
 				border-radius: 5px;
 				flex-direction: column;

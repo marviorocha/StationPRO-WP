@@ -37,14 +37,14 @@ abstract class Abstract_Module {
 	 *
 	 * @return bool Should load module?
 	 */
-	public abstract function can_load( $product );
+	abstract public function can_load( $product );
 
 	/**
 	 * Bootstrap the module.
 	 *
 	 * @param Product $product Product object.
 	 */
-	public abstract function load( $product );
+	abstract public function load( $product );
 
 	/**
 	 * Check if the product is from partner.
@@ -62,5 +62,22 @@ abstract class Abstract_Module {
 		}
 
 		return array_key_exists( $product->get_slug(), Module_Factory::$slugs );
+	}
+
+	/**
+	 * Wrapper for wp_remote_get on VIP environments.
+	 *
+	 * @param string $url Url to check.
+	 * @param array  $args Option params.
+	 *
+	 * @return array|\WP_Error
+	 */
+	public function safe_get( $url, $args = array() ) {
+		return function_exists( 'vip_safe_wp_remote_get' )
+			? vip_safe_wp_remote_get( $url )
+			: wp_remote_get( //phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get, Already used.
+				$url,
+				$args
+			);
 	}
 }

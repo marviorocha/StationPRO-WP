@@ -84,7 +84,7 @@ class Notification extends Abstract_Module {
 		$notification_html = self::get_notification_html( $notification_details );
 		do_action( $notification_details['id'] . '_before_render' );
 
-		echo $notification_html;
+		echo $notification_html; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, already escaped internally.
 
 		do_action( $notification_details['id'] . '_after_render' );
 		self::render_snippets();
@@ -340,7 +340,7 @@ class Notification extends Abstract_Module {
 						$.post(
 							ajaxurl,
 							{
-								'nonce': '<?php echo wp_create_nonce( (string) __CLASS__ ); ?>',
+								'nonce': '<?php echo esc_attr( wp_create_nonce( (string) __CLASS__ ) ); ?>',
 								'action': 'themeisle_sdk_dismiss_notice',
 								'id': notification_id,
 								'confirm': confirm
@@ -365,7 +365,7 @@ class Notification extends Abstract_Module {
 	/**
 	 * Dismiss the notification.
 	 */
-	static function dismiss() {
+	public static function dismiss() {
 		check_ajax_referer( (string) __CLASS__, 'nonce' );
 
 		$id      = isset( $_POST['id'] ) ? sanitize_text_field( $_POST['id'] ) : '';

@@ -48,39 +48,41 @@ if ( ! class_exists( 'Astra_Builder_Footer' ) ) {
 		 */
 		public function __construct() {
 
-			$this->remove_existing_actions();
+			if ( true === Astra_Builder_Helper::$is_header_footer_builder_active ) {
 
-			// Footer Builder.
-			add_action( 'astra_footer', array( $this, 'footer_markup' ), 10 );
+				$this->remove_existing_actions();
 
-			add_action( 'astra_above_footer', array( $this, 'above_footer' ), 10 );
-			add_action( 'astra_primary_footer', array( $this, 'primary_footer' ), 10 );
-			add_action( 'astra_below_footer', array( $this, 'below_footer' ), 10 );
+				// Footer Builder.
+				add_action( 'astra_footer', array( $this, 'footer_markup' ), 10 );
 
-			add_action( 'astra_render_footer_column', array( $this, 'render_column' ), 10, 2 );
+				add_action( 'astra_above_footer', array( $this, 'above_footer' ), 10 );
+				add_action( 'astra_primary_footer', array( $this, 'primary_footer' ), 10 );
+				add_action( 'astra_below_footer', array( $this, 'below_footer' ), 10 );
 
-			// Core Components.
-			add_action( 'astra_footer_copyright', array( $this, 'footer_copyright' ), 10 );
+				add_action( 'astra_render_footer_column', array( $this, 'render_column' ), 10, 2 );
 
-			for ( $index = 1; $index <= Astra_Builder_Helper::$component_limit; $index++ ) {
+				// Core Components.
+				add_action( 'astra_footer_copyright', array( $this, 'footer_copyright' ), 10 );
 
-				// Buttons.
-				add_action( 'astra_footer_button_' . $index, array( $this, 'button_' . $index ) );
-				self::$methods[] = 'button_' . $index;
+				for ( $index = 1; $index <= Astra_Builder_Helper::$component_limit; $index++ ) {
 
-				// Htmls.
-				add_action( 'astra_footer_html_' . $index, array( $this, 'footer_html_' . $index ) );
-				self::$methods[] = 'footer_html_' . $index;
+					// Buttons.
+					add_action( 'astra_footer_button_' . $index, array( $this, 'button_' . $index ) );
+					self::$methods[] = 'button_' . $index;
 
-				// Social Icons.
-				add_action( 'astra_footer_social_' . $index, array( $this, 'footer_social_' . $index ) );
-				self::$methods[] = 'footer_social_' . $index;
+					// Htmls.
+					add_action( 'astra_footer_html_' . $index, array( $this, 'footer_html_' . $index ) );
+					self::$methods[] = 'footer_html_' . $index;
 
+					// Social Icons.
+					add_action( 'astra_footer_social_' . $index, array( $this, 'footer_social_' . $index ) );
+					self::$methods[] = 'footer_social_' . $index;
+
+				}
+
+				// Navigation menu.
+				add_action( 'astra_footer_menu', array( $this, 'footer_menu' ) );
 			}
-
-
-			// Navigation menu.
-			add_action( 'astra_footer_menu', array( $this, 'footer_menu' ) );
 		}
 
 		/**

@@ -78,7 +78,7 @@ class Logger extends Abstract_Module {
 		}
 		$action_key = $this->product->get_key() . '_log_activity';
 		if ( ! wp_next_scheduled( $action_key ) ) {
-			wp_schedule_single_event( time() + ( rand( 1, 24 ) * 3600 ), $action_key );
+			wp_schedule_single_event( time() + ( wp_rand( 1, 24 ) * 3600 ), $action_key );
 		}
 		add_action( $action_key, array( $this, 'send_log' ) );
 

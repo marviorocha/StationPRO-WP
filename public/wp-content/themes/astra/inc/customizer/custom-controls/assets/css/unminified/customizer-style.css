@@ -24,7 +24,7 @@
   display: block !important;
 }
 
-.customize-control {
+.customize-control:not(.customize-control-nav_menu_item) {
   position: relative;
   margin-bottom: 0;
   margin-top: 25px;
@@ -150,4 +150,22 @@ input[type="text"].select2-search__field {
     margin-left: 0px;
     margin-right: 20px;
   }
+}
+
+.wp-customizer li:not(.customize-control-sidebar_block_editor) h1,
+.wp-customizer li:not(.customize-control-sidebar_block_editor) h2,
+.wp-customizer li:not(.customize-control-sidebar_block_editor) h3,
+.wp-customizer li:not(.customize-control-sidebar_block_editor) h4,
+.wp-customizer li:not(.customize-control-sidebar_block_editor) h5,
+.wp-customizer li:not(.customize-control-sidebar_block_editor) h6 {
+  font-weight: 600;
+}
+
+/* Customizer - widget appender bottom space CSS */
+.block-list-appender {
+  margin-bottom: 20px;
+}
+
+.block-editor-block-inspector .block-editor-block-card {
+  margin-top: 12px;
 }

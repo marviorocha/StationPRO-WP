@@ -41,6 +41,10 @@ define( 'DB_COLLATE', '' );
 
  define('FS_METHOD','direct');
 
+ define( 'WP_FS__DEV_MODE', true );
+ define( 'WP_FS__SKIP_EMAIL_ACTIVATION', true );
+ define( 'WP_FS__station-pro_SECRET_KEY', 'sk_mG+^^?E>y(B#jB)}vBH6dxi[LvWY7' );
+
 /**#@+
  * Authentication Unique Keys and Salts.
  *

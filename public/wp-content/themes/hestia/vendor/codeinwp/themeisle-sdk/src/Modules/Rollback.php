@@ -120,7 +120,9 @@ class Rollback extends Abstract_Module {
 		if ( empty( $url ) ) {
 			return [];
 		}
-		$response = wp_remote_get( $url );
+		$response = function_exists( 'wp_remote_get_wp_remote_get' )
+			? wp_remote_get_wp_remote_get( $url )
+			: wp_remote_get( $url ); //phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get
 		if ( is_wp_error( $response ) ) {
 			return array();
 		}
@@ -191,7 +193,7 @@ class Rollback extends Abstract_Module {
 	 * Start the rollback operation.
 	 */
 	public function start_rollback() {
-		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce'], $this->product->get_key() . '_rollback' ) ) {
+		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce'], $this->product->get_key() . '_rollback' ) ) { //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			wp_nonce_ays( '' );
 		}
 
@@ -233,7 +235,7 @@ class Rollback extends Abstract_Module {
 
 		if ( false === $transient ) {
 			set_transient( $this->product->get_key() . '_warning_rollback', 'in progress', 30 );
-			require_once( ABSPATH . 'wp-admin/includes/class-wp-upgrader.php' );
+			require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
 			$title         = sprintf( apply_filters( $this->product->get_key() . '_rollback_message', 'Rolling back %s to v%s' ), $this->product->get_name(), $version );
 			$plugin        = $plugin_folder . '/' . $plugin_file;
 			$nonce         = 'upgrade-plugin_' . $plugin;
@@ -244,7 +246,7 @@ class Rollback extends Abstract_Module {
 			delete_transient( $this->product->get_key() . '_warning_rollback' );
 			wp_die(
 				'',
-				$title,
+				esc_attr( $title ),
 				array(
 					'response' => 200,
 				)
@@ -276,7 +278,7 @@ class Rollback extends Abstract_Module {
 
 		if ( false === $transient ) {
 			set_transient( $this->product->get_key() . '_warning_rollback', 'in progress', 30 );
-			require_once( ABSPATH . 'wp-admin/includes/class-wp-upgrader.php' );
+			require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
 			$title = sprintf( apply_filters( $this->product->get_key() . '_rollback_message', 'Rolling back %s to v%s' ), $this->product->get_name(), $version );
 			$theme = $folder . '/style.css';
 			$nonce = 'upgrade-theme_' . $theme;
@@ -287,7 +289,7 @@ class Rollback extends Abstract_Module {
 			delete_transient( $this->product->get_key() . '_warning_rollback' );
 			wp_die(
 				'',
-				$title,
+				esc_attr( $title ),
 				array(
 					'response' => 200,
 				)
@@ -341,7 +343,7 @@ class Rollback extends Abstract_Module {
 	 * @return bool Which version is greater?
 	 */
 	public function sort_rollback_array( $a, $b ) {
-		return version_compare( $a['version'], $b['version'], '<' ) > 0;
+		return version_compare( $b['version'], $a['version'] );
 	}
 
 	/**

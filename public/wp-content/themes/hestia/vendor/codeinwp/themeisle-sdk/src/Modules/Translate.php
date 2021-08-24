@@ -805,7 +805,7 @@ class Translate extends Abstract_Module {
 		$translations = get_transient( $cache_key );
 
 		if ( false === $translations ) {
-			require_once( ABSPATH . 'wp-admin/includes/translation-install.php' );
+			require_once ABSPATH . 'wp-admin/includes/translation-install.php';
 			$translations = translations_api(
 				$product->get_type() . 's',
 				array(

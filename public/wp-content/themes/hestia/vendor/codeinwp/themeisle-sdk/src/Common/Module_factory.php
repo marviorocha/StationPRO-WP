@@ -88,7 +88,7 @@ class Module_Factory {
 			 *
 			 * @var Abstract_Module $module_object Module instance.
 			 */
-			$module_object = new  $class( $product );
+			$module_object = new $class( $product );
 
 			if ( ! $module_object->can_load( $product ) ) {
 				continue;

@@ -97,6 +97,13 @@ if ( ! class_exists( 'Astra_Elementor' ) ) :
 						'float'  => 'none',
 					),
 				);
+
+				if ( astra_can_remove_elementor_toc_margin_space() ) {
+					$elementor_base_css['.elementor-toc__list-wrapper'] = array(
+						'margin' => 0,
+					);
+				}
+
 				// Load base static CSS when Elmentor is activated.
 				$parse_css .= astra_parse_css( $elementor_base_css );
 
@@ -116,17 +123,31 @@ if ( ! class_exists( 'Astra_Elementor' ) ) :
 					);
 				}
 				$parse_css .= astra_parse_css( $elementor_rtl_support_css );
-				
+
 
 				$dynamic_css .= $parse_css;
 			}
-			
+
 			$elementor_archive_page_css = array(
 				'.elementor-template-full-width .ast-container' => array(
 					'display' => 'block',
 				),
 			);
 			$dynamic_css               .= astra_parse_css( $elementor_archive_page_css );
+
+			$dynamic_css .= astra_parse_css(
+				array(
+					'.elementor-element .elementor-wc-products .woocommerce[class*="columns-"] ul.products li.product' => array(
+						'width'  => 'auto',
+						'margin' => '0',
+					),
+					'.elementor-element .woocommerce .woocommerce-result-count' => array(
+						'float' => 'none',
+					),
+				),
+				'',
+				astra_get_mobile_breakpoint()
+			);
 
 			return $dynamic_css;
 		}

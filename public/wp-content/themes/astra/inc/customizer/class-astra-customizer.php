@@ -123,17 +123,51 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 
 			}
 
+			// Disable block editor for widgets in the customizer.
+			if ( defined( 'GUTENBERG_VERSION' ) && version_compare( GUTENBERG_VERSION, '10.6.2', '>' ) && is_customize_preview() ) {
+				add_filter( 'gutenberg_use_widgets_block_editor', '__return_false' );
+			}
+
 			add_action( 'customize_controls_enqueue_scripts', array( $this, 'controls_scripts' ) );
-			add_filter( 'customize_controls_enqueue_scripts', array( $this, 'enqueue_customizer_scripts' ), 999 );
+			add_action( 'customize_controls_enqueue_scripts', array( $this, 'enqueue_customizer_scripts' ), 999 );
 
 			add_action( 'customize_controls_print_footer_scripts', array( $this, 'print_footer_scripts' ) );
-
 
 			add_action( 'customize_register', array( $this, 'customize_register_panel' ), 2 );
 			add_action( 'customize_register', array( $this, 'customize_register' ) );
 			add_action( 'customize_save_after', array( $this, 'customize_save' ) );
 			add_action( 'customize_save_after', array( $this, 'delete_cached_partials' ) );
 			add_action( 'wp_head', array( $this, 'preview_styles' ) );
+			add_action( 'wp_ajax_astra_regenerate_fonts_folder', array( $this, 'regenerate_astra_fonts_folder' ) );
+		}
+
+		/**
+		 * Reset font folder
+		 *
+		 * @access public
+		 * @return void
+		 *
+		 * @since 3.6.0
+		 */
+		public function regenerate_astra_fonts_folder() {
+
+			check_ajax_referer( 'astra-regenerate-local-fonts', 'nonce' );
+
+			if ( ! current_user_can( 'edit_theme_options' ) ) {
+				wp_send_json_error( 'invalid_permissions' );
+			}
+
+			if ( astra_get_option( 'load-google-fonts-locally' ) ) {
+				$local_font_loader = astra_webfont_loader_instance( '' );
+				$flushed           = $local_font_loader->astra_delete_fonts_folder();
+
+				if ( ! $flushed ) {
+					wp_send_json_error( 'failed_to_flush' );
+				}
+				wp_send_json_success();
+			}
+
+			wp_send_json_error( 'no_font_loader' );
 		}
 
 		/**
@@ -141,6 +175,12 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 		 */
 		public function delete_cached_partials() {
 			delete_option( 'astra_partials_config_cache' );
+
+			// Delete previously stored local fonts data, if exists.
+			if ( astra_get_option( 'load-google-fonts-locally' ) ) {
+				$local_webfont_loader = astra_webfont_loader_instance( '' );
+				$local_webfont_loader->astra_delete_fonts_folder();
+			}
 		}
 
 		/**
@@ -318,21 +358,11 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 
 			self::$contexts['blogname'] = array(
 				Astra_Builder_Helper::$general_tab_config,
-				array(
-					'setting'  => ASTRA_THEME_SETTINGS . '[display-site-title]',
-					'operator' => '==',
-					'value'    => true,
-				),
 
 			);
 
 			self::$contexts['blogdescription'] = array(
 				Astra_Builder_Helper::$general_tab_config,
-				array(
-					'setting'  => ASTRA_THEME_SETTINGS . '[display-site-tagline]',
-					'operator' => '==',
-					'value'    => true,
-				),
 
 			);
 
@@ -944,6 +974,10 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 					'component_limit'         => Astra_Builder_Helper::$component_limit,
 					'is_site_rtl'             => is_rtl(),
 					'defaults'                => $this->get_control_defaults(),
+					'astraRegenerateFonts'    => wp_create_nonce( 'astra-regenerate-local-fonts' ),
+					'initialFlushText'        => __( 'Flush Local Font Files', 'astra' ),
+					'successFlushed'          => __( 'Successfully Flushed', 'astra' ),
+					'failedFlushed'           => __( 'Failed, Please try again later.', 'astra' ),
 				)
 			);
 
@@ -1043,7 +1077,6 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 			require ASTRA_THEME_DIR . 'inc/customizer/configurations/layout/class-astra-site-identity-configs.php';
 			require ASTRA_THEME_DIR . 'inc/customizer/configurations/layout/class-astra-blog-layout-configs.php';
 			require ASTRA_THEME_DIR . 'inc/customizer/configurations/layout/class-astra-blog-single-layout-configs.php';
-			require ASTRA_THEME_DIR . 'inc/customizer/configurations/layout/class-astra-related-posts-configs.php';
 			require ASTRA_THEME_DIR . 'inc/customizer/configurations/layout/class-astra-sidebar-layout-configs.php';
 			require ASTRA_THEME_DIR . 'inc/customizer/configurations/layout/class-astra-site-container-layout-configs.php';
 			require ASTRA_THEME_DIR . 'inc/customizer/configurations/colors-background/class-astra-body-colors-configs.php';
@@ -1052,6 +1085,7 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 			require ASTRA_THEME_DIR . 'inc/customizer/configurations/typography/class-astra-content-typo-configs.php';
 			require ASTRA_THEME_DIR . 'inc/customizer/configurations/typography/class-astra-header-typo-configs.php';
 			require ASTRA_THEME_DIR . 'inc/customizer/configurations/typography/class-astra-single-typo-configs.php';
+			require ASTRA_THEME_DIR . 'inc/customizer/configurations/performance/class-astra-performance-configs.php';
 
 			if ( astra_existing_header_footer_configs() ) {
 				require ASTRA_THEME_DIR . 'inc/customizer/configurations/buttons/class-astra-existing-button-configs.php';
@@ -1132,7 +1166,6 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 					'santize_callback' => array( 'Astra_Customizer_Sanitizes', 'sanitize_customizer_links' ),
 				)
 			);
-
 
 			/**
 			 * Helper files
@@ -1248,6 +1281,7 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 							'group_modal_tmpl' => $template,
 							'is_pro'           => defined( 'ASTRA_EXT_VER' ),
 							'upgrade_link'     => htmlspecialchars_decode( astra_get_pro_url( 'https://wpastra.com/pricing/', 'customizer', 'upgrade-link', 'upgrade-to-pro' ) ),
+							'is_block_widget'  => astra_has_widgets_block_editor(),
 						),
 						'theme'      => array(
 							'option' => ASTRA_THEME_SETTINGS,
@@ -1331,6 +1365,9 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 				'elementor_default_color_font_setting' => Astra_Dynamic_CSS::elementor_default_color_font_setting(),
 				'dynamic_partial_options'              => self::$dynamic_options['partials'],
 				'gb_outline_buttons_patterns_support'  => Astra_Dynamic_CSS::gutenberg_core_patterns_compat(),
+				'font_weights_widget_title_support'    => Astra_Dynamic_CSS::support_font_css_to_widget_and_in_editor(),
+				'has_block_editor_support'             => Astra_Dynamic_CSS::is_block_editor_support_enabled(),
+				'updated_gb_outline_button_patterns'   => astra_button_default_padding_updated(),
 			);
 
 			wp_localize_script( 'astra-customizer-preview-js', 'astraCustomizer', $localize_array );

@@ -213,7 +213,7 @@ class Hestia_Header extends Hestia_Abstract_Main {
 		if ( is_front_page() && is_home() ) {
 			return '';
 		}
-		if ( is_page_template() ) {
+		if ( is_page_template() && ! get_option( 'fresh_site' ) ) {
 			$class = '';
 		}
 

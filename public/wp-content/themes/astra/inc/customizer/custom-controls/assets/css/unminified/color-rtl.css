@@ -275,10 +275,6 @@
     position: relative;
 	top: 10px;
 }
-.components-circular-option-picker__option-wrapper .components-circular-option-picker__option:focus::after {
-	width: 27px;
-    height: 27px;
-}
 .ast-color-palette .components-circular-option-picker__option-wrapper {
     margin-left: 6px;
 }
@@ -480,6 +476,8 @@
 }
 
 .ast-top-divider.customize-control-ast-toggle-control .ast-divider-title + .ast-togglecontrol-wrapper,
+.ast-bottom-divider.customize-control-ast-toggle-control .ast-divider-title + .ast-togglecontrol-wrapper,
+.ast-top-divider.customize-control-ast-responsive-toggle-control .ast-divider-title + .ast-responsive-toggle-control-wrapper,
 .ast-top-divider.customize-control-ast-responsive-color .ast-divider-title + .ast-control-wrap,
 .ast-top-divider.customize-control-ast-slider .ast-divider-title + .ast-slider-wrap,
 .customize-control-ast-color-group .ast-divider-title + .ast-control-wrap {

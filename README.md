@@ -8,4 +8,4 @@ for other code use Us can use a other Branch.
 
 ## Licence
 
-The theme is available as open source under the terms of the (MIT License)[https://opensource.org/licenses/MIT].
+The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit825520fa08ee2ce02eda9c9206b75019
+class ComposerStaticInit9496ae36d96933dabe4a31d23e05e818
 {
     public static $files = array (
         '3c811c5eee2f69449ba771bff79ea54a' => __DIR__ . '/..' . '/codeinwp/ti-about-page/load.php',
@@ -22,7 +22,7 @@ class ComposerStaticInit825520fa08ee2ce02eda9c9206b75019
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->classMap = ComposerStaticInit825520fa08ee2ce02eda9c9206b75019::$classMap;
+            $loader->classMap = ComposerStaticInit9496ae36d96933dabe4a31d23e05e818::$classMap;
 
         }, null, ClassLoader::class);
     }

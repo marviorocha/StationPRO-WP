@@ -437,6 +437,8 @@ class Hestia_Public {
 			)
 		);
 
+		remove_theme_support( 'widgets-block-editor' );
+
 		register_nav_menus(
 			array(
 				'primary'      => esc_html__( 'Primary Menu', 'hestia' ),

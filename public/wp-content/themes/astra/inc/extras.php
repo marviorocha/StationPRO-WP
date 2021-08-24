@@ -575,3 +575,150 @@ function astra_target_rules_for_related_posts() {
 
 	return apply_filters( 'astra_showcase_related_posts', $allow_related_posts );
 }
+
+/**
+ * Check the Astra addon 3.5.0 version is using or not.
+ * As this is major update and frequently we used version_compare, added a function for this for easy maintenance.
+ *
+ * @since  3.5.0
+ */
+function is_astra_addon_3_5_0_version() {
+	return defined( 'ASTRA_EXT_VER' ) && version_compare( ASTRA_EXT_VER, '3.5.0', '<' );
+}
+
+/**
+ * Get a stylesheet URL for a webfont.
+ *
+ * @since 3.6.0
+ *
+ * @param string $url    The URL of the remote webfont.
+ * @param string $format The font-format. If you need to support IE, change this to "woff".
+ *
+ * @return string Returns the CSS.
+ */
+function ast_get_webfont_url( $url, $format = 'woff2' ) {
+
+	// Check if already Google font URL present or not. Basically avoiding 'Astra_WebFont_Loader' class rendering.
+	$astra_font_url = astra_get_option( 'astra_font_url', false );
+	if ( $astra_font_url ) {
+		return json_decode( $astra_font_url );
+	}
+
+	// Now create font URL if its not present.
+	$font = astra_webfont_loader_instance( $url );
+	$font->set_font_format( $format );
+	return $font->get_url();
+}
+
+/**
+ * Get the file preloads.
+ *
+ * @param string $url    The URL of the remote webfont.
+ * @param string $format The font-format. If you need to support IE, change this to "woff".
+ */
+function ast_load_preload_local_fonts( $url, $format = 'woff2' ) {
+
+	// Check if cached font files data preset present or not. Basically avoiding 'Astra_WebFont_Loader' class rendering.
+	$astra_local_font_files = get_site_option( 'astra_local_font_files', false );
+
+	if ( is_array( $astra_local_font_files ) && ! empty( $astra_local_font_files ) ) {
+		$font_format = apply_filters( 'astra_local_google_fonts_format', $format );
+		foreach ( $astra_local_font_files as $key => $local_font ) {
+			if ( $local_font ) {
+				echo '<link rel="preload" href="' . esc_url( $local_font ) . '" as="font" type="font/' . esc_attr( $font_format ) . '" crossorigin>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			}
+		}
+		return;
+	}
+
+	// Now preload font data after processing it, as we didn't get stored data.
+	$font = astra_webfont_loader_instance( $url );
+	$font->set_font_format( $format );
+	$font->preload_local_fonts();
+}
+
+/**
+ * Set flag to manage backward compatibility for v3.5.0 earlier users for the transparent header border bottom default value changed.
+ *
+ * @since 3.6.0
+ */
+function astra_get_transparent_header_default_value() {
+	$astra_settings                                      = get_option( ASTRA_THEME_SETTINGS );
+	$astra_settings['transparent-header-default-border'] = isset( $astra_settings['transparent-header-default-border'] ) ? false : true;
+	return apply_filters( 'astra_transparent_header_default_border', $astra_settings['transparent-header-default-border'] );
+}
+
+/**
+ * Check whether user is exising or new to apply the updated default values for button padding & support GB button paddings with global button padding options.
+ *
+ * @since 3.6.3
+ * @return string
+ */
+function astra_button_default_padding_updated() {
+	$astra_settings                                = get_option( ASTRA_THEME_SETTINGS );
+	$astra_settings['btn-default-padding-updated'] = isset( $astra_settings['btn-default-padding-updated'] ) ? $astra_settings['btn-default-padding-updated'] : true;
+	return apply_filters( 'astra_update_button_padding_defaults', $astra_settings['btn-default-padding-updated'] );
+}
+
+/**
+ * Check is WordPress version is greater than or equal to beta 5.8 version.
+ *
+ * @since 3.6.5
+ * @return boolean
+ */
+function astra_has_widgets_block_editor() {
+	if ( ( defined( 'GUTENBERG_VERSION' ) && version_compare( GUTENBERG_VERSION, '10.6.2', '>' ) )
+	|| version_compare( get_bloginfo( 'version' ), '5.8-alpha', '>=' ) ) {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * Check whether user is exising or new to override the default margin space added to Elementor-TOC widget.
+ *
+ * @since 3.6.7
+ * @return boolean
+ */
+function astra_can_remove_elementor_toc_margin_space() {
+	$astra_settings                                    = get_option( ASTRA_THEME_SETTINGS );
+	$astra_settings['remove-elementor-toc-margin-css'] = isset( $astra_settings['remove-elementor-toc-margin-css'] ) ? false : true;
+	return apply_filters( 'astra_remove_elementor_toc_margin', $astra_settings['remove-elementor-toc-margin-css'] );
+}
+
+/**
+ * Check whether widget specific config, dynamic CSS, preview JS needs to remove or not. Following cases considered while implementing this.
+ *
+ * 1. Is user is from old Astra setup.
+ * 2. Check if user is new but on lesser WordPress 5.8 versions.
+ * 3. User is new with block widget editor.
+ *
+ * @since 3.6.8
+ * @return boolean
+ */
+function astra_remove_widget_design_options() {
+	$astra_settings               = get_option( ASTRA_THEME_SETTINGS );
+	$remove_widget_design_options = isset( $astra_settings['remove-widget-design-options'] ) ? false : true;
+
+	// True -> Hide widget sections, False -> Display widget sections.
+	$is_widget_design_sections_hidden = true;
+
+	if ( ! $remove_widget_design_options ) {
+		// For old users we will show widget design options by anyways.
+		return apply_filters( 'astra_remove_widget_design_options', false );
+	}
+
+	// Considering the user is new now.
+	if ( isset( $astra_settings['remove-widget-design-options'] ) && $astra_settings['remove-widget-design-options'] ) {
+		// User was on WP-5.8 lesser version previously and he may update their WordPress to 5.8 in future. So we display the options in this case.
+		$is_widget_design_sections_hidden = false;
+	} elseif ( astra_has_widgets_block_editor() ) {
+		// User is new & having block widgets active. So we will hide those options.
+		$is_widget_design_sections_hidden = true;
+	} else {
+		// Setting up flag because user is on lesser WP versions and may update WP to 5.8.
+		astra_update_option( 'remove-widget-design-options', true );
+	}
+
+	return apply_filters( 'astra_remove_widget_design_options', $is_widget_design_sections_hidden );
+}

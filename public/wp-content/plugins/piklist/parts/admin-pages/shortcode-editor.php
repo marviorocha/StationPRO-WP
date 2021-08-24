@@ -1,6 +1,6 @@
 <?php
 /*
-Page: shortcode_editor
+Page: comming_soon
 */
 
   echo do_shortcode('[piklist_form form="shortcode"]');

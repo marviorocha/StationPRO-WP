@@ -2925,7 +2925,6 @@ function astra_check_flex_based_css() {
  */
 function astra_update_cart_style() {
 	$theme_options = get_option( 'astra-settings', array() );
-
 	if ( isset( $theme_options['woo-header-cart-icon-style'] ) && 'none' === $theme_options['woo-header-cart-icon-style'] ) {
 		$theme_options['woo-header-cart-icon-style']  = 'outline';
 		$theme_options['header-woo-cart-icon-color']  = '';
@@ -2940,4 +2939,241 @@ function astra_update_cart_style() {
 	}
 
 	update_option( 'astra-settings', $theme_options );
+}
+
+/**
+ * Update existing 'Grid Column Layout' option in responsive way in Related Posts.
+ * Till this update 3.5.0 we have 'Grid Column Layout' only for singular option, but now we are improving it as responsive.
+ *
+ * @since 3.5.0
+ * @return void.
+ */
+function astra_update_related_posts_grid_layout() {
+
+	$theme_options = get_option( 'astra-settings', array() );
+
+	if ( ! isset( $theme_options['related-posts-grid-responsive'] ) && isset( $theme_options['related-posts-grid'] ) ) {
+
+		/**
+		 * Managed here switch case to reduce further conditions in dynamic-css to get CSS value based on grid-template-columns. Because there are following CSS props used.
+		 *
+		 * '1' = grid-template-columns: 1fr;
+		 * '2' = grid-template-columns: repeat(2,1fr);
+		 * '3' = grid-template-columns: repeat(3,1fr);
+		 * '4' = grid-template-columns: repeat(4,1fr);
+		 *
+		 * And we already have Astra_Builder_Helper::$grid_size_mapping (used for footer layouts) for getting CSS values based on grid layouts. So migrating old value of grid here to new grid value.
+		 */
+		switch ( $theme_options['related-posts-grid'] ) {
+			case '1':
+				$grid_layout = 'full';
+				break;
+
+			case '2':
+				$grid_layout = '2-equal';
+				break;
+
+			case '3':
+				$grid_layout = '3-equal';
+				break;
+
+			case '4':
+				$grid_layout = '4-equal';
+				break;
+		}
+
+		$theme_options['related-posts-grid-responsive'] = array(
+			'desktop' => $grid_layout,
+			'tablet'  => $grid_layout,
+			'mobile'  => 'full',
+		);
+
+		update_option( 'astra-settings', $theme_options );
+	}
+}
+
+/**
+ * Migrate Site Title & Site Tagline options to new responsive array.
+ *
+ * @since 3.5.0
+ *
+ * @return void
+ */
+function astra_site_title_tagline_responsive_control_migration() {
+
+	$theme_options = get_option( 'astra-settings', array() );
+
+	if ( false === get_option( 'display-site-title-responsive', false ) && isset( $theme_options['display-site-title'] ) ) {
+		$theme_options['display-site-title-responsive']['desktop'] = $theme_options['display-site-title'];
+		$theme_options['display-site-title-responsive']['tablet']  = $theme_options['display-site-title'];
+		$theme_options['display-site-title-responsive']['mobile']  = $theme_options['display-site-title'];
+	}
+
+	if ( false === get_option( 'display-site-tagline-responsive', false ) && isset( $theme_options['display-site-tagline'] ) ) {
+		$theme_options['display-site-tagline-responsive']['desktop'] = $theme_options['display-site-tagline'];
+		$theme_options['display-site-tagline-responsive']['tablet']  = $theme_options['display-site-tagline'];
+		$theme_options['display-site-tagline-responsive']['mobile']  = $theme_options['display-site-tagline'];
+	}
+
+	update_option( 'astra-settings', $theme_options );
+}
+
+/**
+ * Do not apply new font-weight heading support CSS in editor/frontend directly.
+ *
+ * 1. Adding Font-weight support to widget titles.
+ * 2. Customizer font CSS not supporting in editor.
+ *
+ * @since 3.6.0
+ *
+ * @return void
+ */
+function astra_headings_font_support() {
+	$theme_options = get_option( 'astra-settings', array() );
+
+	if ( ! isset( $theme_options['can-support-widget-and-editor-fonts'] ) ) {
+		$theme_options['can-support-widget-and-editor-fonts'] = false;
+		update_option( 'astra-settings', $theme_options );
+	}
+}
+
+/**
+ * Set flag to avoid direct reflections on live site & to maintain backward compatibility for existing users.
+ *
+ * @since 3.6.0
+ * @return void.
+ */
+function astra_remove_logo_max_width() {
+	$theme_options = get_option( 'astra-settings', array() );
+
+	if ( ! isset( $theme_options['can-remove-logo-max-width-css'] ) ) {
+		$theme_options['can-remove-logo-max-width-css'] = false;
+		update_option( 'astra-settings', $theme_options );
+	}
+}
+
+/**
+ * Set flag to maintain backward compatibility for existing users for Transparent Header border bottom default value i.e from '' to 0.
+ *
+ * @since 3.6.0
+ * @return void.
+ */
+function astra_transparent_header_default_value() {
+	$theme_options = get_option( 'astra-settings', array() );
+
+	if ( ! isset( $theme_options['transparent-header-default-border'] ) ) {
+		$theme_options['transparent-header-default-border'] = false;
+		update_option( 'astra-settings', $theme_options );
+	}
+}
+
+/**
+ * Clear Astra + Astra Pro assets cache.
+ *
+ * @since 3.6.1
+ * @return void.
+ */
+function astra_clear_all_assets_cache() {
+	if ( class_exists( 'Astra_Cache_Base' ) ) {
+		// Clear Astra theme cache.
+		$astra_cache_base_instance = new Astra_Cache_Base( 'astra' );
+		$astra_cache_base_instance->refresh_assets( 'astra' );
+
+		// Clear Astra Addon's cache.
+		$astra_addon_cache_base_instance = new Astra_Cache_Base( 'astra-addon' );
+		$astra_addon_cache_base_instance->refresh_assets( 'astra-addon' );
+	}
+}
+
+/**
+ * Set flag for updated default values for buttons & add GB Buttons padding support.
+ *
+ * @since 3.6.3
+ * @return void
+ */
+function astra_button_default_values_updated() {
+	$theme_options = get_option( 'astra-settings', array() );
+
+	if ( ! isset( $theme_options['btn-default-padding-updated'] ) ) {
+		$theme_options['btn-default-padding-updated'] = false;
+		update_option( 'astra-settings', $theme_options );
+	}
+}
+
+/**
+ * Set flag for old users, to not directly apply underline to content links.
+ *
+ * @since 3.6.4
+ * @return void
+ */
+function astra_update_underline_link_setting() {
+	$theme_options = get_option( 'astra-settings', array() );
+
+	if ( ! isset( $theme_options['underline-content-links'] ) ) {
+		$theme_options['underline-content-links'] = false;
+		update_option( 'astra-settings', $theme_options );
+	}
+}
+
+/**
+ * Add compatibility support for WP-5.8. as some of settings & blocks already their in WP-5.7 versions, that's why added backward here.
+ *
+ * @since 3.6.5
+ * @return void
+ */
+function astra_support_block_editor() {
+	$theme_options = get_option( 'astra-settings' );
+
+	// Set flag on existing user's site to not reflect changes directly.
+	if ( ! isset( $theme_options['support-block-editor'] ) ) {
+		$theme_options['support-block-editor'] = false;
+		update_option( 'astra-settings', $theme_options );
+	}
+}
+
+/**
+ * Set flag to maintain backward compatibility for existing users.
+ * Fixing the case where footer widget's right margin space not working.
+ *
+ * @since 3.6.7
+ * @return void
+ */
+function astra_fix_footer_widget_right_margin_case() {
+	$theme_options = get_option( 'astra-settings', array() );
+
+	if ( ! isset( $theme_options['support-footer-widget-right-margin'] ) ) {
+		$theme_options['support-footer-widget-right-margin'] = false;
+		update_option( 'astra-settings', $theme_options );
+	}
+}
+
+/**
+ * Set flag to avoid direct reflections on live site & to maintain backward compatibility for existing users.
+ *
+ * @since 3.6.7
+ * @return void
+ */
+function astra_remove_elementor_toc_margin() {
+	$theme_options = get_option( 'astra-settings', array() );
+
+	if ( ! isset( $theme_options['remove-elementor-toc-margin-css'] ) ) {
+		$theme_options['remove-elementor-toc-margin-css'] = false;
+		update_option( 'astra-settings', $theme_options );
+	}
+}
+
+/**
+ * Set flag to avoid direct reflections on live site & to maintain backward compatibility for existing users.
+ * Use: Setting flag for removing widget specific design options when WordPress 5.8 & above activated on site.
+ *
+ * @since 3.6.8
+ * @return void
+ */
+function astra_set_removal_widget_design_options_flag() {
+	$theme_options = get_option( 'astra-settings', array() );
+
+	if ( ! isset( $theme_options['remove-widget-design-options'] ) ) {
+		$theme_options['remove-widget-design-options'] = false;
+		update_option( 'astra-settings', $theme_options );
+	}
 }

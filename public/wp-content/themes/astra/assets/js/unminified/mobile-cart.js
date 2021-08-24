@@ -98,13 +98,17 @@
 		if (undefined !== mobileHeader && '' !== mobileHeader && null !== mobileHeader) {
 
 			// Mobile Header Cart Flyout.
-			var woo_cart = document.querySelector('.ast-mobile-header-wrap .ast-header-woo-cart');
+			var woo_carts = document.querySelectorAll('.ast-mobile-header-wrap .ast-header-woo-cart');
 			var edd_cart = document.querySelector('.ast-mobile-header-wrap .ast-header-edd-cart');
 			var cart_close = document.querySelector('.astra-cart-drawer-close');
 
-			if (undefined !== woo_cart && '' !== woo_cart && null !== woo_cart) {
-				woo_cart.addEventListener("click", cartFlyoutOpen, false);
-				woo_cart.cart_type = 'woocommerce';
+			if( 0 < woo_carts.length ){
+				woo_carts.forEach(function callbackFn(woo_cart) {
+					if (undefined !== woo_cart && '' !== woo_cart && null !== woo_cart) {
+						woo_cart.addEventListener("click", cartFlyoutOpen, false);
+						woo_cart.cart_type = 'woocommerce';
+					}
+				})
 			}
 			if (undefined !== edd_cart && '' !== edd_cart && null !== edd_cart) {
 				edd_cart.addEventListener("click", cartFlyoutOpen, false);
