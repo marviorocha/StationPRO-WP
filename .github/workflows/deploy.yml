@@ -1,0 +1,19 @@
+name: 🎉 Deploy wordpress
+
+on:
+  push:
+    branches: [master]
+jobs:
+  Deploy-production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0
+        with:
+          server: ftpupload.net
+          username: ${{ secrets.username }}
+          password: ${{ secrets.password }}
+          server-dir: /htdocs/wp-content/
+          local-dir: ./public/wp-content/

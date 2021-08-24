@@ -1,27 +1,21 @@
-name: Deploy to WordPress.org
+name: Deploy WordPress plugin
 on:
   push:
-    branches:
-      - master
+    # 1. Trigger by pushing tag
     tags:
       - "[0-9]+.[0-9]+.[0-9]+"
-    pull_request:
-      tags:
-        - "[0-9]+.[0-9]+.[0-9]+"
-
 jobs:
-  deploy:
+  build:
+    name: Deploy WordPress plugin
+    # 2. Specify Linux runner
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@master
-
-      - name: Build
-        run: |
-          npm install
-          npm run build
-      - name: Deploy WordPress plugin
-        uses: yukihiko-shinoda/action-deploy-wordpress-plugin@v2.1.0
-
+      # 3. Checkout before Use this deployment action
+      - name: Checkout
+        uses: actions/checkout@v2
+      # 4. Use action with ssh password for workspace and environment varialble set by secrets
+      - name: Deploy
+        uses: yukihiko-shinoda/action-deploy-wordpress-plugin@v2.0.0
         env:
           SVN_REPOSITORY_URL: ${{ secrets.SvnRepositoryUrl }}
           SVN_USER_NAME: ${{ secrets.SvnUserName }}
