@@ -1,4 +1,6 @@
 {
-  "name": "my-awesome-package",
-  "version": "1.0.0"
+  "name": "Wordpress developer",
+  "version": "1.0.0",
+  "private": true
+ 
 }
