@@ -1,6 +1,23 @@
 {
-  "name": "Wordpress developer",
+  "name": "stationpro",
   "version": "1.0.0",
-  "private": true
- 
+  "description": "MyWebsite",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marviorocha/StationPRO.git"
+  },
+  "keywords": [
+    "wordpress",
+    "stationpro"
+  ],
+  "author": "marviorocha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marviorocha/StationPRO/issues"
+  },
+  "homepage": "https://github.com/marviorocha/StationPRO#readme"
 }
