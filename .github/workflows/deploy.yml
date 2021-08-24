@@ -1,4 +1,4 @@
-name: 🎉 Deploy
+name: 🎉 Deploy wordpress
 
 on:
   push:
@@ -9,7 +9,6 @@ jobs:
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v2
-
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
