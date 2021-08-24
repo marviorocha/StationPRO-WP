@@ -17,4 +17,3 @@ jobs:
           password: ${{ secrets.password }}
           server-dir: /home/www/
           local-dir: ./public/
-          port: 221
