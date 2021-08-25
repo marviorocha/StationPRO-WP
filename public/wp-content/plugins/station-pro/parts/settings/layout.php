@@ -17,10 +17,10 @@ piklist('field', array(
 piklist('field', array(
     'type' => 'checkbox',
     'field' => 'transparent',
-    'label' =>  __('Show transparent navbar', 'picklist'),
+    'label' =>  __('Show transparent navbar', 'piklist'),
     'value' => '', // set default value
     'choices' => array(
-        'bg-opacity-75' => _('Show navbar player in 50% transparent', 'picklist'),
+        'bg-opacity-75' => _('Show navbar player in 50% transparent', 'piklist'),
 
     )
 ));
@@ -33,18 +33,18 @@ if (stationpro()->is_plan('premium', true)) {
         'type' => 'radio',
         'field' => 'bg_color',
         'class' => 'piklist-field-type-radio piklist-field-type-radio-radio',
-        'label' => _('Choose your player color:', 'picklist'),
+        'label' => _e('Choose your player color:', 'piklist'),
         'choices' => array(
 
-            'blue' => _('<div class="block w-16 float-right  mb-2 text-center text-white rounded-sm  p-2 shadow bg-blue-500  ">Blue</div>', 'picklist'),
+            'blue' => _e('<div class="block w-16 float-right  mb-2 text-center text-white rounded-sm  p-2 shadow bg-blue-500  ">Blue</div>', 'piklist'),
 
-            'gray' => _('<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-gray-500 p-2 ">Gray</div>', 'picklist'),
-            'red' => _('<div class="block w-16 float-right   mb-2  text-center text-white rounded-sm shadow bg-red-500 p-2 ">Red</div>', 'picklist'),
-            'yellow' => _('<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-yellow-500 p-2 ">Yellow</div>', 'picklist'),
-            'green' => _('<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-green-500 p-2 ">Green</div>', 'picklist'),
-            'indigo' => _('<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-indigo-500 p-2 ">Indigo</div>', 'picklist'),
-            'pink' => _('<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-pink-500 p-2 ">Pink</div>', 'picklist'),
-            'purple' => _('<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-purple-500 p-2 ">Purple</div>', 'picklist')
+            'gray' => _e('<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-gray-500 p-2 ">Gray</div>', 'piklist'),
+            'red' => _e('<div class="block w-16 float-right   mb-2  text-center text-white rounded-sm shadow bg-red-500 p-2 ">Red</div>', 'piklist'),
+            'yellow' => _e('<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-yellow-500 p-2 ">Yellow</div>', 'piklist'),
+            'green' => _e('<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-green-500 p-2 ">Green</div>', 'piklist'),
+            'indigo' => _e('<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-indigo-500 p-2 ">Indigo</div>', 'piklist'),
+            'pink' => _e('<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-pink-500 p-2 ">Pink</div>', 'piklist'),
+            'purple' => _e('<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-purple-500 p-2 ">Purple</div>', 'piklist')
         )
     ));
 } else {
@@ -54,9 +54,9 @@ if (stationpro()->is_plan('premium', true)) {
         'field' => 'bg_color',
         'reset' => 'true',
         'class' => 'piklist-field-type-radio piklist-field-type-radio-radio',
-        'label' => _('Choose your player color:', 'picklist'),
+        'label' => _e('Choose your player color:', 'piklist'),
         'choices' => array(
-            'blue' => _('<div class="block w-16 float-right  mb-2 text-center text-white rounded-sm  p-2 shadow bg-blue-500  ">Blue</div>', 'picklist'),
+            'blue' => _e('<div class="block w-16 float-right  mb-2 text-center text-white rounded-sm  p-2 shadow bg-blue-500  ">Blue</div>', 'piklist'),
         )
     ));
 }
@@ -66,15 +66,15 @@ if (stationpro()->is_plan('premium', true)) {
         'type' => 'checkbox',
         'field' => 'shere',
         'class' => 'piklist-field-type-radio piklist-field-type-radio-radio',
-        'label' => _('Show icons in Player:', 'picklist'),
+        'label' => _e('Show icons in Player:', 'piklist'),
         'choices' => array(
-            'facebook' => _('<i class="fab fa-facebook"></i> Facebook', 'picklist'),
-            'twitter' => _('<i class="fab fa-twitter"></i>  Twitter', 'picklist'),
-            'whatsApp' => _('<i class="fab fa-whatsapp"></i>  WhatsApp', 'picklist'),
-            'telegram' => _('<i class="fab fa-telegram"></i>  Telegram', 'picklist'),
-            'linkedin' => _('<i class="fab fa-linkedin"></i>  Linkedin', 'picklist'),
-            'pinterest' => _('<i class="fab fa-pinterest"></i>  Pinterest', 'picklist'),
-            'email' => _('<i class="fas fa-envelope"></i>  E-mail', 'picklist'),
+            'facebook' => _e('<i class="fab fa-facebook"></i> Facebook', 'piklist'),
+            'twitter' => _e('<i class="fab fa-twitter"></i>  Twitter', 'piklist'),
+            'whatsApp' => _e('<i class="fab fa-whatsapp"></i>  WhatsApp', 'piklist'),
+            'telegram' => _e('<i class="fab fa-telegram"></i>  Telegram', 'piklist'),
+            'linkedin' => _e('<i class="fab fa-linkedin"></i>  Linkedin', 'piklist'),
+            'pinterest' => _e('<i class="fab fa-pinterest"></i>  Pinterest', 'piklist'),
+            'email' => _e('<i class="fas fa-envelope"></i>  E-mail', 'piklist'),
         )
     ));
 }
