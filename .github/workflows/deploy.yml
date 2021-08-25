@@ -12,8 +12,8 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
-          server: f34-preview.awardspace.net
+          server: ftpupload.net
           username: ${{ secrets.username }}
           password: ${{ secrets.password }}
-          server-dir: /home/www/stationpro/
-          local-dir: ./public/wp-content
+          server-dir: /htdocs/
+          local-dir: ./public
