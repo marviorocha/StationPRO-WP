@@ -7,18 +7,18 @@ if (!function_exists('stationpro')) {
 
         if (!isset($stationpro)) {
             // Activate multisite network integration.
-            if (!defined('WP_FS__PRODUCT_981_MULTISITE')) {
-                define('WP_FS__PRODUCT_981_MULTISITE', true);
+            if (!defined('WP_FS__PRODUCT_1047_MULTISITE')) {
+                define('WP_FS__PRODUCT_1047_MULTISITE', true);
             }
 
             // Include Freemius SDK.
             require_once dirname(__FILE__) . '/scripts/freemius/start.php';
 
             $stationpro = fs_dynamic_init(array(
-                'id'                  => '981',
+                'id'                  => '1047',
                 'slug'                => 'station-pro',
                 'type'                => 'plugin',
-                'public_key'          => 'pk_7e44969a6c07ed0649c307b2d5e3f',
+                'public_key'          => 'pk_3defa8338f31c475d1ef8fad18f9a',
                 'is_live'             => false,
                 'is_premium'          => true,
                 'premium_suffix'      => 'Station Pro (Premium)',
