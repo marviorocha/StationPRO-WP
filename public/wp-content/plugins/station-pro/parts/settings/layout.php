@@ -21,7 +21,6 @@ piklist('field', array(
     'value' => '', // set default value
     'choices' => array(
         'bg-opacity-75' => 'Show navbar player in 50% transparent',
-
     )
 ));
 
@@ -37,7 +36,6 @@ if (stationpro()->is_plan('premium', true)) {
         'choices' => array(
 
             'blue' => '<div class="block w-16 float-right  mb-2 text-center text-white rounded-sm  p-2 shadow bg-blue-500  ">Blue</div>',
-
             'gray' => '<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-gray-500 p-2 ">Gray</div>',
             'red' => '<div class="block w-16 float-right   mb-2  text-center text-white rounded-sm shadow bg-red-500 p-2 ">Red</div>',
             'yellow' => '<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-yellow-500 p-2 ">Yellow</div>',
@@ -62,20 +60,28 @@ if (stationpro()->is_plan('premium', true)) {
 }
 
 if (stationpro()->is_plan('premium', true)) {
+
     piklist('field', array(
         'type' => 'checkbox',
         'field' => 'shere',
         'class' => 'piklist-field-type-radio piklist-field-type-radio-radio',
-        'label' => 'Show icons in Player:',
+        'label' => 'Show icons in player:',
         'choices' => array(
             'facebook' => '<i class="fab fa-facebook"></i> Facebook',
-            'twitter' => '<i class="fab fa-twitter"></i>  Twitter',
-            'whatsApp' => '<i class="fab fa-whatsapp"></i>  WhatsApp',
-            'telegram' => '<i class="fab fa-telegram"></i>  Telegram',
-            'linkedin' => '<i class="fab fa-linkedin"></i>  Linkedin',
+            'twitter' => '<i class="fab fa-twitter"></i> Twitter',
+            'whatsApp' => '<i class="fab fa-whatsapp"></i> WhatsApp',
+            'telegram' => '<i class="fab fa-telegram"></i> Telegram',
+            'linkedin' => '<i class="fab fa-linkedin"></i> Linkedin',
             'pinterest' => '<i class="fab fa-pinterest"></i>  Pinterest',
             'email' => '<i class="fas fa-envelope"></i>  E-mail',
         )
+    ));
+} else {
+
+    piklist('field', array(
+        'type' => 'hidden',
+        'field' => 'shere',
+        'value' =>  ''
     ));
 }
 
