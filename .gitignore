@@ -8,6 +8,5 @@ docker/db
 log
 Imminent-master
 Gemfile.lock
-wordpress _olders
 public/wp-content/plugins/station-pro/.git/*
 public/wp-content/plugins/station-pro/.git/*
