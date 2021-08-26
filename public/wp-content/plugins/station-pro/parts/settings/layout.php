@@ -17,10 +17,10 @@ piklist('field', array(
 piklist('field', array(
     'type' => 'checkbox',
     'field' => 'transparent',
-    'label' =>  _e('Show transparent navbar', 'picklist'),
+    'label' =>  'Show transparent navbar',
     'value' => '', // set default value
     'choices' => array(
-        'bg-opacity-75' => _e('Show navbar player in 50% transparent', 'picklist'),
+        'bg-opacity-75' => 'Show navbar player in 50% transparent',
 
     )
 ));
@@ -33,18 +33,18 @@ if (stationpro()->is_plan('premium', true)) {
         'type' => 'radio',
         'field' => 'bg_color',
         'class' => 'piklist-field-type-radio piklist-field-type-radio-radio',
-        'label' => _e('Choose your player color:', 'picklist'),
+        'label' => 'Choose your player color:',
         'choices' => array(
 
-            'blue' => _e('<div class="block w-16 float-right  mb-2 text-center text-white rounded-sm  p-2 shadow bg-blue-500  ">Blue</div>', 'picklist'),
+            'blue' => '<div class="block w-16 float-right  mb-2 text-center text-white rounded-sm  p-2 shadow bg-blue-500  ">Blue</div>',
 
-            'gray' => _e('<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-gray-500 p-2 ">Gray</div>', 'picklist'),
-            'red' => _e('<div class="block w-16 float-right   mb-2  text-center text-white rounded-sm shadow bg-red-500 p-2 ">Red</div>', 'picklist'),
-            'yellow' => _e('<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-yellow-500 p-2 ">Yellow</div>', 'picklist'),
-            'green' => _e('<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-green-500 p-2 ">Green</div>', 'picklist'),
-            'indigo' => _e('<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-indigo-500 p-2 ">Indigo</div>', 'picklist'),
-            'pink' => _e('<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-pink-500 p-2 ">Pink</div>', 'picklist'),
-            'purple' => _e('<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-purple-500 p-2 ">Purple</div>', 'picklist')
+            'gray' => '<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-gray-500 p-2 ">Gray</div>',
+            'red' => '<div class="block w-16 float-right   mb-2  text-center text-white rounded-sm shadow bg-red-500 p-2 ">Red</div>',
+            'yellow' => '<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-yellow-500 p-2 ">Yellow</div>',
+            'green' => '<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-green-500 p-2 ">Green</div>',
+            'indigo' => '<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-indigo-500 p-2 ">Indigo</div>',
+            'pink' => '<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-pink-500 p-2 ">Pink</div>',
+            'purple' => '<div class="block w-16 float-right   mb-2 text-center text-white rounded-sm shadow bg-purple-500 p-2 ">Purple</div>'
         )
     ));
 } else {
@@ -54,9 +54,9 @@ if (stationpro()->is_plan('premium', true)) {
         'field' => 'bg_color',
         'reset' => 'true',
         'class' => 'piklist-field-type-radio piklist-field-type-radio-radio',
-        'label' => _e('Choose your player color:', 'picklist'),
+        'label' => 'Choose your player color:',
         'choices' => array(
-            'blue' => _e('<div class="block w-16 float-right  mb-2 text-center text-white rounded-sm  p-2 shadow bg-blue-500  ">Blue</div>', 'picklist'),
+            'blue' => '<div class="block w-16 float-right  mb-2 text-center text-white rounded-sm  p-2 shadow bg-blue-500  ">Blue</div>',
         )
     ));
 }
@@ -66,15 +66,15 @@ if (stationpro()->is_plan('premium', true)) {
         'type' => 'checkbox',
         'field' => 'shere',
         'class' => 'piklist-field-type-radio piklist-field-type-radio-radio',
-        'label' => _e('Show icons in Player:', 'picklist'),
+        'label' => 'Show icons in Player:',
         'choices' => array(
-            'facebook' => _e('<i class="fab fa-facebook"></i> Facebook', 'picklist'),
-            'twitter' => _e('<i class="fab fa-twitter"></i>  Twitter', 'picklist'),
-            'whatsApp' => _e('<i class="fab fa-whatsapp"></i>  WhatsApp', 'picklist'),
-            'telegram' => _e('<i class="fab fa-telegram"></i>  Telegram', 'picklist'),
-            'linkedin' => _e('<i class="fab fa-linkedin"></i>  Linkedin', 'picklist'),
-            'pinterest' => _e('<i class="fab fa-pinterest"></i>  Pinterest', 'picklist'),
-            'email' => _e('<i class="fas fa-envelope"></i>  E-mail', 'picklist'),
+            'facebook' => '<i class="fab fa-facebook"></i> Facebook',
+            'twitter' => '<i class="fab fa-twitter"></i>  Twitter',
+            'whatsApp' => '<i class="fab fa-whatsapp"></i>  WhatsApp',
+            'telegram' => '<i class="fab fa-telegram"></i>  Telegram',
+            'linkedin' => '<i class="fab fa-linkedin"></i>  Linkedin',
+            'pinterest' => '<i class="fab fa-pinterest"></i>  Pinterest',
+            'email' => '<i class="fas fa-envelope"></i>  E-mail',
         )
     ));
 }
@@ -115,134 +115,7 @@ if (stationpro()->is_plan('premium', true)) {
         font-weight: 600;
     }
 
-    .piklist-field-type-radio {
-        font-family: arial;
-        display: block;
-        position: relative;
-        padding-left: 31px;
-        margin-bottom: 8px;
-        padding-top: 2px;
-        cursor: pointer;
-        font-size: 16px;
-    }
 
-    .piklist-field-type-radio input {
-        position: absolute;
-        z-index: -1;
-        opacity: 0;
-    }
-
-    .piklist-field-type-radio_indicator {
-        position: absolute;
-        top: 1px;
-        left: 0;
-        height: 20px;
-        width: 20px;
-        background: #e6e6e6;
-        border: 0px solid #000000;
-        border-radius: undefinedpx;
-    }
-
-    .piklist-field-type-radio:hover input~.piklist-field-type-radio_indicator,
-    .piklist-field-type-radio input:focus~.piklist-field-type-radio_indicator {
-        background: #cccccc;
-    }
-
-    .piklist-field-type-radio input:checked~.piklist-field-type-radio_indicator {
-        background: #2a78c0;
-    }
-
-    .piklist-field-type-radio:hover input:not([disabled]):checked~.piklist-field-type-radio_indicator,
-    .piklist-field-type-radio input:checked:focus~.piklist-field-type-radio_indicator {
-        background: #0e6647d;
-    }
-
-    .piklist-field-type-radio input:disabled~.piklist-field-type-radio_indicator {
-        background: #e6e6e6;
-        opacity: 0.6;
-        pointer-events: none;
-    }
-
-    .piklist-field-type-radio_indicator:after {
-        box-sizing: unset;
-        content: '';
-        position: absolute;
-        display: none;
-    }
-
-    .piklist-field-type-radio input:checked~.piklist-field-type-radio_indicator:after {
-        display: block;
-    }
-
-    .piklist-field-type-radio-radio .piklist-field-type-radio_indicator {
-        border-radius: 50%;
-    }
-
-    .piklist-field-type-radio-radio .piklist-field-type-radio_indicator:after {
-        left: 7px;
-        top: 7px;
-        height: 6px;
-        width: 6px;
-        border-radius: 50%;
-        background: #ffffff;
-        transition: background 250ms;
-    }
-
-    .piklist-field-type-radio-radio input:disabled~.piklist-field-type-radio_indicator:after {
-        background: #7b7b7b;
-    }
-
-    .piklist-field-type-radio-radio .piklist-field-type-radio_indicator::before {
-        content: '';
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 4.5rem;
-        height: 4.5rem;
-        margin-left: -1.3rem;
-        margin-top: -1.3rem;
-        background: #2aa1c0;
-        border-radius: 3rem;
-        opacity: 0.6;
-        z-index: 99999;
-        transform: scale(0);
-    }
-
-    @keyframes s-ripple {
-        0% {
-            opacity: 0;
-            transform: scale(0);
-        }
-
-        20% {
-            transform: scale(1);
-        }
-
-        100% {
-            opacity: 0.01;
-            transform: scale(1);
-        }
-    }
-
-    @keyframes s-ripple-dup {
-        0% {
-            transform: scale(0);
-        }
-
-        30% {
-            transform: scale(1);
-        }
-
-        60% {
-            transform: scale(1);
-        }
-
-        100% {
-            opacity: 0;
-            transform: scale(1);
-        }
-    }
 
     .piklist-field-type-radio-radio input+.piklist-field-type-radio_indicator::before {
         animation: s-ripple 250ms ease-out;
