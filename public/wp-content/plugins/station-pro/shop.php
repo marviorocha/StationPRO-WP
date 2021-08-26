@@ -6,10 +6,6 @@ if (!function_exists('stationpro')) {
         global $stationpro;
 
         if (!isset($stationpro)) {
-            // Activate multisite network integration.
-            if (!defined('WP_FS__PRODUCT_1047_MULTISITE')) {
-                define('WP_FS__PRODUCT_1047_MULTISITE', true);
-            }
 
             // Include Freemius SDK.
             require_once dirname(__FILE__) . '/scripts/freemius/start.php';
@@ -59,5 +55,5 @@ if (!function_exists('stationpro')) {
     stationpro()->add_filter('after_skip_url', 'stationpro_settings_url');
     stationpro()->add_filter('after_connect_url', 'stationpro_settings_url');
     stationpro()->add_filter('after_pending_connect_url', 'stationpro_settings_url');
+    stationpro()->add_action('after_uninstall', 'stationpro_uninstall_cleanup');
 }
-stationpro()->add_action('after_uninstall', 'stationpro_uninstall_cleanup');
