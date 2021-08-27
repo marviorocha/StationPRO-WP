@@ -4,7 +4,7 @@ on:
   push:
     branches: [master]
 jobs:
-  web-deploy:
+  Deploy-production:
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Get latest code
@@ -17,3 +17,6 @@ jobs:
           password: ${{ secrets.password }}
           server-dir: /htdocs/
           local-dir: ./public/
+          exclude:
+            - wp-config.php
+        url: "demo.stationpro.co"
