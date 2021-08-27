@@ -19,4 +19,3 @@ jobs:
           local-dir: ./public/
           exclude:
             - wp-config.php
-        url: "demo.stationpro.co"
