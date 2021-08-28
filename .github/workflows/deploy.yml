@@ -16,6 +16,4 @@ jobs:
           username: ${{ secrets.username }}
           password: ${{ secrets.password }}
           server-dir: /htdocs/
-          local-dir: ./public/
-          exclude:
-            - wp-config.php
+          local-dir: ./public/wp-content
