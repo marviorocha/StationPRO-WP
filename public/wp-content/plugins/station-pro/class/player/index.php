@@ -1,26 +1,27 @@
 <?php require('../../../../../wp-load.php');
 
- global $wpdb;
- $option = get_option("piklist_core");
- $image_logo = wp_get_attachment_image_url($option['logo'][0]);
+global $wpdb;
+$option = get_option("piklist_core");
+$image_logo = wp_get_attachment_image_url($option['logo'][0]);
 
- 
-function radio(){
+
+function radio()
+{
   $option = get_option("piklist_core");
- 
+
   $icecast   = $option['icecast'];
   $shoutcast = $option['shoutcast'];
 
-if(!$shoutcast == ""){
-  return $shoutcast;
-  }else{
-  return $icecast;
+  if (!$shoutcast == "") {
+    return $shoutcast;
+  } else {
+    return $icecast;
   }
 } // end radio function
- 
 
 
- 
+
+
 
 //  $titan         = TitanFramework::getInstance('my-theme');
 //  $djname        = $titan->getOption('dj_name');
@@ -33,9 +34,9 @@ if(!$shoutcast == ""){
 
 
 
- 
 
- 
+
+
 // compile sass css with php
 
 
@@ -62,7 +63,7 @@ if(!$shoutcast == ""){
  */
 
 // function logo_player(){
- 
+
 //  $titan             = TitanFramework::getInstance('my-theme');
 //  $logo              = $titan->getOption('image_logo');
 //  $image_attributes  = wp_get_attachment_image_src( $attachment_id = $logo   );
@@ -83,50 +84,50 @@ if(!$shoutcast == ""){
 ?>
 <!DOCTYPE html>
 <html lang="eng">
-  <head>
-  
-  
-    <meta name="viewport" content="width=device-width, initial-scale=1">
- 
-    
-    <link rel="stylesheet" href="<?php echo plugins_url('../../dist/bundle.css', __FILE__) ?>">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<?php 
-    if ( stationpro()->is_plan('premium', true) ) {
-        // .. logic related to premium plan only ...
- 
- ?>    
+
+<head>
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <link rel="stylesheet" href="<?php echo plugins_url('../../dist/bundle.css', __FILE__) ?>">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <?php
+  if (stationpro()->is_plan('premium', true)) {
+
+  ?>
     <script src="<?php echo plugins_url('../../class/metadata/icecast-metadata-stats-0.0.2.min.js', __FILE__) ?>"> </script>
-    
+
     <script>
+      const onStats = (stats) => {
 
-  const onStats = (stats) => {
- 
-  localStorage.setItem('play_now', stats.icy.StreamTitle);
-   
-  };
- 
-  const statsListener = 
-    new IcecastMetadataStats(
-      '<?php echo radio() ?>',
-      { sources: ["icy"], onStats }
-    );
-  statsListener.start();
- 
-</script>
+        localStorage.setItem('play_now', stats.icy.StreamTitle);
 
-<?php } ?>
+      };
 
-<script>
-  
-  localStorage.setItem('stationData', '<?php echo json_encode($option);?>');  
-  localStorage.setItem('image_logo', '<?php echo  $image_logo;?>');
- </script>
-  </head>
-  <body>
- 
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58fe337c2288c3fe"></script>
-    <script src="<?php echo plugins_url('../../dist/bundle.js', __FILE__) ?>"></script>
-  </body>
+      const statsListener =
+        new IcecastMetadataStats(
+          '<?php echo radio() ?>', {
+            sources: ["icy"],
+            onStats
+          }
+        );
+      statsListener.start();
+    </script>
+
+  <?php } ?>
+
+  <script>
+    localStorage.setItem('stationData', '<?php echo json_encode($option); ?>');
+    localStorage.setItem('image_logo', '<?php echo  $image_logo; ?>');
+  </script>
+</head>
+
+<body>
+
+
+  <script src="<?php echo plugins_url('../../dist/bundle.js', __FILE__) ?>"></script>
+</body>
+
 </html>
- 
