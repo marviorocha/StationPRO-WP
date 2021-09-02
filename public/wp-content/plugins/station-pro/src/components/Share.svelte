@@ -1,7 +1,6 @@
 <script>
   import { getContext } from "svelte";
   let meta = JSON.parse(getContext("meta"));
-  console.log(meta.shere[5]);
   var a2a_config = a2a_config || {};
   a2a_config.onclick = 1;
 </script>

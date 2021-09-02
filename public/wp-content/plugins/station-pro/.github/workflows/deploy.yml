@@ -1,4 +1,4 @@
-name: Deploy WordPress plugin
+name: 🚀 Deploy WordPress plugin
 on:
   push:
     # 1. Trigger by pushing tag

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: station pro, radio, station, streaming, shoutcast, live, online radio station, wordpress, plugin podcast
 Requires at least: 4.9
 Tested up to: 5.8
-Stable tag: 2.2.2
+Stable tag: 2.2.3
 Requires PHP: 5.2.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -19,7 +19,7 @@ Now you can customize your Player yourself through wordpress!
 
 Now it's easy to have your radio station where you'll install your URL and let Station Pro work for you with a simple, fast and functional touch!
 
- [**Demo**](https://stationpro.co/)
+ [**Check Demo**](https://demo.stationpro.co/)
  
 
 = Including: =
@@ -42,10 +42,10 @@ That is very simple make a broadcast and optimized for visit in your web site.
 
 - Change color of player
 - $ Ads code for you monetize
-- Station analytics
-- Schandule integrete 
+- Station share button
 - Free video tutorial (Secret how to make a server cast )
 - No brand e link and banner 
+- Full Support/email
 
 ==  Get version premium == 
  [**http://stationpro.marviorocha.com/**](http://stationpro.marviorocha.com)
@@ -109,7 +109,11 @@ Redux is an options framework... in other words, it's not designed to do anythin
 
 == Changelog ==
 
+= Set 1, 2021 =
+
 = Aug 21, 2021 =
+
+* Fix player in wordpress
 * Components fix
 * Build of svelte
 * Fix class of player

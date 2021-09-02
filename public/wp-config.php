@@ -89,13 +89,7 @@ $table_prefix = 'wp_';
  *
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
-define('WP_DEBUG', getenv('APP_DEBUG') == 'true' ? true : false);
-
-if (getenv('APP_ENV') != 'local') {
-	define('AUTOMATIC_UPDATER_DISABLED', true);
-	define('DISALLOW_FILE_EDIT', true);
-	define('DISALLOW_FILE_MODS', true);
-}
+ 
 
 /* That's all, stop editing! Happy publishing. */
 

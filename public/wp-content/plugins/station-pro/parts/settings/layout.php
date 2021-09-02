@@ -67,6 +67,7 @@ if (stationpro()->is_plan('premium', true)) {
         'class' => 'piklist-field-type-radio piklist-field-type-radio-radio',
         'label' => 'Show icons in player:',
         'choices' => array(
+
             'facebook' => '<i class="fab fa-facebook"></i> Facebook',
             'twitter' => '<i class="fab fa-twitter"></i> Twitter',
             'whatsApp' => '<i class="fab fa-whatsapp"></i> WhatsApp',
@@ -81,7 +82,7 @@ if (stationpro()->is_plan('premium', true)) {
     piklist('field', array(
         'type' => 'hidden',
         'field' => 'shere',
-        'value' =>  ''
+        'value' =>  null
     ));
 }
 

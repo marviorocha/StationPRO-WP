@@ -6,12 +6,16 @@ if (!function_exists('stationpro')) {
         global $stationpro;
 
         if (!isset($stationpro)) {
+            // Activate multisite network integration.
+            if (!defined('WP_FS__PRODUCT_981_MULTISITE')) {
+                define('WP_FS__PRODUCT_981_MULTISITE', true);
+            }
 
             // Include Freemius SDK.
             require_once dirname(__FILE__) . '/scripts/freemius/start.php';
 
             $stationpro = fs_dynamic_init(array(
-                'id'                  => '1047',
+                'id'                  => '981',
                 'slug'                => 'station-pro',
                 'type'                => 'plugin',
                 'public_key'          => 'pk_3defa8338f31c475d1ef8fad18f9a',
@@ -34,7 +38,7 @@ if (!function_exists('stationpro')) {
                 ),
                 // Set the SDK to work in a sandbox mode (for development & testing).
                 // IMPORTANT: MAKE SURE TO REMOVE SECRET KEY BEFORE DEPLOYMENT.
-                // 'secret_key'          => 'sk_~1Lc6s{@Vtxb1a%I6yb(R*f~_nqT&',
+                'secret_key'          => 'sk_mG+^^?E>y(B#jB)}vBH6dxi[LvWY7'
             ));
         }
 

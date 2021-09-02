@@ -13,6 +13,7 @@ import sveltePreprocess from "svelte-preprocess";
 const production = !process.env.ROLLUP_WATCH;
 
 function serve() {
+	
 	let server;
 
 	function toExit() {

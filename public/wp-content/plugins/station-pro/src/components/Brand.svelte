@@ -4,7 +4,7 @@
   let meta = JSON.parse(getContext("meta"));
 </script>
 
-{#if meta.brand === ""}
+{#if meta.brand === "null"}
   <a
     title="Station PRO - Web Radio Player"
     target="_blank"

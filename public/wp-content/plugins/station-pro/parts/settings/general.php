@@ -11,7 +11,7 @@ Flow: General
 piklist('field', array(
   'type' => 'file', 'field' => 'logo', 'scope' => 'post_meta', 'label' => 'Logo Or Your Picture', 'help' => 'Put in player your pic or logo 180px x180px', 'options' => array(
     'modal_title' => 'Add File(s)', 'button' => 'Add Image'
-  ), 'required' => true
+  ), 'required' => false
 ));
 
 piklist('field', array(

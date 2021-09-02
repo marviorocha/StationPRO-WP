@@ -167,7 +167,7 @@ it s working.', 'piklist') ?></li>
      
         <ul>
           <li><?php _e('We support work for email with replay 48/7 week','piklist');?></li>
-          <li><?php _e('meta 1','piklist');?></li>
+          <li><?php _e('New details for your player','piklist');?></li>
           <li><?php _e('meta 2','piklist');?></li>
           <li><?php _e('meta 3','piklist');?></li>
         </ul>
